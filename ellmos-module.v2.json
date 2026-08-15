@@ -1,0 +1,53 @@
+{
+  "schema": "ellmos.module.v2",
+  "id": "source-resolver",
+  "display_name": "source-resolver",
+  "category": "control",
+  "kind": "library",
+  "status": "active",
+  "visibility": "public",
+  "provides": [
+    "source.resolution",
+    "source.resolution.ladder",
+    "pointer.existence-check"
+  ],
+  "requires": [],
+  "optional": [
+    "policy-registry",
+    "mcp"
+  ],
+  "conflicts": [],
+  "surfaces": [
+    "library",
+    "cli"
+  ],
+  "state": {
+    "ownership": "module",
+    "location": "user-home"
+  },
+  "boundaries": {
+    "network": "none",
+    "data": "user-local",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ]
+  },
+  "source_of_truth": {
+    "type": "git-repository",
+    "path": ".",
+    "repository": "not-yet-published -- lokaler Plan-D-Klon C:\\_Local_DEV\\repos\\source-resolver, kein GitHub-Remote angelegt (kein Nutzerauftrag dafuer)"
+  },
+  "adapters": [
+    {
+      "id": "policy-registry-cli-v1",
+      "target": "policy-registry",
+      "status": "optional",
+      "note": "Delegiert die Rolle 'policy.registry' vollstaendig an die policy-registry CLI (resolve --scope ...), statt eine zweite Richtlinien-Aufloesung zu bauen. Faellt auf einen eigenen, spezifischen Befund zurueck (module_present_not_callable), wenn die CLI nicht auf PATH ist."
+    }
+  ],
+  "namensraum_abgrenzung": {
+    "hinweis": "NICHT zu verwechseln mit .MODULES/.CONNECTORS/connectors -- jenes Modul verbindet Messaging-Kanaele (Telegram/Discord/Signal/WhatsApp/Home Assistant/Webhooks). source-resolver verbindet Skills mit INFORMATIONSQUELLEN (Policies/Entscheidungen/Nutzermodell/...). Getrennter Name, getrennter Zweck -- siehe SYSTEM-MANIFEST §4 (keine parallelen Standards)."
+  }
+}

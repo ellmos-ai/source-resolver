@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ellmos-ai/source-resolver/schemas/user-source-config.schema.json",
+  "title": "source-resolver Stufe-0 Nutzerkonfiguration",
+  "description": "Speicherformat von ~/.source-resolver/config.json. Jede Rolle hier ist per Definition Stufe 0 -- massgeblich, ueberschreibt jedes eigene Modul.",
+  "type": "object",
+  "required": ["schema", "version", "rollen"],
+  "properties": {
+    "schema": { "const": "ellmos.source-resolver.user-config.v1" },
+    "version": { "type": "integer", "minimum": 1 },
+    "rollen": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/RoleEntry" }
+    }
+  },
+  "$defs": {
+    "RoleEntry": {
+      "type": "object",
+      "required": ["rolle", "aktiv", "quelle", "stufe", "bestaetigt_am", "bestaetigt_von", "herkunft"],
+      "properties": {
+        "rolle": {
+          "type": "string",
+          "description": "Dotted-Vokabular, muss mit dem Rollennamen aus dem Aufruf uebereinstimmen (z.B. 'policy.registry', 'decisions.ledger', 'user.model')."
+        },
+        "aktiv": {
+          "type": "boolean",
+          "description": "false bedeutet: Nutzer hat diese Rolle bewusst abgewaehlt (nicht: nie konfiguriert)."
+        },
+        "quelle": {
+          "type": "object",
+          "description": "Frei -- Form haengt von der Rolle ab (Dateipfad, CLI-Befehl, MCP-Tool-Name, ...)."
+        },
+        "stufe": { "const": 0 },
+        "bestaetigt_am": { "type": "string", "format": "date-time" },
+        "bestaetigt_von": { "type": "string" },
+        "herkunft": {
+          "type": "string",
+          "enum": ["manuell", "discovery-bestaetigt", "eigenes-modul-bestaetigt", "fremdanbieter-bestaetigt"]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "_hinweis": "VORSCHLAG, KEIN gueltiger Ausschnitt aus .MODULES/composition.rules.json. Nicht automatisch einspielen -- Freigabe liegt beim Nutzer (siehe PROPOSAL-NOTE.md). Format spiegelt die vorhandenen 14 Rollen dieser Datei (gemessen 2026-08-15).",
+  "schema": "ellmos.composition-rules.v1",
+  "vorgeschlagene_neue_rollen": {
+    "policy.registry": {
+      "description": "Resolve which policy/rule text is authoritative for a given scope.",
+      "cardinality": { "minimum": 0, "maximum": 1 },
+      "providers": ["policy-registry"],
+      "hinweis": "Bereits vollstaendig durch policy-registry erfuellt (Manifest deklariert provides: policy.registry/policy.resolve/policy.discovery, CLI-Vertrag empirisch verifiziert 2026-08-15). Diese Rolle ist im Wesentlichen eine Formalisierung eines bestehenden Zustands, kein Neubau."
+    },
+    "decisions.ledger": {
+      "description": "Resolve where the canonical, open-decisions register lives for this user/host.",
+      "cardinality": { "minimum": 0, "maximum": 1 },
+      "providers": ["_control-center/_DECISIONS"],
+      "hinweis": "Kein Modul mit eigenem Manifest -- ist ein Ordner-Konvention (TO-DECIDE-USER*.txt-Kette, DECIDED-AND-DONE.md). Falls diese Rolle eingetragen wird, waere ein Manifest fuer _DECISIONS ein sinnvoller Folgeschritt (eigenes Ticket)."
+    },
+    "user.model": {
+      "description": "Resolve which Theory-of-Mind / decision-prediction model is authoritative for this user.",
+      "cardinality": { "minimum": 0, "maximum": 1 },
+      "providers": ["build-your-users-mind", "_TOM-lm"],
+      "hinweis": "Umbenannt von 'user_model' (Ticket-Wortlaut) zu 'user.model' fuer Konsistenz mit der bestehenden gepunkteten Vokabel (memory.curated, tickets.capture, ...). Nutzung unterliegt der Consent-Regel aus tom-lm/decision-avatar -- diese Rolle beschreibt nur WO, nicht OB genutzt werden darf."
+    }
+  },
+  "warum_nur_vorschlag": "Team-lead-Vorgabe 2026-08-15: neue Rollen in composition.rules.json sind ein Eingriff in den gemeinsamen Baukasten und werden dem Nutzer vorgelegt, nicht direkt eingetragen.",
+  "erstellt_von": "source-resolver Ticket T-20260815-385400870",
+  "erstellt_am": "2026-08-15"
+}
