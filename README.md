@@ -79,6 +79,19 @@ become its own ticket -- **that wiring is deliberately NOT done here**, only pro
 | `decisions.ledger` | `_control-center/_DECISIONS/TO-DECIDE-USER.txt` | File check |
 | `user.model` | `_control-center/_TOM-lm/avatar/START.md` | File check. **Consent is NOT part of this resolution** -- tom-lm/decision-avatar's own consent rule ("mere reachability of a profile file is not consent") remains the calling skill's responsibility. |
 
+## Second axis (resources/capabilities) -- the mechanism covers it, roles don't exist yet
+
+The ticket's third amendment widens the assignment: the same question doesn't only
+apply to knowledge (policy, decision, user model), but to resources too ("which video
+editing tool do I have, which DB, which MCP server?"). The ladder is **already generic
+enough** for this -- `resolve(rolle, ...)` doesn't distinguish "knowledge role" from
+"capability role", a role is just a dotted string. What's missing is NOT a second
+mechanism, but the **population**: `KNOWN_MODULE_PROVIDERS` entries for resource roles
+(e.g. `capability.video-editing`) and hooking into the already-canonical data cascade
+(`.AI/CLAUDE.md`, "Software as storage point and GUI") for the "nothing found -> skill
+provisions its own storage" case. This is deliberately NOT part of this build --
+candidate for a follow-up ticket.
+
 ## What's deliberately missing (scope cut per advisor review 2026-08-15)
 
 - **Stage-3 foreign providers:** the interface exists (`FOREIGN_PROVIDERS` in

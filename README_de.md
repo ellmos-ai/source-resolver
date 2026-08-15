@@ -80,6 +80,20 @@ Ticket erfolgt -- **das ist hier bewusst NICHT verdrahtet**, nur bereitgestellt.
 | `decisions.ledger` | `_control-center/_DECISIONS/TO-DECIDE-USER.txt` | Datei-Check |
 | `user.model` | `_control-center/_TOM-lm/avatar/START.md` | Datei-Check. **Einwilligung ist NICHT Teil dieser Aufloesung** -- die Consent-Regel von tom-lm/decision-avatar ("blosse Erreichbarkeit ist keine Einwilligung") bleibt Sache des aufrufenden Skills. |
 
+## Zweite Achse (Ressourcen/Faehigkeiten) -- Mechanismus deckt sie ab, Rollen fehlen noch
+
+Der dritte Nachtrag zum Ticket erweitert den Auftrag: dieselbe Frage stellt sich nicht
+nur fuer Wissen (Policy, Entscheidung, Nutzermodell), sondern auch fuer Ressourcen
+("welches Videoschnitt-Programm habe ich, welche DB, welcher MCP-Server?"). Die
+Stufenleiter ist dafuer **bereits generisch genug** -- `resolve(rolle, ...)` kennt keine
+Unterscheidung zwischen "Wissens-Rolle" und "Faehigkeits-Rolle", eine Rolle ist nur ein
+gepunkteter String. Was fehlt, ist NICHT ein zweiter Mechanismus, sondern die
+**Population**: `KNOWN_MODULE_PROVIDERS`-Eintraege fuer Ressourcen-Rollen (z.B.
+`capability.video-editing`) und die Anbindung an die bereits kanonische Datenkaskade
+(`.AI/CLAUDE.md`, "Software als Speicherpunkt und GUI") fuer den Fall "nichts gefunden ->
+Skill legt sich selbst Speicher an". Das ist bewusst NICHT Teil dieses Baus -- Kandidat
+fuer ein Folgeticket.
+
 ## Was hier bewusst fehlt (Schnitt vom advisor-Review 2026-08-15)
 
 - **Stufe-3-Fremdanbieter:** das Interface existiert (`FOREIGN_PROVIDERS` in
