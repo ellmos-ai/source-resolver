@@ -10,6 +10,12 @@ from source_resolver.pointer_check import check_pointer
 
 __version__ = "0.1.0"
 
+# Vertrags-Version der Ergebnisform (ResolutionResult-Felder, Stufe-Werte 0-4,
+# ResolutionStatus-Vokabular). Aendert sich NUR, wenn diese Form selbst sich aendert --
+# nicht bei jedem Feature. Wird von grounding-seed referenziert, dessen isolierte
+# Minimalfassung dieselbe Form produzieren muss (siehe dortige ladder.py).
+CONTRACT_VERSION = "1"
+
 __all__ = [
     "Stufe",
     "ResolutionStatus",
@@ -18,4 +24,5 @@ __all__ = [
     "confirm",
     "check_pointer",
     "__version__",
+    "CONTRACT_VERSION",
 ]
