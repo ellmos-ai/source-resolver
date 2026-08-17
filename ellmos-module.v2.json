@@ -37,8 +37,9 @@
   "source_of_truth": {
     "type": "git-repository",
     "path": ".",
-    "repository": "not-yet-published -- lokaler Plan-D-Klon C:\\_Local_DEV\\repos\\source-resolver, kein GitHub-Remote angelegt (kein Nutzerauftrag dafuer)"
+    "repository": "https://github.com/ellmos-ai/source-resolver"
   },
+  "repository": "https://github.com/ellmos-ai/source-resolver",
   "adapters": [
     {
       "id": "policy-registry-cli-v1",

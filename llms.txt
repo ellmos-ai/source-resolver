@@ -1,0 +1,28 @@
+# ellmos-ai / source-resolver
+
+> Role-based source resolution for skills: instead of hard-wiring every information source, a skill calls a role and gets back where that comes from, right now, for this user and this system.
+
+Last-checked: 2026-08-17
+Test-suite: 32/32 passed (pytest, Python 3.12)
+
+## Summary
+
+`source-resolver` answers one question -- "which component fulfills role X here?" -- via a staged resolution ladder: Stage 0 (user configuration, always wins), Stage 1 (own canonical module, with a registered adapter for `policy.registry`), Stage 2 (filesystem discovery proposal, never auto-adopted), Stage 3 (registered foreign provider, currently none), Stage 4 (not found, as a two-part dialogue rather than a silent failure). Built after three same-day incidents of the same failure class: a silent failure that looks like a valid state. Not to be confused with `.MODULES/.CONNECTORS/connectors` (messaging channels) -- this connects skills to information sources.
+
+## Key Features & Architecture
+
+- **Staged ladder** (`ladder.py`): explicit, checkable resolution instead of hard-wired paths.
+- **User configuration always wins** (Stage 0), even against a present, working canonical module.
+- **Ambiguous findings are their own result**, never buried in the generic "nothing found" dialogue (e.g. module present but CLI not installed, pointer drift, caller error).
+- **Pointer-existence check** (`pointer_check.py`): reusable, motivated by a three-week-dead pointer that went unnoticed.
+- **CLI**: `source-resolver resolve|confirm|list-roles|check-pointer`.
+- **`grounding-seed`** is the lifecycle around this resolver (need -> search -> connect -> self-provision -> migrate); no second resolver is built there.
+
+## Primary Documentation & References
+
+- [README.md](file:///README.md): Full ladder description, usage examples, CLI reference.
+- [README_de.md](file:///README_de.md): German translation.
+- [CHANGELOG.md](file:///CHANGELOG.md): Version history.
+- [pyproject.toml](file:///pyproject.toml): Package metadata, entry point (`source-resolver` CLI), dependencies.
+- [ellmos-module.v2.json](file:///ellmos-module.v2.json): Module manifest for the ellmos catalog/bundle system.
+- [proposals/](file:///proposals/): Proposed `composition.rules.json` roles, not yet adopted.

@@ -9,7 +9,7 @@ def test_resolve_placeholders_substitutes_home(tmp_path):
 
 
 def test_resolve_placeholders_leaves_hardcoded_path_untouched():
-    raw = "C:\\Users\\User\\OneDrive\\foo"
+    raw = "C:\\Users\\SomeUser\\OneDrive\\foo"
     assert resolve_placeholders(raw) == raw
 
 

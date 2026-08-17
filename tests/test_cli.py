@@ -1,5 +1,4 @@
 import json
-import os
 
 from source_resolver.cli import main
 

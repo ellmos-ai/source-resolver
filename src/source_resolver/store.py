@@ -13,7 +13,7 @@ from __future__ import annotations
 
 import json
 import os
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -52,7 +52,7 @@ class RoleEntry:
         }
 
     @staticmethod
-    def from_dict(data: dict[str, Any]) -> "RoleEntry":
+    def from_dict(data: dict[str, Any]) -> RoleEntry:
         return RoleEntry(
             rolle=data["rolle"],
             aktiv=bool(data.get("aktiv", True)),

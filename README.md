@@ -2,6 +2,14 @@
 
 # source-resolver
 
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Ecosystem: ellmos--ai](https://img.shields.io/badge/Ecosystem-ellmos--ai-purple.svg)](https://github.com/ellmos-ai)
+[![Tests: Pytest](https://img.shields.io/badge/Tests-Pytest%2032%2F32%20Passing-brightgreen.svg)](tests/)
+
+> [!NOTE]
+> **AI & LLM Integration Notice**: This repository includes an [`llms.txt`](llms.txt) index file tailored for automated context ingestion, agentic system prompts, and LLM code understanding.
+
 > Role-based source resolution for skills: instead of hard-wiring every information
 > source (policy, decision, user model, ...), a skill calls a role --
 > `source_resolver.resolve("decisions.ledger")` -- and gets back WHERE that comes from
@@ -113,7 +121,8 @@ The three roles named in the assignment (`policy.registry`, `decisions.ledger`,
 dotted vocabulary, e.g. `memory.curated`) are **proposed only**, not entered -- that's
 an intervention into the shared toolkit and belongs to the user. File:
 [`proposals/composition.rules.proposal.json`](proposals/composition.rules.proposal.json),
-rationale: [`proposals/PROPOSAL-NOTE.md`](proposals/PROPOSAL-NOTE.md).
+rationale: [`proposals/PROPOSAL-NOTE.en.md`](proposals/PROPOSAL-NOTE.en.md)
+(German original: [`proposals/PROPOSAL-NOTE.md`](proposals/PROPOSAL-NOTE.md)).
 
 ## Tests
 

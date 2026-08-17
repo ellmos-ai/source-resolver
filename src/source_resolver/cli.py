@@ -4,10 +4,9 @@ from __future__ import annotations
 
 import argparse
 import json
-import sys
 from pathlib import Path
 
-from source_resolver.ladder import resolve, confirm
+from source_resolver.ladder import confirm, resolve
 from source_resolver.pointer_check import check_pointer
 from source_resolver.store import UserSourceStore
 
@@ -37,7 +36,7 @@ def main(argv: list[str] | None = None) -> int:
     c.add_argument("--stufe-herkunft", type=int, default=2)
     c.add_argument("--bestaetigt-von", default="user")
 
-    lr = commands.add_parser("list-roles", help="Alle Stufe-0-Eintraege auflisten")
+    commands.add_parser("list-roles", help="Alle Stufe-0-Eintraege auflisten")
 
     cp = commands.add_parser("check-pointer", help="pointer.module_path auf Existenz pruefen")
     cp.add_argument("raw_path")

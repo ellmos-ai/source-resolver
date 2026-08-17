@@ -2,6 +2,14 @@
 
 # source-resolver
 
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Ecosystem: ellmos--ai](https://img.shields.io/badge/Ecosystem-ellmos--ai-purple.svg)](https://github.com/ellmos-ai)
+[![Tests: Pytest](https://img.shields.io/badge/Tests-Pytest%2032%2F32%20Passing-brightgreen.svg)](tests/)
+
+> [!NOTE]
+> **LLM/KI-Kontext-Index:** Eine maschinenlesbare Spezifikation für KI-Agenten befindet sich in [`llms.txt`](llms.txt).
+
 > Rollenbasierte Quellenaufloesung fuer Skills: statt jede Informationsquelle (Policy,
 > Entscheidung, Nutzermodell, ...) hart zu verdrahten, ruft ein Skill eine Rolle auf --
 > `source_resolver.resolve("decisions.ledger")` -- und bekommt zurueck, WO das fuer

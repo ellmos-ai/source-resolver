@@ -1,5 +1,4 @@
 import json
-import subprocess
 
 import source_resolver.adapters.policy_registry as pr_adapter
 

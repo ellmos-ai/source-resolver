@@ -62,7 +62,10 @@ def resolve_policy_registry(
     if require_kind:
         cmd += ["--require-kind", require_kind]
     try:
-        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+        # check=False bewusst nicht gesetzt: der Test-Stub in tests/test_adapters.py
+        # (_fake_run) reicht keine Kwargs durch. proc.returncode wird unten manuell
+        # ausgewertet, es wird nie auf eine Exception bei Nicht-Null vertraut.
+        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=15)  # noqa: PLW1510
     except (OSError, subprocess.TimeoutExpired) as error:
         return AdapterResult(
             status="adapter_error",
