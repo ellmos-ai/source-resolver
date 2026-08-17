@@ -1,3 +1,5 @@
+<img src="assets/banner.png" width="100%" alt="source-resolver banner">
+
 # source-resolver
 
 > Role-based source resolution for skills: instead of hard-wiring every information

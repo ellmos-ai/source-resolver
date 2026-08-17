@@ -1,3 +1,5 @@
+<img src="assets/banner.png" width="100%" alt="source-resolver Banner">
+
 # source-resolver
 
 > Rollenbasierte Quellenaufloesung fuer Skills: statt jede Informationsquelle (Policy,
