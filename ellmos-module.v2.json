@@ -39,7 +39,6 @@
     "path": ".",
     "repository": "https://github.com/ellmos-ai/source-resolver"
   },
-  "repository": "https://github.com/ellmos-ai/source-resolver",
   "adapters": [
     {
       "type": "seam",
@@ -48,8 +47,5 @@
       "status": "optional",
       "note": "Delegiert die Rolle 'policy.registry' vollstaendig an die policy-registry CLI (resolve --scope ...), statt eine zweite Richtlinien-Aufloesung zu bauen. Faellt auf einen eigenen, spezifischen Befund zurueck (module_present_not_callable), wenn die CLI nicht auf PATH ist."
     }
-  ],
-  "namensraum_abgrenzung": {
-    "hinweis": "NICHT zu verwechseln mit .MODULES/.CONNECTORS/connectors -- jenes Modul verbindet Messaging-Kanaele (Telegram/Discord/Signal/WhatsApp/Home Assistant/Webhooks). source-resolver verbindet Skills mit INFORMATIONSQUELLEN (Policies/Entscheidungen/Nutzermodell/...). Getrennter Name, getrennter Zweck -- siehe SYSTEM-MANIFEST §4 (keine parallelen Standards)."
-  }
+  ]
 }

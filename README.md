@@ -132,3 +132,7 @@ python -m pytest tests/ -q
 
 32/32 green (as of 2026-08-15), including a regression anchor for the pointer-drift
 class and an explicit test that stage 0 overrides a module with an adapter too.
+
+## Namensraum-Abgrenzung
+
+NICHT zu verwechseln mit .MODULES/.CONNECTORS/connectors -- jenes Modul verbindet Messaging-Kanaele (Telegram/Discord/Signal/WhatsApp/Home Assistant/Webhooks). source-resolver verbindet Skills mit INFORMATIONSQUELLEN (Policies/Entscheidungen/Nutzermodell/...). Getrennter Name, getrennter Zweck -- siehe SYSTEM-MANIFEST §4 (keine parallelen Standards).
