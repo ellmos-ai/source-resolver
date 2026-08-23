@@ -42,6 +42,7 @@
   "repository": "https://github.com/ellmos-ai/source-resolver",
   "adapters": [
     {
+      "type": "seam",
       "id": "policy-registry-cli-v1",
       "target": "policy-registry",
       "status": "optional",
