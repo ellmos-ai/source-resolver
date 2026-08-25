@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2] - 2026-08-25
+
+CR11=C Hoheits-Fassung (T-20260824-339847482): neue Stufe-1-Rolle `resources.inventory` fuer `.SYNC/_inventory/inventory.db` (9 Tabellen systems/software/skills/mcps/plugins/connectors/agents/pipelines/folders). Register-Hoheit liegt beim ControlRoom-Programm; ellmos-controlcenter-mcp `controlcenter_list_resources` ist nur Lese-Spiegel, keine zweite Kanonik.
+
+- Neue Rolle `resources.inventory` in `KNOWN_MODULE_PROVIDERS`, aufgeloest per `module_path`+`target` (wie `decisions.ledger`) -- keine Query-CLI vorhanden, direkter SQLite-Zugriff.
+- 1 neuer Test (36/36 gruen), README/README_de Rollentabelle nachgezogen.
+
 ## [0.1.1] - 2026-08-25
 
 K3=C (T-20260825-342866657, User-Entscheidung "beides": Resolver-Rollen zuerst,

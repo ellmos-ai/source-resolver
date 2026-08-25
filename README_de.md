@@ -91,6 +91,7 @@ Ticket erfolgt -- **das ist hier bewusst NICHT verdrahtet**, nur bereitgestellt.
 | `user.model` | `_control-center/_TOM-lm/avatar/START.md` | Datei-Check. **Einwilligung ist NICHT Teil dieser Aufloesung** -- die Consent-Regel von tom-lm/decision-avatar ("blosse Erreichbarkeit ist keine Einwilligung") bleibt Sache des aufrufenden Skills. |
 | `memory.organic` | Gardener | CLI-Praesenzcheck (`shutil.which("gardener")`) statt Pfad-Check -- Gardener ist pip/editable-installiert, kein fester Modulordner unter `<HOME>`. |
 | `memory.curated` | USMC | CLI-Praesenzcheck (`shutil.which("usmc")`) statt Pfad-Check, gleiche Begruendung. |
+| `resources.inventory` | `.SYNC/_inventory/inventory.db` | Datei-Check (`module_path`+`target`, wie `decisions.ledger`). Kanonisches Ressourcen-/Hardware-/Software-Inventar (SQLite, 9 Tabellen); Hoheit liegt beim ControlRoom-Programm -- ellmos-controlcenter-mcps `controlcenter_list_resources` ist Lese-Spiegel, keine zweite Kanonik. |
 
 ## Zweite Achse (Ressourcen/Faehigkeiten) -- Mechanismus deckt sie ab, Rollen fehlen noch
 

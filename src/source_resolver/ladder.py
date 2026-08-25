@@ -139,6 +139,22 @@ KNOWN_MODULE_PROVIDERS: dict[str, list[dict[str, Any]]] = {
             ),
         }
     ],
+    "resources.inventory": [
+        {
+            "id": "sync-inventory",
+            "module_path": "<HOME>/OneDrive/.SYNC/_inventory",
+            "target": "<HOME>/OneDrive/.SYNC/_inventory/inventory.db",
+            "hinweis": (
+                "Kanonisches Ressourcen-/Hardware-/Fremdsoftware-Inventar (SQLite, 9 Tabellen: "
+                "systems/software/skills/mcps/plugins/connectors/agents/pipelines/folders; "
+                "`scripts/schema.sql` im selben Ordner ist die Quelle der Wahrheit). "
+                "Register-Hoheit liegt beim ControlRoom-Programm (CR11=C, Hoheits-Fassung, "
+                "T-20260824-339847482) -- der ControlCenter-MCP-Tool `controlcenter_list_"
+                "resources` ist NUR Lese-Spiegel, keine zweite Kanonik. Keine Query-CLI "
+                "vorhanden -- direkter SQLite-Zugriff, schreibgeschuetzt oeffnen."
+            ),
+        }
+    ],
 }
 
 

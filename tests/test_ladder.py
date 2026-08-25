@@ -24,6 +24,22 @@ def test_stufe1_resolves_known_module_automatically(tmp_path):
     assert "_DECISIONS" in result.quelle["module_path"]
 
 
+def test_stufe1_resources_inventory_resolves_via_module_path(tmp_path):
+    """CR11=C Hoheits-Fassung (T-20260824-339847482): resources.inventory
+    zeigt auf .SYNC/_inventory/inventory.db -- module_path+target wie
+    decisions.ledger, kein CLI/Adapter (inventory.db hat keine Query-CLI)."""
+    home = tmp_path / "home"
+    inventory_dir = home / "OneDrive" / ".SYNC" / "_inventory"
+    inventory_dir.mkdir(parents=True)
+    (inventory_dir / "inventory.db").write_bytes(b"")
+    store = UserSourceStore(tmp_path / "store.json")
+    result = resolve("resources.inventory", store=store, home=home)
+    assert result.stufe == Stufe.EIGENES_MODUL
+    assert result.status == ResolutionStatus.RESOLVED
+    assert result.quelle["id"] == "sync-inventory"
+    assert "_inventory" in result.quelle["module_path"]
+
+
 def test_stufe1_memory_organic_resolves_via_cli_presence(tmp_path, monkeypatch):
     """K3=C (T-20260825-342866657): memory.organic (Gardener) wird ueber einen
     einfachen CLI-Praesenzcheck aufgeloest, nicht ueber einen Modulordner-Pfad --

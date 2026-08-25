@@ -2,7 +2,7 @@
 
 > Role-based source resolution for skills: instead of hard-wiring every information source, a skill calls a role and gets back where that comes from, right now, for this user and this system.
 
-Last-checked: 2026-08-17
+Last-checked: 2026-08-25
 Test-suite: 32/32 passed (pytest, Python 3.12)
 
 ## Summary
