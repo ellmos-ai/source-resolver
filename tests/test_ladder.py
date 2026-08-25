@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 
 import source_resolver.adapters.policy_registry as pr_adapter
+import source_resolver.ladder as ladder
 from source_resolver.ladder import ResolutionStatus, Stufe, confirm, resolve
 from source_resolver.store import RoleEntry, UserSourceStore, now_iso
 
@@ -21,6 +22,40 @@ def test_stufe1_resolves_known_module_automatically(tmp_path):
     assert result.stufe == Stufe.EIGENES_MODUL
     assert result.status == ResolutionStatus.RESOLVED
     assert "_DECISIONS" in result.quelle["module_path"]
+
+
+def test_stufe1_memory_organic_resolves_via_cli_presence(tmp_path, monkeypatch):
+    """K3=C (T-20260825-342866657): memory.organic (Gardener) wird ueber einen
+    einfachen CLI-Praesenzcheck aufgeloest, nicht ueber einen Modulordner-Pfad --
+    Gardener ist pip/editable-installiert, kein fester Ordner unter <HOME>."""
+    monkeypatch.setattr(ladder.shutil, "which", lambda name: "/usr/bin/gardener" if name == "gardener" else None)
+    store = UserSourceStore(tmp_path / "store.json")
+    result = resolve("memory.organic", store=store, home=tmp_path / "home")
+    assert result.stufe == Stufe.EIGENES_MODUL
+    assert result.status == ResolutionStatus.RESOLVED
+    assert result.quelle["cli"] == "gardener"
+    assert result.quelle["resolved_path"] == "/usr/bin/gardener"
+
+
+def test_stufe1_memory_curated_resolves_via_cli_presence(tmp_path, monkeypatch):
+    """Gegenstueck fuer memory.curated (USMC), gleiches Verfahren."""
+    monkeypatch.setattr(ladder.shutil, "which", lambda name: "/usr/bin/usmc" if name == "usmc" else None)
+    store = UserSourceStore(tmp_path / "store.json")
+    result = resolve("memory.curated", store=store, home=tmp_path / "home")
+    assert result.stufe == Stufe.EIGENES_MODUL
+    assert result.status == ResolutionStatus.RESOLVED
+    assert result.quelle["cli"] == "usmc"
+
+
+def test_stufe1_memory_roles_fall_through_when_cli_absent(tmp_path, monkeypatch):
+    """Fehlt gardener/usmc auf PATH, ist das echte Abwesenheit -- Stufe 1 liefert kein
+    Ergebnis, die Leiter faellt weiter durch (hier bis Stufe 4, da keine Discovery-
+    Wurzeln uebergeben wurden)."""
+    monkeypatch.setattr(ladder.shutil, "which", lambda name: None)
+    store = UserSourceStore(tmp_path / "store.json")
+    result = resolve("memory.organic", store=store, home=tmp_path / "home")
+    assert result.stufe == Stufe.NICHT_GEFUNDEN
+    assert result.status == ResolutionStatus.NOT_FOUND
 
 
 def test_stufe0_user_override_wins_over_present_module(tmp_path):

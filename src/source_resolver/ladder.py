@@ -24,6 +24,7 @@ auch ueber unseren eigenen kanonischen Modulen):
 
 from __future__ import annotations
 
+import shutil
 from dataclasses import dataclass, field
 from enum import IntEnum
 from pathlib import Path
@@ -110,6 +111,34 @@ KNOWN_MODULE_PROVIDERS: dict[str, list[dict[str, Any]]] = {
             ),
         }
     ],
+    "memory.organic": [
+        {
+            "id": "gardener",
+            "cli": "gardener",
+            "hinweis": (
+                "Organischer Cross-Source-Volltextindex (Zulieferer, nicht kuratiert). "
+                "CLI-Praesenzcheck statt Pfadaufloesung -- Gardener ist ueber pip/editable "
+                "install verfuegbar, kein fester Modulordner. Abruf: `gardener find <query>` "
+                "bzw. `find()`/`recall()`. Zuvor hardcodiert in work-autonomous/"
+                "exhaustion_check.py (`shutil.which('gardener')`); wandert hiermit in den "
+                "Resolver (K3=C, T-20260825-342866657)."
+            ),
+        }
+    ],
+    "memory.curated": [
+        {
+            "id": "usmc",
+            "cli": "usmc",
+            "hinweis": (
+                "Kuratiertes Gedaechtnis + Prozess-State (USMC). CLI-Praesenzcheck statt "
+                "Pfadaufloesung -- die kanonische DB liegt unter `~/.usmc/usmc_memory.db`, "
+                "aber massgeblich ist die installierte CLI, nicht ein fester Modulordner. "
+                "Abruf: `usmc facts|lessons|working|context`. Zuvor hardcodiert in "
+                "work-autonomous/exhaustion_check.py (`shutil.which('usmc')`); wandert "
+                "hiermit in den Resolver (K3=C, T-20260825-342866657)."
+            ),
+        }
+    ],
 }
 
 
@@ -132,6 +161,30 @@ def _try_known_module(rolle: str, home: Path) -> ResolutionResult | None:
             # Rolle hat einen Adapter -- das fremde Modul IST die Aufloesung fuer diese
             # Rolle, nicht bloss ein Vorhandensein-Check. Siehe adapters/policy_registry.py.
             continue  # wird vom Aufrufer separat behandelt (braucht scope/query)
+        cli_name = candidate.get("cli")
+        if cli_name is not None:
+            # Einfacher CLI-Praesenzcheck statt Pfadaufloesung (gardener/usmc sind
+            # pip/editable-installiert, kein fester Modulordner) -- dasselbe Verfahren,
+            # das work-autonomous/exhaustion_check.py bisher selbst hardcodiert hatte.
+            resolved_cli = shutil.which(cli_name)
+            if resolved_cli is None:
+                continue
+            return ResolutionResult(
+                rolle=rolle,
+                stufe=Stufe.EIGENES_MODUL,
+                status=ResolutionStatus.RESOLVED,
+                quelle={
+                    "id": candidate["id"],
+                    "cli": cli_name,
+                    "resolved_path": resolved_cli,
+                    "hinweis": candidate.get("hinweis", ""),
+                },
+                herkunft="eigenes-modul",
+                nachricht=(
+                    f"Rolle '{rolle}' aufgeloest ueber CLI-Praesenz von '{cli_name}' "
+                    f"({resolved_cli})."
+                ),
+            )
         module_path = _resolve_home_path(candidate["module_path"], home)
         if not module_path.exists():
             continue

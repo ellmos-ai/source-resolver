@@ -89,6 +89,8 @@ Ticket erfolgt -- **das ist hier bewusst NICHT verdrahtet**, nur bereitgestellt.
 | `policy.registry` | Modul `policy-registry` | Adapter -> `policy-registry resolve --scope ...` (CLI), faellt auf `module_present_not_callable` zurueck, wenn nicht installiert |
 | `decisions.ledger` | `_control-center/_DECISIONS/TO-DECIDE-USER.txt` | Datei-Check |
 | `user.model` | `_control-center/_TOM-lm/avatar/START.md` | Datei-Check. **Einwilligung ist NICHT Teil dieser Aufloesung** -- die Consent-Regel von tom-lm/decision-avatar ("blosse Erreichbarkeit ist keine Einwilligung") bleibt Sache des aufrufenden Skills. |
+| `memory.organic` | Gardener | CLI-Praesenzcheck (`shutil.which("gardener")`) statt Pfad-Check -- Gardener ist pip/editable-installiert, kein fester Modulordner unter `<HOME>`. |
+| `memory.curated` | USMC | CLI-Praesenzcheck (`shutil.which("usmc")`) statt Pfad-Check, gleiche Begruendung. |
 
 ## Zweite Achse (Ressourcen/Faehigkeiten) -- Mechanismus deckt sie ab, Rollen fehlen noch
 

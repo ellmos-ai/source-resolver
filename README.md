@@ -88,6 +88,8 @@ become its own ticket -- **that wiring is deliberately NOT done here**, only pro
 | `policy.registry` | Module `policy-registry` | Adapter -> `policy-registry resolve --scope ...` (CLI); falls back to `module_present_not_callable` if not installed |
 | `decisions.ledger` | `_control-center/_DECISIONS/TO-DECIDE-USER.txt` | File check |
 | `user.model` | `_control-center/_TOM-lm/avatar/START.md` | File check. **Consent is NOT part of this resolution** -- tom-lm/decision-avatar's own consent rule ("mere reachability of a profile file is not consent") remains the calling skill's responsibility. |
+| `memory.organic` | Gardener | CLI presence check (`shutil.which("gardener")`) instead of a path check -- Gardener is pip/editable-installed, no fixed module folder under `<HOME>`. |
+| `memory.curated` | USMC | CLI presence check (`shutil.which("usmc")`) instead of a path check, same reasoning. |
 
 ## Second axis (resources/capabilities) -- the mechanism covers it, roles don't exist yet
 

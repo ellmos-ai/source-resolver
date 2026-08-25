@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.1.1] - 2026-08-25
+
+K3=C (T-20260825-342866657, User-Entscheidung "beides": Resolver-Rollen zuerst,
+Doku verweist darauf statt sie zu duplizieren): zwei neue Stufe-1-Rollen fuer die
+bisher dokumentierte, aber ungefuellte Luecke in `work-autonomous/
+exhaustion_check.py` (dort bisher hardcodiert).
+
+- Neue Rollen `memory.organic` (Gardener) und `memory.curated` (USMC) in
+  `KNOWN_MODULE_PROVIDERS`, jeweils per einfachem CLI-Praesenzcheck
+  (`shutil.which("gardener")`/`shutil.which("usmc")`) aufgeloest -- kein voller
+  Adapter, da beide CLIs pip/editable-installiert sind und keinen festen
+  Modulordner unter `<HOME>` haben (anders als `policy.registry`/
+  `decisions.ledger`/`user.model`).
+- `_try_known_module()` um einen `"cli"`-Zweig erweitert (Alternative zum
+  bisherigen `"module_path"`-Zweig, gleiche Semantik: kein Treffer = echte
+  Abwesenheit, faellt weiter durch die Leiter).
+- 3 neue Tests (35/35 gruen), README/README_de Rollentabelle nachgezogen.
+
 ## [0.1.0] - 2026-08-15
 
 Erstversion. Gebaut fuer Ticket T-20260815-385400870 ("Quellen-Connectorebene fuer
