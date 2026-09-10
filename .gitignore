@@ -1,5 +1,57 @@
+# Bytecode & Python artifacts
 __pycache__/
-*.pyc
-.pytest_cache/
+*.py[cod]
+*$py.class
+
+# Distribution & Packaging
+build/
+dist/
 *.egg-info/
+*.egg
+.eggs/
+
+# Virtual Environments
 .venv/
+venv/
+ENV/
+
+# Testing & Linters
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+coverage.xml
+htmlcov/
+.cache/
+
+# Multi-Agent Coordination & System Locks
+LOCK
+LOCK.*
+*.lock
+LOCK*.txt
+LOCK.permissions.json
+
+# Multi-Host Synchronization Conflicts & OS Metadata
+*-conflict-*
+*.sync-conflict-*
+*.sync-temp-*
+*-ASUS-GEI.*
+*-WORKSTATION-LG.*
+*-WORKSTATION.*
+* (kopie)*
+* (copy)*
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Temporary, Backup & Patch Artifacts
+*.orig
+*.rej
+*.bak
+*.tmp
+*~
+*.swp
+
+# Environment & Local Secrets
+.env
+.env.*.local

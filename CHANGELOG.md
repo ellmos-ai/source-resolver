@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.3] - 2026-09-10
+
+Pfad-A-Hygiene, CI-Matrix-Härtung, PEP 621 Metadaten und Vertragstest-Erweiterung:
+
+- **CI-Matrix-Härtung** (`.github/workflows/ci.yml`): Neue automatisierte Matrix über `ubuntu-latest`, `windows-latest` und `macos-latest` für Python 3.10, 3.11, 3.12 und 3.13 mit `concurrency: cancel-in-progress: true`, `permissions: contents: read`, Ruff-Linter, Bytecode-Kompilierung (`compileall`) und Pytest.
+- **Stale Issues & PRs Workflow** (`.github/workflows/stale.yml`): Triage-Automatisierung mit `actions/stale@v9` nach 30 Tagen Inaktivität und 7 Tagen Schließfrist.
+- **PEP 621 Standardisierung** (`pyproject.toml`): Spezifikation von `[project.urls]` (Homepage, Repository, Documentation, Issues, Changelog, Security), standardisierte OS- und Python-3.10-3.13-Classifiers, optionale `dev` und `test` Dependencies sowie pytest `addopts = "-ra -v"` und Ruff-Konfiguration.
+- **.gitignore-Härtung**: Multi-Host Synchronisationskonflikte (`*-conflict-*`, `*-ASUS-GEI.*`, `*-WORKSTATION-LG.*`, `Thumbs.db`, `desktop.ini`), Multi-Agent Locks (`LOCK`, `LOCK.*`, `*.lock`, `LOCK*.txt`) und Build-/Test-Artefakte abgesichert.
+- **Sicherheitsrichtlinie & SLAs** (`SECURITY.md`): Bilinguale Sicherheitsrichtlinie nach P-006 mit 48-Stunden-Empfangsbestätigung und 5-Werktage-Triage-SLA, Zero-Network-Egress und Stufe-0-Nutzervorrang-Garantien.
+- **CLI & Modul-Ausführung**: `src/source_resolver/__main__.py` für standardisierte `python -m source_resolver`-Aufrufe ergänzt.
+- **Automatisierte Vertragstests** (`tests/test_metadata.py`): 8 neue Vertragstests für Versions-Parität, PEP 621 Struktur, Gitignore-Muster, CI/Stale-Workflows, Security-SLAs und öffentliche Kontrakt-Invarianten (Gesamtsuite auf 44/44 Tests erweitert, 100% grün).
+- **Dokumentation & Badges**: Shields.io Badges, Sprachumschalter, Version 0.1.3 und Security-SLA in `README.md`, `README_de.md` und `llms.txt` synchronisiert.
+
 ## [0.1.2] - 2026-08-25
 
 CR11=C Hoheits-Fassung (T-20260824-339847482): neue Stufe-1-Rolle `resources.inventory` fuer `.SYNC/_inventory/inventory.db` (9 Tabellen systems/software/skills/mcps/plugins/connectors/agents/pipelines/folders). Register-Hoheit liegt beim ControlRoom-Programm; ellmos-controlcenter-mcp `controlcenter_list_resources` ist nur Lese-Spiegel, keine zweite Kanonik.

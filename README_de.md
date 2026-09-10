@@ -1,11 +1,21 @@
-<img src="assets/banner.png" width="100%" alt="source-resolver Banner">
+<p align="center">
+  <img src="assets/banner.png" width="100%" alt="source-resolver Banner">
+</p>
 
 # source-resolver
 
+<p align="center">
+  <a href="README.md"><b>English</b></a> •
+  <a href="README_de.md"><b>Deutsch</b></a>
+</p>
+
+[![Version](https://img.shields.io/badge/Version-0.1.3-blue.svg)](pyproject.toml)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Lizenz: MIT](https://img.shields.io/badge/Lizenz-MIT-green.svg)](LICENSE)
+[![Security SLA](https://img.shields.io/badge/Security%20SLA-48h%20%7C%205d-blue.svg)](SECURITY.md)
 [![Ecosystem: ellmos--ai](https://img.shields.io/badge/Ecosystem-ellmos--ai-purple.svg)](https://github.com/ellmos-ai)
-[![Tests: Pytest](https://img.shields.io/badge/Tests-Pytest%2032%2F32%20Passing-brightgreen.svg)](tests/)
+[![Tests: Pytest](https://img.shields.io/badge/Tests-Pytest%2044%2F44%20Bestanden-brightgreen.svg)](tests/)
+[![LLM Kontext](https://img.shields.io/badge/LLM%20Kontext-llms.txt-orange.svg)](llms.txt)
 
 > [!NOTE]
 > **LLM/KI-Kontext-Index:** Eine maschinenlesbare Spezifikation für KI-Agenten befindet sich in [`llms.txt`](llms.txt).
@@ -131,8 +141,7 @@ Begruendung: [`proposals/PROPOSAL-NOTE.md`](proposals/PROPOSAL-NOTE.md).
 ## Tests
 
 ```bash
-python -m pytest tests/ -q
+python -m pytest tests/ -ra -v
 ```
 
-32/32 gruen (Stand 2026-08-15), inkl. Regressionsanker fuer die Pointer-Drift-Klasse
-und expliziter Test, dass Stufe 0 auch ein Modul mit Adapter ueberschreibt.
+44/44 gruen (Stand 2026-09-10), inkl. automatisierter Vertragstests fuer PEP 621 Metadaten, CI-Matrix-Härtung, Security-Policy-SLAs sowie Regressionsanker fuer die Pointer-Drift-Klasse und Stufe-0-Nutzervorrang.

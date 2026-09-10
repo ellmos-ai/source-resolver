@@ -1,11 +1,21 @@
-<img src="assets/banner.png" width="100%" alt="source-resolver banner">
+<p align="center">
+  <img src="assets/banner.png" width="100%" alt="source-resolver banner">
+</p>
 
 # source-resolver
 
+<p align="center">
+  <a href="README.md"><b>English</b></a> •
+  <a href="README_de.md"><b>Deutsch</b></a>
+</p>
+
+[![Version](https://img.shields.io/badge/version-0.1.3-blue.svg)](pyproject.toml)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Security SLA](https://img.shields.io/badge/Security%20SLA-48h%20%7C%205d-blue.svg)](SECURITY.md)
 [![Ecosystem: ellmos--ai](https://img.shields.io/badge/Ecosystem-ellmos--ai-purple.svg)](https://github.com/ellmos-ai)
-[![Tests: Pytest](https://img.shields.io/badge/Tests-Pytest%2032%2F32%20Passing-brightgreen.svg)](tests/)
+[![Tests: Pytest](https://img.shields.io/badge/Tests-Pytest%2044%2F44%20Passing-brightgreen.svg)](tests/)
+[![LLM Context](https://img.shields.io/badge/LLM%20Context-llms.txt-orange.svg)](llms.txt)
 
 > [!NOTE]
 > **AI & LLM Integration Notice**: This repository includes an [`llms.txt`](llms.txt) index file tailored for automated context ingestion, agentic system prompts, and LLM code understanding.
@@ -130,11 +140,10 @@ rationale: [`proposals/PROPOSAL-NOTE.en.md`](proposals/PROPOSAL-NOTE.en.md)
 ## Tests
 
 ```bash
-python -m pytest tests/ -q
+python -m pytest tests/ -ra -v
 ```
 
-32/32 green (as of 2026-08-15), including a regression anchor for the pointer-drift
-class and an explicit test that stage 0 overrides a module with an adapter too.
+44/44 green (as of 2026-09-10), including automated contract tests for PEP 621 metadata, CI matrix coverage, security policy SLAs, and regression anchors for pointer-drift and user configuration precedence.
 
 ## Namensraum-Abgrenzung
 

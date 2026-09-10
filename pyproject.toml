@@ -4,13 +4,46 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "source-resolver"
-version = "0.1.2"
+version = "0.1.3"
 description = "Rollenbasierte Quellenaufloesung fuer Skills -- Stufenleiter von Nutzerkonfiguration bis Fremdanbieter, mit Nutzervorrang und Discovery-Bestaetigung."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [{ name = "Lukas Geiger" }]
 keywords = ["skills", "source-resolution", "policy", "decisions", "user-model", "ellmos"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: OS Independent",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[project.urls]
+Homepage = "https://github.com/ellmos-ai/source-resolver"
+Repository = "https://github.com/ellmos-ai/source-resolver"
+Documentation = "https://github.com/ellmos-ai/source-resolver#readme"
+Issues = "https://github.com/ellmos-ai/source-resolver/issues"
+Changelog = "https://github.com/ellmos-ai/source-resolver/blob/master/CHANGELOG.md"
+Security = "https://github.com/ellmos-ai/source-resolver/blob/master/SECURITY.md"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.4.0",
+]
+test = [
+    "pytest>=8.0.0",
+    "ruff>=0.4.0",
+]
 
 [project.scripts]
 source-resolver = "source_resolver.cli:main"
@@ -19,6 +52,7 @@ source-resolver = "source_resolver.cli:main"
 where = ["src"]
 
 [tool.pytest.ini_options]
+addopts = "-ra -v"
 pythonpath = ["src"]
 testpaths = ["tests"]
 

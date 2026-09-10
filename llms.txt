@@ -2,12 +2,13 @@
 
 > Role-based source resolution for skills: instead of hard-wiring every information source, a skill calls a role and gets back where that comes from, right now, for this user and this system.
 
-Last-checked: 2026-08-25
-Test-suite: 32/32 passed (pytest, Python 3.12)
+Last-checked: 2026-09-10
+Test-suite: 44/44 passed (pytest, Python 3.10-3.13)
+Version: 0.1.3
 
 ## Summary
 
-`source-resolver` answers one question -- "which component fulfills role X here?" -- via a staged resolution ladder: Stage 0 (user configuration, always wins), Stage 1 (own canonical module, with a registered adapter for `policy.registry`), Stage 2 (filesystem discovery proposal, never auto-adopted), Stage 3 (registered foreign provider, currently none), Stage 4 (not found, as a two-part dialogue rather than a silent failure). Built after three same-day incidents of the same failure class: a silent failure that looks like a valid state. Not to be confused with `.MODULES/.CONNECTORS/connectors` (messaging channels) -- this connects skills to information sources.
+`source-resolver` answers one question -- "which component fulfills role X here?" -- via a staged resolution ladder: Stage 0 (user configuration, always wins), Stage 1 (own canonical module, with registered adapters for `policy.registry`, `resources.inventory`, etc.), Stage 2 (filesystem discovery proposal, never auto-adopted), Stage 3 (registered foreign provider, currently none), Stage 4 (not found, as a two-part dialogue rather than a silent failure). Built after three same-day incidents of the same failure class: a silent failure that looks like a valid state. Not to be confused with `.MODULES/.CONNECTORS/connectors` (messaging channels) -- this connects skills to information sources.
 
 ## Key Features & Architecture
 
@@ -15,13 +16,15 @@ Test-suite: 32/32 passed (pytest, Python 3.12)
 - **User configuration always wins** (Stage 0), even against a present, working canonical module.
 - **Ambiguous findings are their own result**, never buried in the generic "nothing found" dialogue (e.g. module present but CLI not installed, pointer drift, caller error).
 - **Pointer-existence check** (`pointer_check.py`): reusable, motivated by a three-week-dead pointer that went unnoticed.
-- **CLI**: `source-resolver resolve|confirm|list-roles|check-pointer`.
+- **CLI & Module runner**: `source-resolver resolve|confirm|list-roles|check-pointer` and `python -m source_resolver`.
+- **Automated Contract Tests** (`tests/test_metadata.py`): continuous validation of PEP 621 metadata, version parity, CI matrix definitions, .gitignore hygiene, and SECURITY.md SLA commitments.
 - **`grounding-seed`** is the lifecycle around this resolver (need -> search -> connect -> self-provision -> migrate); no second resolver is built there.
 
 ## Primary Documentation & References
 
 - [README.md](file:///README.md): Full ladder description, usage examples, CLI reference.
 - [README_de.md](file:///README_de.md): German translation.
+- [SECURITY.md](file:///SECURITY.md): Vulnerability reporting policy, 48h acknowledgment and 5 business days triage SLA.
 - [CHANGELOG.md](file:///CHANGELOG.md): Version history.
 - [pyproject.toml](file:///pyproject.toml): Package metadata, entry point (`source-resolver` CLI), dependencies.
 - [ellmos-module.v2.json](file:///ellmos-module.v2.json): Module manifest for the ellmos catalog/bundle system.
