@@ -8,7 +8,7 @@ jeder Skill seine Quellen hart verdrahtet. Siehe README.md fuer die volle Spezif
 from source_resolver.ladder import ResolutionResult, ResolutionStatus, Stufe, confirm, resolve
 from source_resolver.pointer_check import check_pointer
 
-__version__ = "0.1.3"
+__version__ = "0.1.4"
 
 # Vertrags-Version der Ergebnisform (ResolutionResult-Felder, Stufe-Werte 0-4,
 # ResolutionStatus-Vokabular). Aendert sich NUR, wenn diese Form selbst sich aendert --

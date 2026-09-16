@@ -3,12 +3,12 @@
 > Role-based source resolution for skills: instead of hard-wiring every information source, a skill calls a role and gets back where that comes from, right now, for this user and this system.
 
 Last-checked: 2026-09-10
-Test-suite: 44/44 passed (pytest, Python 3.10-3.13)
-Version: 0.1.3
+Test-suite: 48/48 passed (pytest, Python 3.10-3.13)
+Version: 0.1.4
 
 ## Summary
 
-`source-resolver` answers one question -- "which component fulfills role X here?" -- via a staged resolution ladder: Stage 0 (user configuration, always wins), Stage 1 (own canonical module, with registered adapters for `policy.registry`, `resources.inventory`, etc.), Stage 2 (filesystem discovery proposal, never auto-adopted), Stage 3 (registered foreign provider, currently none), Stage 4 (not found, as a two-part dialogue rather than a silent failure). Built after three same-day incidents of the same failure class: a silent failure that looks like a valid state. Not to be confused with `.MODULES/.CONNECTORS/connectors` (messaging channels) -- this connects skills to information sources.
+`source-resolver` answers one question -- "which component fulfills role X here?" -- via a staged resolution ladder: Stage 0 (user configuration, always wins), Stage 1 (own canonical module, with registered adapters for `policy.registry`, `resources.inventory`, and `resources.bach.tool_registry`), Stage 2 (filesystem discovery proposal, never auto-adopted), Stage 3 (registered foreign provider, currently none), Stage 4 (not found, as a two-part dialogue rather than a silent failure). Built after three same-day incidents of the same failure class: a silent failure that looks like a valid state. Not to be confused with `.MODULES/.CONNECTORS/connectors` (messaging channels) -- this connects skills to information sources.
 
 ## Key Features & Architecture
 
@@ -19,6 +19,7 @@ Version: 0.1.3
 - **CLI & Module runner**: `source-resolver resolve|confirm|list-roles|check-pointer` and `python -m source_resolver`.
 - **Automated Contract Tests** (`tests/test_metadata.py`): continuous validation of PEP 621 metadata, version parity, CI matrix definitions, .gitignore hygiene, and SECURITY.md SLA commitments.
 - **`grounding-seed`** is the lifecycle around this resolver (need -> search -> connect -> self-provision -> migrate); no second resolver is built there.
+- **BACH tool registry adapter** (`resources.bach.tool_registry`): calls `bach_api.tool_registry.list()` through a short-lived bridge, returns only structured read-only data, and never resolves `tool_patterns`.
 
 ## Primary Documentation & References
 

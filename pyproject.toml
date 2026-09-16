@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "source-resolver"
-version = "0.1.3"
-description = "Rollenbasierte Quellenaufloesung fuer Skills -- Stufenleiter von Nutzerkonfiguration bis Fremdanbieter, mit Nutzervorrang und Discovery-Bestaetigung."
+version = "0.1.4"
+description = "Rollenbasierte Quellenauflösung für Skills – Stufenleiter von Nutzerkonfiguration bis Fremdanbieter, mit Nutzervorrang, Discovery-Bestätigung und read-only BACH-Werkzeugregister."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }

@@ -22,7 +22,7 @@ def test_version_parity():
 
     project_version = pyproject["project"]["version"]
     assert source_resolver.__version__ == project_version, "source_resolver.__version__ must match pyproject.toml"
-    assert source_resolver.__version__ == "0.1.3", "Expected version 0.1.3"
+    assert source_resolver.__version__ == "0.1.4", "Expected version 0.1.4"
 
     manifest_path = REPO_ROOT / "ellmos-module.v2.json"
     assert manifest_path.is_file(), "ellmos-module.v2.json must exist"

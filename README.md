@@ -9,12 +9,12 @@
   <a href="README_de.md"><b>Deutsch</b></a>
 </p>
 
-[![Version](https://img.shields.io/badge/version-0.1.3-blue.svg)](pyproject.toml)
+[![Version](https://img.shields.io/badge/version-0.1.4-blue.svg)](pyproject.toml)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Security SLA](https://img.shields.io/badge/Security%20SLA-48h%20%7C%205d-blue.svg)](SECURITY.md)
 [![Ecosystem: ellmos--ai](https://img.shields.io/badge/Ecosystem-ellmos--ai-purple.svg)](https://github.com/ellmos-ai)
-[![Tests: Pytest](https://img.shields.io/badge/Tests-Pytest%2044%2F44%20Passing-brightgreen.svg)](tests/)
+[![Tests: Pytest](https://img.shields.io/badge/Tests-Pytest%2048%2F48%20Passing-brightgreen.svg)](tests/)
 [![LLM Context](https://img.shields.io/badge/LLM%20Context-llms.txt-orange.svg)](llms.txt)
 
 > [!NOTE]
@@ -101,8 +101,9 @@ become its own ticket -- **that wiring is deliberately NOT done here**, only pro
 | `memory.organic` | Gardener | CLI presence check (`shutil.which("gardener")`) instead of a path check -- Gardener is pip/editable-installed, no fixed module folder under `<HOME>`. |
 | `memory.curated` | USMC | CLI presence check (`shutil.which("usmc")`) instead of a path check, same reasoning. |
 | `resources.inventory` | `.SYNC/_inventory/inventory.db` | File check (`module_path`+`target`, like `decisions.ledger`). Canonical resources/hardware/software inventory (SQLite, 9 tables); authority sits with the ControlRoom programme -- ellmos-controlcenter-mcp's `controlcenter_list_resources` is a read-only mirror, not a second canon. |
+| `resources.bach.tool_registry` | BACH `tool_registry` | Read-only adapter via `bach_api.tool_registry`; returns active BACH tools as a structured source without opening `bach.db` directly from the resolver. |
 
-## Second axis (resources/capabilities) -- the mechanism covers it, roles don't exist yet
+## Second axis (resources/capabilities) -- first role wired
 
 The ticket's third amendment widens the assignment: the same question doesn't only
 apply to knowledge (policy, decision, user model), but to resources too ("which video
@@ -112,8 +113,13 @@ enough** for this -- `resolve(rolle, ...)` doesn't distinguish "knowledge role" 
 mechanism, but the **population**: `KNOWN_MODULE_PROVIDERS` entries for resource roles
 (e.g. `capability.video-editing`) and hooking into the already-canonical data cascade
 (`.AI/CLAUDE.md`, "Software as storage point and GUI") for the "nothing found -> skill
-provisions its own storage" case. This is deliberately NOT part of this build --
-candidate for a follow-up ticket.
+provisions its own storage" case. The BACH role is implemented as an optional,
+fail-closed adapter; further resource roles remain follow-up candidates.
+
+The adapter calls BACH through `bach_api.tool_registry.list()`. It reads active entries
+by default, can filter names and paths through a query, and returns a distinct Stage-1
+finding when BACH is unavailable. The separate `tool_patterns` registry is deliberately
+outside this role.
 
 ## What's deliberately missing (scope cut per advisor review 2026-08-15)
 
@@ -143,7 +149,7 @@ rationale: [`proposals/PROPOSAL-NOTE.en.md`](proposals/PROPOSAL-NOTE.en.md)
 python -m pytest tests/ -ra -v
 ```
 
-44/44 green (as of 2026-09-10), including automated contract tests for PEP 621 metadata, CI matrix coverage, security policy SLAs, and regression anchors for pointer-drift and user configuration precedence.
+48/48 green (as of 2026-09-16), including automated contract tests for PEP 621 metadata, CI matrix coverage, security policy SLAs, and regression anchors for pointer-drift, user configuration precedence, and the BACH read-only tool registry seam.
 
 ## Namensraum-Abgrenzung
 

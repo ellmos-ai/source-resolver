@@ -155,6 +155,19 @@ KNOWN_MODULE_PROVIDERS: dict[str, list[dict[str, Any]]] = {
             ),
         }
     ],
+    "resources.bach.tool_registry": [
+        {
+            "id": "bach-tool-registry",
+            "module_path": "<HOME>/.bach",
+            "adapter": "resources.bach.tool_registry",
+            "hinweis": (
+                "Read-only BACH-Werkzeugregister über die öffentliche "
+                "bach_api.tool_registry-Schnittstelle. Die Quelle wird nicht "
+                "direkt als bach.db geöffnet; tool_patterns bleibt bewusst "
+                "ausserhalb dieser Rolle."
+            ),
+        }
+    ],
 }
 
 
@@ -241,7 +254,10 @@ def _try_adapter(rolle: str, *, scope: str | None, query: str) -> ResolutionResu
     adapter = ADAPTERS.get(rolle)
     if adapter is None:
         return None
-    if scope is None:
+    # Bestehender policy.registry-Vertrag: fehlender Scope ist ein spezifischer
+    # Aufruferfehler und darf seine bisherige Herkunftsmarkierung behalten. Andere
+    # Adapter dürfen scope bewusst optional verwenden (z. B. BACH tool_registry).
+    if rolle == "policy.registry" and scope is None:
         return ResolutionResult(
             rolle=rolle,
             stufe=Stufe.EIGENES_MODUL,
@@ -265,7 +281,7 @@ def _try_adapter(rolle: str, *, scope: str | None, query: str) -> ResolutionResu
         stufe=Stufe.EIGENES_MODUL,
         status=status,
         quelle=result.payload,
-        herkunft="adapter:policy-registry",
+        herkunft="adapter:policy-registry" if rolle == "policy.registry" else f"adapter:{rolle}",
         nachricht=result.message,
     )
 
