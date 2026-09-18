@@ -9,12 +9,12 @@
   <a href="README_de.md"><b>Deutsch</b></a>
 </p>
 
-[![Version](https://img.shields.io/badge/Version-0.1.3-blue.svg)](pyproject.toml)
+[![Version](https://img.shields.io/badge/Version-0.1.4-blue.svg)](pyproject.toml)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Lizenz: MIT](https://img.shields.io/badge/Lizenz-MIT-green.svg)](LICENSE)
 [![Security SLA](https://img.shields.io/badge/Security%20SLA-48h%20%7C%205d-blue.svg)](SECURITY.md)
 [![Ecosystem: ellmos--ai](https://img.shields.io/badge/Ecosystem-ellmos--ai-purple.svg)](https://github.com/ellmos-ai)
-[![Tests: Pytest](https://img.shields.io/badge/Tests-Pytest%2044%2F44%20Bestanden-brightgreen.svg)](tests/)
+[![Tests: Pytest](https://img.shields.io/badge/Tests-Pytest%2048%2F48%20Bestanden-brightgreen.svg)](tests/)
 [![LLM Kontext](https://img.shields.io/badge/LLM%20Kontext-llms.txt-orange.svg)](llms.txt)
 
 > [!NOTE]
@@ -102,8 +102,9 @@ Ticket erfolgt -- **das ist hier bewusst NICHT verdrahtet**, nur bereitgestellt.
 | `memory.organic` | Gardener | CLI-Praesenzcheck (`shutil.which("gardener")`) statt Pfad-Check -- Gardener ist pip/editable-installiert, kein fester Modulordner unter `<HOME>`. |
 | `memory.curated` | USMC | CLI-Praesenzcheck (`shutil.which("usmc")`) statt Pfad-Check, gleiche Begruendung. |
 | `resources.inventory` | `.SYNC/_inventory/inventory.db` | Datei-Check (`module_path`+`target`, wie `decisions.ledger`). Kanonisches Ressourcen-/Hardware-/Software-Inventar (SQLite, 9 Tabellen); Hoheit liegt beim ControlRoom-Programm -- ellmos-controlcenter-mcps `controlcenter_list_resources` ist Lese-Spiegel, keine zweite Kanonik. |
+| `resources.bach.tool_registry` | BACH `tool_registry` | Read-only-Adapter über `bach_api.tool_registry`; liefert aktive BACH-Werkzeuge als strukturierte Quelle und öffnet `bach.db` nicht direkt durch den Resolver. |
 
-## Zweite Achse (Ressourcen/Faehigkeiten) -- Mechanismus deckt sie ab, Rollen fehlen noch
+## Zweite Achse (Ressourcen/Fähigkeiten) – erste Rolle angebunden
 
 Der dritte Nachtrag zum Ticket erweitert den Auftrag: dieselbe Frage stellt sich nicht
 nur fuer Wissen (Policy, Entscheidung, Nutzermodell), sondern auch fuer Ressourcen
@@ -111,11 +112,16 @@ nur fuer Wissen (Policy, Entscheidung, Nutzermodell), sondern auch fuer Ressourc
 Stufenleiter ist dafuer **bereits generisch genug** -- `resolve(rolle, ...)` kennt keine
 Unterscheidung zwischen "Wissens-Rolle" und "Faehigkeits-Rolle", eine Rolle ist nur ein
 gepunkteter String. Was fehlt, ist NICHT ein zweiter Mechanismus, sondern die
-**Population**: `KNOWN_MODULE_PROVIDERS`-Eintraege fuer Ressourcen-Rollen (z.B.
-`capability.video-editing`) und die Anbindung an die bereits kanonische Datenkaskade
-(`.AI/CLAUDE.md`, "Software als Speicherpunkt und GUI") fuer den Fall "nichts gefunden ->
-Skill legt sich selbst Speicher an". Das ist bewusst NICHT Teil dieses Baus -- Kandidat
-fuer ein Folgeticket.
+**Population**: `KNOWN_MODULE_PROVIDERS`-Einträge für Ressourcen-Rollen (z.B.
+`resources.bach.tool_registry`, weitere `capability.*`-Rollen folgen) und die Anbindung an die bereits kanonische Datenkaskade
+(`.AI/CLAUDE.md`, "Software als Speicherpunkt und GUI") für den Fall "nichts gefunden ->
+Skill legt sich selbst Speicher an". Die BACH-Rolle ist als optionaler, fail-closed
+Adapter umgesetzt; weitere Ressourcenrollen bleiben Kandidaten für Folgetickets.
+
+Der Adapter fragt BACH über `bach_api.tool_registry.list()` ab. Er liest standardmäßig
+nur aktive Einträge, kann per Query Name und Pfad filtern und gibt bei fehlender BACH-
+Installation einen eigenen Stufe-1-Befund zurück. Das getrennte `tool_patterns`-Register
+ist nicht Teil dieser Rolle.
 
 ## Was hier bewusst fehlt (Schnitt vom advisor-Review 2026-08-15)
 
@@ -144,4 +150,4 @@ Begruendung: [`proposals/PROPOSAL-NOTE.md`](proposals/PROPOSAL-NOTE.md).
 python -m pytest tests/ -ra -v
 ```
 
-44/44 gruen (Stand 2026-09-10), inkl. automatisierter Vertragstests fuer PEP 621 Metadaten, CI-Matrix-Härtung, Security-Policy-SLAs sowie Regressionsanker fuer die Pointer-Drift-Klasse und Stufe-0-Nutzervorrang.
+48/48 grün (Stand 2026-09-16), inkl. automatisierter Vertragstests für PEP 621 Metadaten, CI-Matrix-Härtung, Security-Policy-SLAs sowie Regressionsanker für Pointer-Drift, Stufe-0-Nutzervorrang und die read-only BACH-Werkzeugregister-Schnittstelle.

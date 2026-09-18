@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.1.4] - 2026-09-16
+
+Read-only-Anbindung des BACH-Werkzeugregisters für die Ressourcenachse:
+
+- Neue Stufe-1-Rolle `resources.bach.tool_registry` mit fail-closed Adapter.
+- BACH stellt `bach_api.tool_registry.list()` über eine SQLite-Read-only-URI bereit;
+  der Resolver öffnet `bach.db` nicht direkt und fragt `tool_patterns` nicht ab.
+- Query- und Statusfilter, Bridge-Fehler und fehlende BACH-Installation werden als
+  strukturierte, getrennte Befunde behandelt.
+- 4 neue Adapter-/Ladder-Tests; Gesamtsuite auf 48 Tests erweitert.
+
 ## [0.1.3] - 2026-09-10
 
 Pfad-A-Hygiene, CI-Matrix-Härtung, PEP 621 Metadaten und Vertragstest-Erweiterung:

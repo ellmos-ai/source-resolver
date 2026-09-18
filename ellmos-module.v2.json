@@ -4,7 +4,7 @@
   "display_name": "source-resolver",
   "category": "control",
   "kind": "library",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "status": "active",
   "visibility": "public",
   "provides": [
@@ -15,6 +15,7 @@
   "requires": [],
   "optional": [
     "policy-registry",
+    "ellmos-bach",
     "mcp"
   ],
   "conflicts": [],
@@ -47,6 +48,13 @@
       "target": "policy-registry",
       "status": "optional",
       "note": "Delegiert die Rolle 'policy.registry' vollstaendig an die policy-registry CLI (resolve --scope ...), statt eine zweite Richtlinien-Aufloesung zu bauen. Faellt auf einen eigenen, spezifischen Befund zurueck (module_present_not_callable), wenn die CLI nicht auf PATH ist."
+    },
+    {
+      "type": "seam",
+      "id": "bach-tool-registry-api-v1",
+      "target": "ellmos-bach",
+      "status": "optional",
+      "note": "Löst die Rolle 'resources.bach.tool_registry' über bach_api.tool_registry read-only auf; die Bridge liest ausschließlich die kanonische tool_registry-Quelle und benötigt keine direkte Resolver-Verbindung zu bach.db."
     }
   ]
 }
