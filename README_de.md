@@ -14,7 +14,9 @@
 [![Lizenz: MIT](https://img.shields.io/badge/Lizenz-MIT-green.svg)](LICENSE)
 [![Security SLA](https://img.shields.io/badge/Security%20SLA-48h%20%7C%205d-blue.svg)](SECURITY.md)
 [![Ecosystem: ellmos--ai](https://img.shields.io/badge/Ecosystem-ellmos--ai-purple.svg)](https://github.com/ellmos-ai)
-[![Tests: Pytest](https://img.shields.io/badge/Tests-Pytest%2048%2F48%20Bestanden-brightgreen.svg)](tests/)
+[![Tests: Pytest](https://img.shields.io/badge/Tests-Pytest%2049%2F49%20Bestanden-brightgreen.svg)](tests/)
+[![Architektur](https://img.shields.io/badge/Architektur-Sequenzdiagramm-blueviolet.svg)](ARCHITECTURE.md)
+[![Code-Stil: Ruff](https://img.shields.io/badge/Code--Stil-Ruff-black.svg)](https://github.com/astral-sh/ruff)
 [![LLM Kontext](https://img.shields.io/badge/LLM%20Kontext-llms.txt-orange.svg)](llms.txt)
 
 > [!NOTE]
@@ -58,6 +60,51 @@ Jeder nicht-eindeutige Stufe-1-Befund (Modul vorhanden, aber CLI nicht installie
 Modul-Ordner da, Zieldatei fehlt/Pointer-Drift; Aufrufer-Fehler wie fehlender `scope`)
 wird als **eigenes, spezifisches Ergebnis** zurueckgegeben -- nicht still im generischen
 "nichts gefunden"-Dialog versteckt.
+
+### Sequenzdiagramm des Auflösungsablaufs
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Skill as Aufrufender Skill / Agent
+    participant Resolver as source_resolver
+    participant Stage0 as Stufe 0 - Nutzer-Konfiguration
+    participant Stage1 as Stufe 1 - Kanonische Module & Adapter
+    participant Stage2 as Stufe 2 - Dateisystem-Discovery
+    participant Stage4 as Stufe 4 - Dialog-Fallback
+
+    Skill->>Resolver: resolve(role, scope, roots)
+    Resolver->>Stage0: check_user_override(role)
+    alt Stufe 0 Aktiver Override vorhanden
+        Stage0-->>Resolver: Konfiguriertes Ziel gefunden (aktiv: true)
+        Resolver-->>Skill: ResolutionResult(status="resolved", stufe=0, quelle=target)
+    else Kein aktiver Nutzer-Override
+        Resolver->>Stage1: check_known_providers(role, scope)
+        alt Stufe 1 Kanonischer Treffer gefunden
+            Stage1-->>Resolver: Modulpfad / CLI verifiziert
+            Resolver-->>Skill: ResolutionResult(status="resolved", stufe=1, quelle=target)
+        else Stufe 1 Nicht-eindeutiger Fehler (Pointer-Drift / CLI fehlt)
+            Stage1-->>Resolver: Zieldatei fehlt oder Adapter-CLI nicht aufrufbar
+            Resolver-->>Skill: ResolutionResult(status="module_present_not_callable" / "adapter_error")
+        else Kein Stufe-1-Provider vorhanden
+            Resolver->>Stage2: scan_roots(role, candidate_patterns, roots)
+            alt Stufe 2 Kandidaten per Suche gefunden
+                Stage2-->>Resolver: Dateisystem-Kandidaten ermittelt
+                Resolver-->>Skill: ResolutionResult(status="proposed", stufe=2, kandidaten=paths)
+                opt Explizite Bestätigung & Beförderung
+                    Skill->>Resolver: confirm(role, chosen_candidate, stufe_herkunft=2)
+                    Resolver->>Stage0: persist_to_config(role, chosen_candidate)
+                    Stage0-->>Resolver: in ~/.source-resolver/config.json gespeichert
+                    Resolver-->>Skill: bestätigt - zu Stufe 0 befördert
+                end
+            else Stufe 2 Keine Pfade gefunden
+                Resolver->>Stage4: build_two_part_dialogue(role)
+                Stage4-->>Resolver: Zweiteilige Dialog-Fragen (Quelle abfragen + Neubau anbieten)
+                Resolver-->>Skill: ResolutionResult(status="not_found", stufe=4, dialog=questions)
+            end
+        end
+    end
+```
 
 ## Nutzung
 
@@ -150,4 +197,4 @@ Begruendung: [`proposals/PROPOSAL-NOTE.md`](proposals/PROPOSAL-NOTE.md).
 python -m pytest tests/ -ra -v
 ```
 
-48/48 grün (Stand 2026-09-16), inkl. automatisierter Vertragstests für PEP 621 Metadaten, CI-Matrix-Härtung, Security-Policy-SLAs sowie Regressionsanker für Pointer-Drift, Stufe-0-Nutzervorrang und die read-only BACH-Werkzeugregister-Schnittstelle.
+49/49 grün (Stand 2026-09-19), inkl. automatisierter Vertragstests für PEP 621 Metadaten, CI-Matrix-Härtung, Security-Policy-SLAs, Architektur-Vertrag sowie Regressionsanker für Pointer-Drift, Stufe-0-Nutzervorrang und die read-only BACH-Werkzeugregister-Schnittstelle.

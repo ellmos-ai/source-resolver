@@ -186,6 +186,23 @@ def test_bilingual_readme_contract():
     assert "README.md" in text_de, "README_de.md should link to English version"
 
 
+def test_architecture_contract():
+    """Verify ARCHITECTURE.md existence, sequence diagram presence, and diagram syntax integrity."""
+    arch_path = REPO_ROOT / "ARCHITECTURE.md"
+    assert arch_path.is_file(), "ARCHITECTURE.md must exist"
+
+    arch_text = arch_path.read_text(encoding="utf-8")
+    assert "flowchart TD" in arch_text, "ARCHITECTURE.md must contain flowchart diagram"
+    assert "sequenceDiagram" in arch_text, "ARCHITECTURE.md must contain sequence diagram"
+
+    readme_en = (REPO_ROOT / "README.md").read_text(encoding="utf-8")
+    readme_de = (REPO_ROOT / "README_de.md").read_text(encoding="utf-8")
+    assert "ARCHITECTURE.md" in readme_en, "README.md must link to ARCHITECTURE.md"
+    assert "ARCHITECTURE.md" in readme_de, "README_de.md must link to ARCHITECTURE.md"
+    assert "sequenceDiagram" in readme_en, "README.md must include sequence diagram"
+    assert "sequenceDiagram" in readme_de, "README_de.md must include sequence diagram"
+
+
 def test_contract_version_invariants():
     """Verify library public contract invariants and Stufe enumeration."""
     assert source_resolver.CONTRACT_VERSION == "1"

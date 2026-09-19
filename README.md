@@ -14,7 +14,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Security SLA](https://img.shields.io/badge/Security%20SLA-48h%20%7C%205d-blue.svg)](SECURITY.md)
 [![Ecosystem: ellmos--ai](https://img.shields.io/badge/Ecosystem-ellmos--ai-purple.svg)](https://github.com/ellmos-ai)
-[![Tests: Pytest](https://img.shields.io/badge/Tests-Pytest%2048%2F48%20Passing-brightgreen.svg)](tests/)
+[![Tests: Pytest](https://img.shields.io/badge/Tests-Pytest%2049%2F49%20Passed-brightgreen.svg)](tests/)
+[![Architecture](https://img.shields.io/badge/Architecture-Sequence%20Diagram-blueviolet.svg)](ARCHITECTURE.md)
+[![Code Style: Ruff](https://img.shields.io/badge/Code%20Style-Ruff-black.svg)](https://github.com/astral-sh/ruff)
 [![LLM Context](https://img.shields.io/badge/LLM%20Context-llms.txt-orange.svg)](llms.txt)
 
 > [!NOTE]
@@ -58,6 +60,51 @@ Any ambiguous stage-1 finding (module present but CLI not installed; module fold
 present but target file missing/pointer drift; caller error such as a missing `scope`)
 is returned as its **own, specific result** -- not silently buried in the generic
 "nothing found" dialogue.
+
+### Resolution Lifecycle Sequence Flow
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Skill as Calling Skill / Agent
+    participant Resolver as source_resolver
+    participant Stage0 as Stage 0 - User Config
+    participant Stage1 as Stage 1 - Canonical Modules & Adapters
+    participant Stage2 as Stage 2 - Discovery Scan
+    participant Stage4 as Stage 4 - Dialogue Fallback
+
+    Skill->>Resolver: resolve(role, scope, roots)
+    Resolver->>Stage0: check_user_override(role)
+    alt Stage 0 Active Override Exists
+        Stage0-->>Resolver: override target found (active: true)
+        Resolver-->>Skill: ResolutionResult(status="resolved", stufe=0, quelle=target)
+    else No Active User Override
+        Resolver->>Stage1: check_known_providers(role, scope)
+        alt Stage 1 Canonical Match Found
+            Stage1-->>Resolver: canonical module path / CLI verified
+            Resolver-->>Skill: ResolutionResult(status="resolved", stufe=1, quelle=target)
+        else Stage 1 Ambiguous Error (Pointer Drift / Missing CLI)
+            Stage1-->>Resolver: target file missing or adapter CLI not callable
+            Resolver-->>Skill: ResolutionResult(status="module_present_not_callable" / "adapter_error")
+        else No Stage 1 Provider Available
+            Resolver->>Stage2: scan_roots(role, candidate_patterns, roots)
+            alt Stage 2 Proposed Candidates Found
+                Stage2-->>Resolver: candidate filesystem paths found
+                Resolver-->>Skill: ResolutionResult(status="proposed", stufe=2, kandidaten=paths)
+                opt Explicit Promotion via Confirmation
+                    Skill->>Resolver: confirm(role, chosen_candidate, stufe_herkunft=2)
+                    Resolver->>Stage0: persist_to_config(role, chosen_candidate)
+                    Stage0-->>Resolver: saved in ~/.source-resolver/config.json
+                    Resolver-->>Skill: confirmed - promoted to Stage 0
+                end
+            else Stage 2 No Matching Paths
+                Resolver->>Stage4: build_two_part_dialogue(role)
+                Stage4-->>Resolver: dialogue questions (canonical source query + neubau offer)
+                Resolver-->>Skill: ResolutionResult(status="not_found", stufe=4, dialog=questions)
+            end
+        end
+    end
+```
 
 ## Usage
 
@@ -149,7 +196,7 @@ rationale: [`proposals/PROPOSAL-NOTE.en.md`](proposals/PROPOSAL-NOTE.en.md)
 python -m pytest tests/ -ra -v
 ```
 
-48/48 green (as of 2026-09-16), including automated contract tests for PEP 621 metadata, CI matrix coverage, security policy SLAs, and regression anchors for pointer-drift, user configuration precedence, and the BACH read-only tool registry seam.
+49/49 green (as of 2026-09-19), including automated contract tests for PEP 621 metadata, CI matrix coverage, security policy SLAs, architecture contracts, and regression anchors for pointer-drift, user configuration precedence, and the BACH read-only tool registry seam.
 
 ## Namensraum-Abgrenzung
 

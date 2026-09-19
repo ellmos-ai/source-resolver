@@ -1,6 +1,17 @@
 # Changelog
 
-## [0.1.4] - 2026-09-16
+## [0.1.4] - 2026-09-16 (Pfad B Ergänzung: 2026-09-19)
+
+### Pfad B: Discoverability, Sequenzdiagramme & Architektur-Dokumentation (2026-09-19)
+
+- **Sequenzdiagramme**: Zweisprachiges Mermaid-Sequenzdiagramm des 5-Stufen-Auflösungsablaufs (Skill -> Resolver -> Stufe 0 Nutzervorrang -> Stufe 1 Kanonische Module/Adapter -> Stufe 2 Discovery Proposal -> Stufe 4 Dialog-Fallback) in `README.md` und `README_de.md` integriert.
+- **Architektur-Spezifikation** (`ARCHITECTURE.md`): Neues Dokument mit System-Flowchart, Sequenzdiagramm, Modul-Aufteilung und Local-First / Zero-Network-Egress Sicherheitsgarantien.
+- **Badges**: Architektur-Badge (`Architecture: Sequence Diagram`) und Code-Stil-Badge (`Code Style: Ruff`) in englischer und deutscher README ergänzt.
+- **LLM-Kontext** (`llms.txt`): Aktualisiert auf Stand 2026-09-19, Referenz auf `ARCHITECTURE.md` und Sequenzfluss verankert.
+- **Vertragstests** (`tests/test_metadata.py`): Neuer Vertragstest `test_architecture_contract` zur Sicherung von `ARCHITECTURE.md` und Diagramm-Integrität.
+- **Marketing & Log**: `MARKETING-LOG.txt` im Repo angelegt.
+
+### Features & Updates (2026-09-16)
 
 Read-only-Anbindung des BACH-Werkzeugregisters für die Ressourcenachse:
 

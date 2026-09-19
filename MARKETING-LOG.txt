@@ -1,0 +1,16 @@
+# MARKETING-LOG.txt — source-resolver
+# Chronologisches Log fuer Repository-Pflege, Hygiene (Pfad A) und Sichtbarkeit/Marketing (Pfad B)
+
+2026-09-19 (Pfad B, Gemini Antigravity)
+- Scope: Repository-Discoverability, zweisprachige README-Architektur, Badges und Sequenzdiagramme (Pfad B).
+- Sequenzdiagramme: Zweisprachiges Mermaid-Sequenzdiagramm des 5-Stufen-Auflösungsablaufs (Skill -> Resolver -> Stufe 0 Nutzervorrang -> Stufe 1 Kanonische Module/Adapter -> Stufe 2 Discovery Proposal -> Stufe 4 Dialog-Fallback) in README.md und README_de.md integriert.
+- Architektur-Doku: Neues kanonisches `ARCHITECTURE.md` mit System-Flowchart, Sequenzdiagramm, Modul-Aufteilung und Local-First / Zero-Network-Egress Sicherheitsgarantien erstellt.
+- Badges: Architektur-Badge (Sequence Diagram) und Code-Stil-Badge (Ruff) in englischer und deutscher README verankert.
+- LLM Context: `llms.txt` aktualisiert (Stand 2026-09-19, Referenz auf ARCHITECTURE.md und Sequenzfluss).
+- Mermaid Guardrails: `_tools/lint_mermaid.py` auf allen Dateien verifiziert (0 Syntaxfehler, semikolonfreie Sequenznachrichten, quotierte Kantenbeschriftungen).
+- Vertragstests: `tests/test_metadata.py` um `test_architecture_contract` erweitert; 49/49 Tests bestanden.
+
+Empfehlungen (nicht automatisiert umsetzbar / fuer spaetere Planung):
+- MCP-Adapter: Einordnung als MCP-Tool in `ellmos-controlcenter-mcp` oder separater Server erwägen, sobald externe MCP-Clients direkte Rollenauflösung anfragen.
+- PyPI-Release: Nach Freigabe durch den User Veröffentlichung auf PyPI prüfen (`build` und `twine upload`).
+- Interaktive Visualisierung: Interaktives Web-Widget für die Stufenleiter in Doku oder GitHub Pages erwägen.
