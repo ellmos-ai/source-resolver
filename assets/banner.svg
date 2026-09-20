@@ -1,0 +1,543 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2400 680" width="2400" height="680">
+  <defs>
+    <!-- Color Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090E17"/>
+      <stop offset="50%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#141E34"/>
+    </linearGradient>
+
+    <radialGradient id="deskGlow" cx="68%" cy="58%" r="48%">
+      <stop offset="0%" stop-color="#1E293B" stop-opacity="0.8"/>
+      <stop offset="60%" stop-color="#0F172A" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="warmAmbient" cx="62%" cy="65%" r="32%">
+      <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="deskTop" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#131D2E"/>
+    </linearGradient>
+
+    <!-- Book Gradients -->
+    <linearGradient id="pageLeft" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E2E8F0"/>
+      <stop offset="15%" stop-color="#F1F5F9"/>
+      <stop offset="85%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#CBD5E1"/>
+    </linearGradient>
+
+    <linearGradient id="pageRight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#CBD5E1"/>
+      <stop offset="15%" stop-color="#FFFFFF"/>
+      <stop offset="85%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#E2E8F0"/>
+    </linearGradient>
+
+    <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F43F5E"/>
+      <stop offset="100%" stop-color="#BE123C"/>
+    </linearGradient>
+
+    <!-- Rotary Telephone Gradients -->
+    <linearGradient id="phoneBody" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#14B8A6"/>
+      <stop offset="45%" stop-color="#0D9488"/>
+      <stop offset="100%" stop-color="#0F766E"/>
+    </linearGradient>
+
+    <linearGradient id="dialBezel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="40%" stop-color="#CBD5E1"/>
+      <stop offset="100%" stop-color="#94A3B8"/>
+    </linearGradient>
+
+    <linearGradient id="dialCenter" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCD34D"/>
+      <stop offset="50%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+
+    <linearGradient id="handsetGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0F766E"/>
+      <stop offset="50%" stop-color="#14B8A6"/>
+      <stop offset="100%" stop-color="#0F766E"/>
+    </linearGradient>
+
+    <!-- Signpost Gradients (Empty / Unlabeled) -->
+    <linearGradient id="signAmber" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+
+    <linearGradient id="signTeal" x1="100%" y1="0%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#06B6D4"/>
+      <stop offset="100%" stop-color="#0891B2"/>
+    </linearGradient>
+
+    <linearGradient id="signIndigo" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#4F46E5"/>
+    </linearGradient>
+
+    <!-- Lamp Beam -->
+    <linearGradient id="lampBeam" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FDE68A" stop-opacity="0.32"/>
+      <stop offset="100%" stop-color="#FDE68A" stop-opacity="0"/>
+    </linearGradient>
+
+    <style>
+      .wordmark {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-size: 86px;
+        font-weight: 800;
+        fill: #FFFFFF;
+        letter-spacing: -1.5px;
+      }
+      .tagline {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-size: 32px;
+        font-weight: 500;
+        fill: #94A3B8;
+        letter-spacing: -0.2px;
+      }
+    </style>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="2400" height="680" rx="24" fill="url(#bgGrad)"/>
+  <rect width="2400" height="680" rx="24" fill="url(#deskGlow)"/>
+  <rect width="2400" height="680" rx="24" fill="url(#warmAmbient)"/>
+  <rect x="1" y="1" width="2398" height="678" rx="23" fill="none" stroke="#334155" stroke-opacity="0.35" stroke-width="1.5"/>
+
+  <!-- ==================== BACKGROUND ARCHITECTURE ==================== -->
+  <g id="architecture-backdrop">
+    <!-- Hall Archway -->
+    <path d="M 880,530 L 880,240 A 180,180 0 0,1 1060,60 L 2140,60 A 180,180 0 0,1 2320,240 L 2320,530 Z" 
+          fill="#111A2E" stroke="#1E2A44" stroke-width="2"/>
+    <!-- Inner Arch Inset -->
+    <path d="M 910,530 L 910,250 A 150,150 0 0,1 1060,100 L 2140,100 A 150,150 0 0,1 2290,250 L 2290,530 Z" 
+          fill="#0D1527" stroke="#1B263E" stroke-width="1.5"/>
+    <!-- Transom Lines -->
+    <line x1="910" y1="250" x2="2290" y2="250" stroke="#1B263E" stroke-width="1.5" stroke-dasharray="4 6"/>
+    <line x1="1600" y1="100" x2="1600" y2="250" stroke="#1B263E" stroke-width="1.5"/>
+
+    <!-- Ceiling Pendant Lamp -->
+    <line x1="1600" y1="60" x2="1600" y2="140" stroke="#475569" stroke-width="2"/>
+    <circle cx="1600" cy="140" r="4" fill="#94A3B8"/>
+    <ellipse cx="1600" cy="154" rx="16" ry="12" fill="#FDE68A" opacity="0.85"/>
+    <circle cx="1600" cy="154" r="28" fill="#F59E0B" opacity="0.12"/>
+  </g>
+
+  <!-- ==================== DESK / COUNTER SURFACE ==================== -->
+  <g id="desk-surface">
+    <!-- Countertop Plane -->
+    <polygon points="840,515 2340,515 2380,680 820,680" fill="url(#deskTop)"/>
+    <!-- Top Edge Highlight -->
+    <line x1="840" y1="515" x2="2340" y2="515" stroke="#38BDF8" stroke-opacity="0.3" stroke-width="2.5"/>
+    <!-- Front Fascia Accent Moulding -->
+    <line x1="835" y1="535" x2="2355" y2="535" stroke="#D97706" stroke-opacity="0.6" stroke-width="3"/>
+  </g>
+
+  <!-- ==================== LEFT: TYPOGRAPHY ==================== -->
+  <g id="brand-typography">
+    <!-- Main Wordmark: source-resolver -->
+    <text x="140" y="325" class="wordmark">source<tspan fill="#38BDF8">-</tspan>resolver</text>
+
+    <!-- Tagline: Role-based source resolution for skills -->
+    <text x="144" y="385" class="tagline">Role-based source resolution for skills</text>
+
+    <!-- Subtle Grounding Line -->
+    <line x1="144" y1="422" x2="420" y2="422" stroke="#38BDF8" stroke-width="3" stroke-linecap="round" stroke-opacity="0.8"/>
+    <line x1="435" y1="422" x2="475" y2="422" stroke="#F59E0B" stroke-width="3" stroke-linecap="round" stroke-opacity="0.8"/>
+  </g>
+
+  <!-- ==================== RESOLUTION FLOW ARC ==================== -->
+  <g id="resolution-arc" opacity="0.45">
+    <!-- Subtle trajectory connecting book -> phone -> clerk -> signpost -->
+    <path d="M 1160,425 C 1320,350 1480,310 1680,270 C 1820,245 1960,250 2045,315" 
+          fill="none" stroke="#38BDF8" stroke-width="2.5" stroke-dasharray="6 8"/>
+    <!-- Accent Sparkles near pointing gesture -->
+    <polygon points="2080,295 2083,303 2091,306 2083,309 2080,317 2077,309 2069,306 2077,303" fill="#38BDF8" opacity="0.75"/>
+    <polygon points="2100,326 2102,332 2108,334 2102,336 2100,342 2098,336 2092,334 2098,332" fill="#F59E0B" opacity="0.75"/>
+  </g>
+
+  <!-- ==================== OPEN TELEPHONE / ADDRESS BOOK ==================== -->
+  <g id="directory-book">
+    <!-- Book Cast Shadow -->
+    <ellipse cx="1140" cy="570" rx="240" ry="18" fill="#090E17" opacity="0.7"/>
+
+    <!-- Dark Hardcover Base -->
+    <path d="M 895,446 L 920,436 L 1140,438 L 1360,436 L 1385,446 L 1365,574 L 1140,578 L 915,574 Z" 
+          fill="#0F172A" stroke="#1E293B" stroke-width="1.5"/>
+
+    <!-- Brass Protective Book Corners -->
+    <polygon points="915,556 915,574 933,574" fill="#F59E0B" stroke="#B45309" stroke-width="1"/>
+    <polygon points="1365,556 1365,574 1347,574" fill="#F59E0B" stroke="#B45309" stroke-width="1"/>
+
+    <!-- Left Stack Thickness (compressed pages) -->
+    <path d="M 895,446 L 924,436 L 924,562 L 900,572 Z" fill="#CBD5E1"/>
+    <line x1="899" y1="462" x2="924" y2="452" stroke="#94A3B8" stroke-width="1"/>
+    <line x1="901" y1="482" x2="924" y2="472" stroke="#94A3B8" stroke-width="1"/>
+    <line x1="903" y1="502" x2="924" y2="492" stroke="#94A3B8" stroke-width="1"/>
+    <line x1="905" y1="522" x2="924" y2="512" stroke="#94A3B8" stroke-width="1"/>
+    <line x1="907" y1="542" x2="924" y2="532" stroke="#94A3B8" stroke-width="1"/>
+
+    <!-- Right Stack Thickness (with Stepped Thumb Index Tabs) -->
+    <path d="M 1356,436 L 1385,446 L 1360,572 L 1336,562 Z" fill="#CBD5E1"/>
+    <!-- Stepped Thumb Index Tabs (Registerstanzen / Daumenregister) -->
+    <rect x="1350" y="446" width="18" height="18" rx="3" fill="#F59E0B" stroke="#D97706" stroke-width="0.8"/>
+    <rect x="1347" y="468" width="18" height="18" rx="3" fill="#06B6D4" stroke="#0891B2" stroke-width="0.8"/>
+    <rect x="1344" y="490" width="18" height="18" rx="3" fill="#10B981" stroke="#059669" stroke-width="0.8"/>
+    <rect x="1341" y="512" width="18" height="18" rx="3" fill="#6366F1" stroke="#4F46E5" stroke-width="0.8"/>
+    <rect x="1338" y="534" width="18" height="18" rx="3" fill="#EC4899" stroke="#DB2777" stroke-width="0.8"/>
+
+    <!-- Left Open Page Surface -->
+    <path d="M 924,436 C 1004,426 1084,428 1140,436 L 1140,566 C 1084,558 1004,556 924,566 Z" 
+          fill="url(#pageLeft)" stroke="#CBD5E1" stroke-width="1"/>
+
+    <!-- Right Open Page Surface -->
+    <path d="M 1140,436 C 1196,428 1276,426 1356,436 L 1356,566 C 1276,556 1196,558 1140,566 Z" 
+          fill="url(#pageRight)" stroke="#CBD5E1" stroke-width="1"/>
+
+    <!-- Spine Valley Crease -->
+    <path d="M 1137,436 L 1143,436 L 1143,566 L 1137,566 Z" fill="#64748B" opacity="0.45"/>
+
+    <!-- Left Page Directory Entries (Abstract texture: NO names, NO numbers) -->
+    <g id="left-page-entries" opacity="0.75">
+      <!-- Column 1 -->
+      <g transform="translate(942, 448)">
+        <rect x="0" y="0" width="34" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="7" width="56" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="62" y="7" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+
+        <rect x="0" y="16" width="42" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="23" width="50" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="62" y="23" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+
+        <rect x="0" y="32" width="36" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="39" width="54" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="62" y="39" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+
+        <rect x="0" y="48" width="45" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="55" width="48" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="62" y="55" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+
+        <rect x="0" y="64" width="38" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="71" width="52" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="62" y="71" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+
+        <rect x="0" y="80" width="40" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="87" width="55" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="62" y="87" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+
+        <rect x="0" y="96" width="35" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="103" width="50" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="62" y="103" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+      </g>
+
+      <!-- Column 2 -->
+      <g transform="translate(1042, 448)">
+        <rect x="0" y="0" width="40" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="7" width="52" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="58" y="7" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+
+        <rect x="0" y="16" width="32" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="23" width="54" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="58" y="23" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+
+        <rect x="0" y="32" width="46" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="39" width="48" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="58" y="39" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+
+        <rect x="0" y="48" width="35" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="55" width="56" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="58" y="55" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+
+        <rect x="0" y="64" width="44" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="71" width="50" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="58" y="71" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+
+        <rect x="0" y="80" width="38" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="87" width="54" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="58" y="87" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+
+        <rect x="0" y="96" width="42" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="103" width="52" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="58" y="103" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+      </g>
+    </g>
+
+    <!-- Right Page Directory Entries (Abstract texture) -->
+    <g id="right-page-entries" opacity="0.75">
+      <!-- Column 1 -->
+      <g transform="translate(1158, 448)">
+        <rect x="0" y="0" width="44" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="7" width="54" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="60" y="7" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+
+        <rect x="0" y="16" width="36" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="23" width="50" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="60" y="23" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+
+        <rect x="0" y="32" width="48" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="39" width="56" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="60" y="39" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+
+        <rect x="0" y="48" width="35" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="55" width="52" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="60" y="55" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+
+        <rect x="0" y="64" width="42" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="71" width="55" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="60" y="71" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+
+        <rect x="0" y="80" width="39" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="87" width="48" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="60" y="87" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+
+        <rect x="0" y="96" width="46" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="103" width="52" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="60" y="103" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+      </g>
+
+      <!-- Column 2 -->
+      <g transform="translate(1254, 448)">
+        <rect x="0" y="0" width="38" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="7" width="50" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="56" y="7" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+
+        <rect x="0" y="16" width="45" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="23" width="54" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="56" y="23" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+
+        <rect x="0" y="32" width="34" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="39" width="48" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="56" y="39" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+
+        <rect x="0" y="48" width="40" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="55" width="56" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="56" y="55" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+
+        <rect x="0" y="64" width="36" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="71" width="52" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="56" y="71" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+
+        <rect x="0" y="80" width="44" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="87" width="50" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="56" y="87" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+
+        <rect x="0" y="96" width="38" height="4" rx="2" fill="#64748B"/>
+        <rect x="0" y="103" width="54" height="2.5" rx="1.25" fill="#CBD5E1"/>
+        <rect x="56" y="103" width="18" height="2.5" rx="1.25" fill="#94A3B8"/>
+      </g>
+    </g>
+
+    <!-- Silk Bookmark Ribbon (Leseband) -->
+    <path d="M 1140,428 C 1148,445 1182,475 1190,510 C 1196,535 1188,555 1176,575 L 1164,575 C 1174,555 1184,535 1178,510 C 1172,475 1144,445 1136,428 Z" 
+          fill="url(#ribbonGrad)"/>
+  </g>
+
+  <!-- ==================== VINTAGE ROTARY TELEPHONE ==================== -->
+  <g id="rotary-telephone">
+    <!-- Phone Cast Shadow -->
+    <ellipse cx="1530" cy="548" rx="115" ry="14" fill="#090E17" opacity="0.6"/>
+
+    <!-- Phone Base (Pyramidal Retro Body) -->
+    <path d="M 1430,535 C 1424,475 1454,415 1475,395 L 1585,395 C 1606,415 1636,475 1630,535 C 1630,545 1430,545 1430,535 Z" 
+          fill="url(#phoneBody)" stroke="#042F2C" stroke-width="2"/>
+
+    <!-- Base Volume Highlight -->
+    <path d="M 1445,515 C 1440,465 1465,415 1485,402" 
+          fill="none" stroke="#2DD4BF" stroke-width="3.5" stroke-linecap="round" opacity="0.5"/>
+
+    <!-- Bottom Rim Detail -->
+    <path d="M 1428,534 C 1428,542 1632,542 1632,534" stroke="#042F2C" stroke-width="4" fill="none"/>
+
+    <!-- Rotary Dial Unit (Wählscheibe) -->
+    <g id="dial-unit">
+      <!-- Chrome Bezel Ring -->
+      <circle cx="1530" cy="470" r="54" fill="url(#dialBezel)" stroke="#475569" stroke-width="1.5"/>
+      <!-- Inner Dial Faceplate -->
+      <circle cx="1530" cy="470" r="46" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+      <!-- Internal Guide Track -->
+      <circle cx="1530" cy="470" r="34" fill="none" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="2 4"/>
+
+      <!-- 10 Rotary Finger Holes (R=34, angles 40° to 310°) -->
+      <!-- Hole 1 (45°) -->
+      <circle cx="1554" cy="494" r="6.5" fill="#0F172A" opacity="0.85" stroke="#94A3B8" stroke-width="1.2"/>
+      <!-- Hole 2 (75°) -->
+      <circle cx="1539" cy="503" r="6.5" fill="#0F172A" opacity="0.85" stroke="#94A3B8" stroke-width="1.2"/>
+      <!-- Hole 3 (105°) -->
+      <circle cx="1521" cy="503" r="6.5" fill="#0F172A" opacity="0.85" stroke="#94A3B8" stroke-width="1.2"/>
+      <!-- Hole 4 (135°) -->
+      <circle cx="1506" cy="494" r="6.5" fill="#0F172A" opacity="0.85" stroke="#94A3B8" stroke-width="1.2"/>
+      <!-- Hole 5 (165°) -->
+      <circle cx="1497" cy="479" r="6.5" fill="#0F172A" opacity="0.85" stroke="#94A3B8" stroke-width="1.2"/>
+      <!-- Hole 6 (195°) -->
+      <circle cx="1497" cy="461" r="6.5" fill="#0F172A" opacity="0.85" stroke="#94A3B8" stroke-width="1.2"/>
+      <!-- Hole 7 (225°) -->
+      <circle cx="1506" cy="446" r="6.5" fill="#0F172A" opacity="0.85" stroke="#94A3B8" stroke-width="1.2"/>
+      <!-- Hole 8 (255°) -->
+      <circle cx="1521" cy="437" r="6.5" fill="#0F172A" opacity="0.85" stroke="#94A3B8" stroke-width="1.2"/>
+      <!-- Hole 9 (285°) -->
+      <circle cx="1539" cy="437" r="6.5" fill="#0F172A" opacity="0.85" stroke="#94A3B8" stroke-width="1.2"/>
+      <!-- Hole 10 (315°) -->
+      <circle cx="1554" cy="446" r="6.5" fill="#0F172A" opacity="0.85" stroke="#94A3B8" stroke-width="1.2"/>
+
+      <!-- Metal Finger Stop (Fingeranschlag at ~4 o'clock) -->
+      <path d="M 1563,492 C 1572,498 1576,506 1573,514" stroke="#475569" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+      <circle cx="1573" cy="514" r="2.5" fill="#CBD5E1"/>
+
+      <!-- Center Brass Medallion -->
+      <circle cx="1530" cy="470" r="14" fill="url(#dialCenter)" stroke="#B45309" stroke-width="1.5"/>
+      <circle cx="1530" cy="470" r="7" fill="#FEF3C7"/>
+    </g>
+
+    <!-- Chrome Cradle Prongs (Gabel) -->
+    <path d="M 1482,395 L 1482,362 C 1472,362 1466,354 1466,348 L 1494,348 L 1494,362 L 1488,395" 
+          fill="#CBD5E1" stroke="#64748B" stroke-width="1"/>
+    <path d="M 1572,395 L 1572,362 C 1562,362 1556,354 1556,348 L 1584,348 L 1584,362 L 1578,395" 
+          fill="#CBD5E1" stroke="#64748B" stroke-width="1"/>
+
+    <!-- Handset Resting in Cradle (Hörer) -->
+    <g id="handset">
+      <!-- Left Earpiece Cup -->
+      <path d="M 1435,348 C 1435,334 1445,324 1465,324 C 1475,324 1485,334 1485,348 C 1485,355 1435,355 1435,348 Z" 
+            fill="#0D9488" stroke="#042F2C" stroke-width="1.5"/>
+      <ellipse cx="1460" cy="348" rx="25" ry="7" fill="#042F2C"/>
+
+      <!-- Right Mouthpiece Cup -->
+      <path d="M 1575,348 C 1575,334 1585,324 1605,324 C 1615,324 1625,334 1625,348 C 1625,355 1575,355 1575,348 Z" 
+            fill="#0D9488" stroke="#042F2C" stroke-width="1.5"/>
+      <ellipse cx="1600" cy="348" rx="25" ry="7" fill="#042F2C"/>
+
+      <!-- Connecting Bridge Handle -->
+      <path d="M 1460,336 C 1490,320 1570,320 1600,336 L 1595,348 C 1568,334 1492,334 1465,348 Z" 
+            fill="url(#handsetGrad)" stroke="#042F2C" stroke-width="1.5"/>
+      <!-- Top Specular Highlight -->
+      <path d="M 1475,332 C 1500,324 1560,324 1585,332" 
+            fill="none" stroke="#5EEAD4" stroke-width="2.5" opacity="0.6"/>
+    </g>
+
+    <!-- Coiled Cable (Spiralkabel curling onto desk) -->
+    <path d="M 1430,505 C 1405,510 1395,525 1410,535 C 1425,545 1415,560 1400,555 C 1385,550 1378,565 1392,575 C 1406,585 1395,600 1380,595" 
+          fill="none" stroke="#14B8A6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- ==================== AUSKUNFT COUNTER & GUIDE FIGURE ==================== -->
+  <g id="auskunft-counter-and-guide">
+    <!-- Information Counter / Schalter Barrier -->
+    <rect x="1720" y="440" width="340" height="150" rx="8" fill="#1A253C" stroke="#2A3B5E" stroke-width="2"/>
+    <!-- Brass Trim Accent -->
+    <rect x="1720" y="452" width="340" height="6" fill="#F59E0B" opacity="0.8"/>
+    <!-- Lower Recessed Panel -->
+    <rect x="1740" y="475" width="300" height="95" rx="4" fill="#131B2C" stroke="#253554" stroke-width="1.5"/>
+
+    <!-- Desk Banker's Lamp -->
+    <g id="desk-lamp">
+      <rect x="1735" y="435" width="30" height="8" rx="3" fill="#F59E0B"/>
+      <path d="M 1750,435 L 1750,390 C 1750,375 1765,370 1775,372" fill="none" stroke="#F59E0B" stroke-width="3.5" stroke-linecap="round"/>
+      <ellipse cx="1780" cy="375" rx="22" ry="11" fill="#10B981" stroke="#059669" stroke-width="1.5"/>
+      <!-- Warm Light Cone from Lamp -->
+      <polygon points="1765,385 1795,385 1835,460 1725,460" fill="url(#lampBeam)"/>
+    </g>
+
+    <!-- Friendly Guide Character (Auskunftsperson) -->
+    <g id="guide-person">
+      <!-- Uniform Torso (Smart Retro Uniform Jacket) -->
+      <path d="M 1810,442 L 1816,375 C 1822,354 1845,348 1870,348 C 1895,348 1918,354 1924,375 L 1930,442 Z" 
+            fill="#1E3A5F" stroke="#0F172A" stroke-width="1.5"/>
+      <!-- Crisp White Shirt V-Neck -->
+      <polygon points="1855,348 1885,348 1870,385" fill="#FFFFFF"/>
+      <!-- Amber Necktie -->
+      <polygon points="1867,370 1873,370 1875,415 1870,424 1865,415" fill="#F59E0B"/>
+
+      <!-- Left Arm (Resting on counter) -->
+      <path d="M 1816,375 C 1802,390 1788,415 1788,440 L 1808,440 C 1808,422 1818,400 1826,385 Z" fill="#1E3A5F"/>
+      <!-- Left Hand -->
+      <ellipse cx="1798" cy="442" rx="10" ry="7" fill="#FDBA74"/>
+
+      <!-- Neck -->
+      <rect x="1862" y="330" width="16" height="22" rx="3" fill="#FDBA74"/>
+
+      <!-- Head -->
+      <ellipse cx="1870" cy="288" rx="32" ry="36" fill="#FDBA74"/>
+
+      <!-- Retro Auskunft Cap -->
+      <path d="M 1838,278 C 1838,250 1902,250 1902,278 Z" fill="#1E3A5F"/>
+      <path d="M 1834,278 C 1850,283 1890,283 1906,278 L 1912,282 C 1890,290 1850,290 1828,282 Z" fill="#0F172A"/>
+      <path d="M 1836,278 C 1852,282 1888,282 1904,278" stroke="#F59E0B" stroke-width="2.5" fill="none"/>
+
+      <!-- Friendly Face Features -->
+      <path d="M 1880,284 Q 1886,280 1892,284" stroke="#1E293B" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M 1872,304 Q 1883,315 1894,304" stroke="#9A3412" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <circle cx="1892" cy="298" r="5" fill="#FB7185" opacity="0.45"/>
+
+      <!-- Right Arm (Extended in Warm Guiding Gesture toward the Signs) -->
+      <path d="M 1924,370 C 1954,354 1990,340 2026,324 L 2031,337 C 1995,354 1960,369 1930,384 Z" fill="#1E3A5F"/>
+      <!-- White Shirt Cuff -->
+      <polygon points="2025,324 2032,321 2035,334 2028,336" fill="#FFFFFF"/>
+      <!-- Hand with Pointing Index Finger -->
+      <ellipse cx="2038" cy="326" rx="8" ry="7" fill="#FDBA74"/>
+      <path d="M 2040,323 L 2062,317 C 2066,316 2068,320 2065,323 L 2044,328 Z" fill="#FDBA74"/>
+    </g>
+  </g>
+
+  <!-- ==================== DIRECTIONAL SIGNPOST (WEGWEISER) ==================== -->
+  <!-- 2-3 empty/unlabeled arrow signs pointing in different directions -->
+  <g id="signpost">
+    <!-- Cast-Iron / Wooden Vertical Pole -->
+    <rect x="2153" y="135" width="14" height="425" rx="3" fill="#334155"/>
+    <rect x="2156" y="135" width="4" height="425" fill="#475569"/>
+
+    <!-- Decorative Top Finial Sphere -->
+    <circle cx="2160" cy="130" r="14" fill="#F59E0B" stroke="#D97706" stroke-width="2"/>
+
+    <!-- Desk Mount Collar Base -->
+    <rect x="2145" y="550" width="30" height="12" rx="4" fill="#1E293B" stroke="#475569" stroke-width="1.5"/>
+
+    <!-- 1. Top Sign (Pointing RIGHT & slightly upward - Empty/Unlabeled) -->
+    <g id="sign-top">
+      <path d="M 2140,172 L 2275,172 L 2315,196 L 2275,220 L 2140,220 Z" 
+            fill="url(#signAmber)" stroke="#B45309" stroke-width="1.5"/>
+      <!-- Inner Bevel Line -->
+      <path d="M 2144,176 L 2272,176 L 2307,196 L 2272,216 L 2144,216 Z" 
+            fill="none" stroke="#FDE68A" stroke-width="1.5" stroke-opacity="0.75"/>
+      <!-- Pole Bracket & Rivets -->
+      <rect x="2150" y="186" width="20" height="20" rx="3" fill="#1E293B" stroke="#64748B" stroke-width="1"/>
+      <circle cx="2155" cy="196" r="2" fill="#CBD5E1"/>
+      <circle cx="2165" cy="196" r="2" fill="#CBD5E1"/>
+    </g>
+
+    <!-- 2. Middle Sign (Pointing LEFT toward sources - Empty/Unlabeled) -->
+    <g id="sign-middle">
+      <path d="M 2180,252 L 2050,252 L 2010,276 L 2050,300 L 2180,300 Z" 
+            fill="url(#signTeal)" stroke="#0E7490" stroke-width="1.5"/>
+      <!-- Inner Bevel Line -->
+      <path d="M 2176,256 L 2053,256 L 2018,276 L 2053,296 L 2176,296 Z" 
+            fill="none" stroke="#67E8F9" stroke-width="1.5" stroke-opacity="0.75"/>
+      <!-- Pole Bracket & Rivets -->
+      <rect x="2150" y="266" width="20" height="20" rx="3" fill="#1E293B" stroke="#64748B" stroke-width="1"/>
+      <circle cx="2155" cy="276" r="2" fill="#CBD5E1"/>
+      <circle cx="2165" cy="276" r="2" fill="#CBD5E1"/>
+    </g>
+
+    <!-- 3. Bottom Sign (Pointing RIGHT - Empty/Unlabeled) -->
+    <g id="sign-bottom">
+      <path d="M 2140,332 L 2255,332 L 2292,356 L 2255,380 L 2140,380 Z" 
+            fill="url(#signIndigo)" stroke="#4338CA" stroke-width="1.5"/>
+      <!-- Inner Bevel Line -->
+      <path d="M 2144,336 L 2252,336 L 2284,356 L 2252,376 L 2144,376 Z" 
+            fill="none" stroke="#A5B4FC" stroke-width="1.5" stroke-opacity="0.75"/>
+      <!-- Pole Bracket & Rivets -->
+      <rect x="2150" y="346" width="20" height="20" rx="3" fill="#1E293B" stroke="#64748B" stroke-width="1"/>
+      <circle cx="2155" cy="356" r="2" fill="#CBD5E1"/>
+      <circle cx="2165" cy="356" r="2" fill="#CBD5E1"/>
+    </g>
+  </g>
+</svg>
