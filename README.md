@@ -1,6 +1,7 @@
 <p align="center">
-  <img src="assets/banner.png" width="100%" alt="source-resolver banner">
+  <img src="assets/banner.gif" width="100%" alt="source-resolver banner">
 </p>
+<!-- alternate banner: assets/banner-b.png (swap on occasion) -->
 
 # source-resolver
 
