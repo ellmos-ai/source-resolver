@@ -41,6 +41,7 @@ def test_pep621_pyproject_structure():
     assert project["readme"] == "README.md"
     assert project["requires-python"] == ">=3.10"
     assert project["license"] == {"text": "MIT"}
+    assert project.get("license-files") == ["LICENSE", "THIRD_PARTY_LICENSES.md"]
 
     # URLs
     urls = project["urls"]
@@ -179,11 +180,27 @@ def test_bilingual_readme_contract():
     text_en = readme_en.read_text(encoding="utf-8")
     text_de = readme_de.read_text(encoding="utf-8")
 
-    assert "assets/banner.png" in text_en, "README.md must link to assets/banner.png"
-    assert "assets/banner.png" in text_de, "README_de.md must link to assets/banner.png"
+    assert ("assets/banner.gif" in text_en or "assets/banner.png" in text_en), "README.md must link to banner asset"
+    assert ("assets/banner.gif" in text_de or "assets/banner.png" in text_de), "README_de.md must link to banner asset"
 
     assert "README_de.md" in text_en, "README.md should link to German version"
     assert "README.md" in text_de, "README_de.md should link to English version"
+
+
+def test_todo_and_license_inventory_contract():
+    """Verify TODO.md with STATUS table, THIRD_PARTY_LICENSES.md, and PEP 639 metadata."""
+    todo_path = REPO_ROOT / "TODO.md"
+    assert todo_path.is_file(), "TODO.md must exist"
+    todo_text = todo_path.read_text(encoding="utf-8")
+    assert "## STATUS" in todo_text, "TODO.md must contain ## STATUS table"
+    assert "READY" in todo_text, "TODO.md must reflect READY state"
+
+    tpl_path = REPO_ROOT / "THIRD_PARTY_LICENSES.md"
+    assert tpl_path.is_file(), "THIRD_PARTY_LICENSES.md must exist"
+    tpl_text = tpl_path.read_text(encoding="utf-8")
+    assert "Runtime Dependencies" in tpl_text
+    assert "Zero-Copyleft" in tpl_text
+
 
 
 def test_architecture_contract():

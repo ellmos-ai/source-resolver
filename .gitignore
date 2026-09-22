@@ -1,5 +1,6 @@
 # Bytecode & Python artifacts
 __pycache__/
+*.pyc
 *.py[cod]
 *$py.class
 
@@ -55,3 +56,16 @@ desktop.ini
 # Environment & Local Secrets
 .env
 .env.*.local
+
+# Databases & Local Data
+*.db
+*.sqlite
+*.sqlite3
+data/
+
+# IDE & Editor Configurations
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+

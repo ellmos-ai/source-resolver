@@ -9,6 +9,8 @@ description = "Rollenbasierte Quellenauflösung für Skills – Stufenleiter von
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
+license-files = ["LICENSE", "THIRD_PARTY_LICENSES.md"]
+dependencies = []
 authors = [{ name = "Lukas Geiger" }]
 keywords = ["skills", "source-resolution", "policy", "decisions", "user-model", "ellmos"]
 classifiers = [

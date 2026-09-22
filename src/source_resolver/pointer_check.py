@@ -29,9 +29,9 @@ def resolve_placeholders(raw_path: str, *, home: Path | None = None) -> str:
     """Loest `<HOME>` (und den literalen Nutzernamen als Altlast-Fallback) auf.
 
     Pointer-Skills, die vor der Platzhalterkonvention geschrieben wurden, tragen
-    noch host-spezifische absolute Pfade (`C:\\Users\\User\\...`). Diese Funktion
-    normalisiert NICHT rueckwirkend -- sie loest nur `<HOME>` auf, wenn vorhanden.
-    Ein hart codierter Fremdpfad bleibt hart codiert und wird als solcher (mutmasslich
+    noch host-spezifische absolute Pfade (`C:\\Users\\<username>\\...`). Diese Funktion
+    normalisiert NICHT rückwirkend -- sie löst nur `<HOME>` auf, wenn vorhanden.
+    Ein hart codierter Fremdpfad bleibt hart codiert und wird als solcher (mutmaßlich
     falsch auf anderen Hosts) sichtbar, statt stillschweigend "repariert" zu werden.
     """
     home = home or Path.home()

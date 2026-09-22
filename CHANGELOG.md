@@ -1,6 +1,14 @@
 # Changelog
 
-## [0.1.4] - 2026-09-16 (Pfad B Ergänzung: 2026-09-19)
+## [0.1.4] - 2026-09-16 (Care & Hygiene: 2026-09-22)
+
+### Release-Hygiene, Lizenzinventar & Gate-Bereitschaft (2026-09-22)
+
+- **Release Gates & Hygiene**: Standard-`TODO.md` mit `## STATUS`-Tabelle etabliert und alle 10 Gates auf 10/10 PASS verifiziert (`final_gate_check.py`).
+- **PEP 639 Lizenzinventar**: `THIRD_PARTY_LICENSES.md` mit Nachweis von 0 externen Laufzeitabhängigkeiten (reine Python-Standardbibliothek) erstellt und `license-files` in `pyproject.toml` deklariert.
+- **.gitignore-Härtung**: Mindesteinträge um `*.pyc`, `*.db`, `*.sqlite`, `.idea/`, `.vscode/` und `data/` erweitert.
+- **Pfadneutralität**: Hostspezifischen Beispielpfad in `src/source_resolver/pointer_check.py` durch generischen Platzhalter ersetzt.
+- **Vertragstests & Banner-Fix**: `test_bilingual_readme_contract` für animiertes `assets/banner.gif` harmonisiert und neuen Vertragstest `test_todo_and_license_inventory_contract` hinzugefügt (50/50 Tests grün).
 
 ### Pfad B: Discoverability, Sequenzdiagramme & Architektur-Dokumentation (2026-09-19)
 
