@@ -4,8 +4,8 @@ unabhaengig driftende Aufloesung zu bauen (Faustregel aus Nachtrag 2 des Tickets
 "Was sich beim Kopieren auseinanderentwickeln kann, wird nicht kopiert, sondern
 aufgerufen"). Neue Adapter tragen sich hier in ADAPTERS ein."""
 
-from source_resolver.adapters.policy_registry import resolve_policy_registry
 from source_resolver.adapters.bach_tool_registry import resolve_bach_tool_registry
+from source_resolver.adapters.policy_registry import resolve_policy_registry
 
 ADAPTERS = {
     "policy.registry": resolve_policy_registry,

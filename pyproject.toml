@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -8,7 +8,7 @@ version = "0.1.4"
 description = "Rollenbasierte Quellenauflösung für Skills – Stufenleiter von Nutzerkonfiguration bis Fremdanbieter, mit Nutzervorrang, Discovery-Bestätigung und read-only BACH-Werkzeugregister."
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "MIT" }
+license = "MIT"
 license-files = ["LICENSE", "THIRD_PARTY_LICENSES.md"]
 dependencies = []
 authors = [{ name = "Lukas Geiger" }]
@@ -16,7 +16,6 @@ keywords = ["skills", "source-resolution", "policy", "decisions", "user-model", 
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -39,10 +38,12 @@ Security = "https://github.com/ellmos-ai/source-resolver/blob/master/SECURITY.md
 
 [project.optional-dependencies]
 dev = [
+    "tomli>=2.0; python_version < '3.11'",
     "pytest>=8.0.0",
     "ruff>=0.4.0",
 ]
 test = [
+    "tomli>=2.0; python_version < '3.11'",
     "pytest>=8.0.0",
     "ruff>=0.4.0",
 ]

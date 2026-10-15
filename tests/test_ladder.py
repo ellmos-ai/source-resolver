@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 import source_resolver.adapters.policy_registry as pr_adapter
-import source_resolver.ladder as ladder
+from source_resolver import ladder
 from source_resolver.ladder import ResolutionStatus, Stufe, confirm, resolve
 from source_resolver.store import RoleEntry, UserSourceStore, now_iso
 
