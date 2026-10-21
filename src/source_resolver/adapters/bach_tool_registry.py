@@ -18,7 +18,6 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-
 ROLE = "resources.bach.tool_registry"
 _CONFIGURED_ROOT_VARS = ("SOURCE_RESOLVER_BACH_ROOT", "BACH_ROOT")
 _TIMEOUT_SECONDS = 15
@@ -125,6 +124,7 @@ def resolve_bach_tool_registry(*, scope: str | None = None, query: str = "") -> 
     try:
         process = subprocess.run(
             command,
+            check=False,
             capture_output=True,
             text=True,
             encoding="utf-8",

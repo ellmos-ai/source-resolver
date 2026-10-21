@@ -3,11 +3,15 @@
 from __future__ import annotations
 
 import json
-import tomllib
 from pathlib import Path
 
 import source_resolver
 from source_resolver.ladder import ResolutionStatus, Stufe
+
+try:
+    import tomllib
+except ModuleNotFoundError:
+    import tomli as tomllib
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
@@ -40,7 +44,7 @@ def test_pep621_pyproject_structure():
     assert project["name"] == "source-resolver"
     assert project["readme"] == "README.md"
     assert project["requires-python"] == ">=3.10"
-    assert project["license"] == {"text": "MIT"}
+    assert project["license"] == "MIT"
     assert project.get("license-files") == ["LICENSE", "THIRD_PARTY_LICENSES.md"]
 
     # URLs
