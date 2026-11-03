@@ -1,6 +1,14 @@
 # Changelog
 
-## [0.1.4] - 2026-09-16 (Care & Hygiene: 2026-09-22)
+## [0.1.4] - 2026-09-16 (Care & Hygiene: 2026-11-03)
+
+### Repository-Hygiene & Community Governance (2026-11-03)
+
+- **Community Governance**: Zweisprachiger Verhaltenskodex (`CODE_OF_CONDUCT.md` nach Contributor Covenant v2.1) und Beitragsrichtlinie (`CONTRIBUTING.md` mit Pull-Request-Workflow, Local-First / Zero-Network-Egress Richtlinien und Testanforderungen) etabliert.
+- **Issue Templates**: Standardisierte GitHub Issue-Vorlagen für Fehlerberichte (`.github/ISSUE_TEMPLATE/bug_report.md`) und Funktionswünsche (`.github/ISSUE_TEMPLATE/feature_request.md`) hinzugefügt.
+- **PEP 621 Projekt-URLs**: `pyproject.toml` um direkte URLs für `Contributing` und `Code of Conduct` erweitert.
+- **Dokumentation & Badges**: Shields.io Badges für Mitwirken (`Contributing: Guide`) und Verhaltenskodex (`Code of Conduct: v2.1`) sowie Sektion `Community & Governance` in `README.md` und `README_de.md` integriert; Test-Badge auf 52/52 Tests aktualisiert.
+- **Automatisierte Vertragstests**: `tests/test_metadata.py` um `test_community_governance_contract()` und `test_issue_templates_contract()` erweitert und bestehende Verträge für URLs und bilaterale README-Parität gehärtet (Gesamtsuite auf 52/52 Tests erweitert, 100% grün).
 
 ### Release-Hygiene, Lizenzinventar & Gate-Bereitschaft (2026-09-22)
 

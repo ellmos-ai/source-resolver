@@ -15,9 +15,11 @@
 [![Lizenz: MIT](https://img.shields.io/badge/Lizenz-MIT-green.svg)](LICENSE)
 [![Security SLA](https://img.shields.io/badge/Security%20SLA-48h%20%7C%205d-blue.svg)](SECURITY.md)
 [![Ecosystem: ellmos--ai](https://img.shields.io/badge/Ecosystem-ellmos--ai-purple.svg)](https://github.com/ellmos-ai)
-[![Tests: Pytest](https://img.shields.io/badge/Tests-Pytest%2050%2F50%20Bestanden-brightgreen.svg)](tests/)
+[![Tests: Pytest](https://img.shields.io/badge/Tests-Pytest%2052%2F52%20Bestanden-brightgreen.svg)](tests/)
 [![Architektur](https://img.shields.io/badge/Architektur-Sequenzdiagramm-blueviolet.svg)](ARCHITECTURE.md)
 [![Code-Stil: Ruff](https://img.shields.io/badge/Code--Stil-Ruff-black.svg)](https://github.com/astral-sh/ruff)
+[![Mitwirken](https://img.shields.io/badge/Mitwirken-Leitfaden-blue.svg)](CONTRIBUTING.md)
+[![Verhaltenskodex](https://img.shields.io/badge/Verhaltenskodex-v2.1-green.svg)](CODE_OF_CONDUCT.md)
 [![LLM Kontext](https://img.shields.io/badge/LLM%20Kontext-llms.txt-orange.svg)](llms.txt)
 
 > [!NOTE]
@@ -192,10 +194,17 @@ nicht eingetragen -- das ist ein Eingriff in den Baukasten und liegt beim Nutzer
 [`proposals/composition.rules.proposal.json`](proposals/composition.rules.proposal.json),
 Begruendung: [`proposals/PROPOSAL-NOTE.md`](proposals/PROPOSAL-NOTE.md).
 
+## Community & Governance
+
+- **Beitragsrichtlinie**: Bitte beachten Sie unseren [Leitfaden für Beiträge](CONTRIBUTING.md) sowie die [Pull-Request-Richtlinien](CONTRIBUTING.md#pull-request-workflow).
+- **Verhaltenskodex**: Dieses Projekt verpflichtet sich dem [Contributor Covenant v2.1](CODE_OF_CONDUCT.md).
+- **Sicherheitsrichtlinie**: Meldungswege und SLAs für Sicherheitsfragen sind in [SECURITY.md](SECURITY.md) dokumentiert.
+- **Issue-Vorlagen**: Nutzen Sie unsere Vorlagen für [Fehlerberichte](.github/ISSUE_TEMPLATE/bug_report.md) und [Funktionswünsche](.github/ISSUE_TEMPLATE/feature_request.md).
+
 ## Tests
 
 ```bash
 python -m pytest tests/ -ra -v
 ```
 
-50/50 grün (Stand 2026-09-22), inkl. automatisierter Vertragstests für PEP 621 Metadaten, CI-Matrix-Härtung, Security-Policy-SLAs, Architektur-Vertrag sowie Regressionsanker für Pointer-Drift, Stufe-0-Nutzervorrang und die read-only BACH-Werkzeugregister-Schnittstelle.
+52/52 grün (Stand 2026-11-03), inkl. automatisierter Vertragstests für PEP 621 Metadaten, CI-Matrix-Härtung, Security-Policy-SLAs, Architektur-Vertrag sowie Regressionsanker für Pointer-Drift, Stufe-0-Nutzervorrang und die read-only BACH-Werkzeugregister-Schnittstelle.
