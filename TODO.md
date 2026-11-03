@@ -1,9 +1,9 @@
 # TODO.md — Active work & Release Status: source-resolver
 
 **Version:** 0.1.4
-**Updated:** 2026-09-22
+**Updated:** 2026-11-03
 **Auditor:** Gemini (Antigravity)
-**Reason:** Pfad A Technische Hygiene, PEP 639 Lizenzinventar, CI-Vertragstests und Gate-Bereitschaft
+**Reason:** Pfad A Technische Hygiene, Community Governance, Issue Templates und Vertragstests
 **Target Repo:** `ellmos-ai/source-resolver`
 
 Erledigte Aufgaben gehören nach `CHANGELOG.md` oder in den Abschnitt „Abgeschlossene Aufgaben“.
@@ -19,7 +19,7 @@ Erledigte Aufgaben gehören nach `CHANGELOG.md` oder in den Abschnitt „Abgesch
 | BACH Internals | DONE | Nur Read-Only-Schnittstelle zum Werkzeugregister dokumentiert; keine internen Systemdokumente. |
 | Database Files | DONE | Keine Datenbankdateien versioniert; `*.db` und `*.sqlite` ignoriert. |
 | README.md & Architecture | DONE | Vollständige Spezifikation mit Mermaid-Sequenzdiagrammen und `ARCHITECTURE.md`. |
-| LICENSE & Governance | DONE | MIT-Lizenz vorhanden; PEP 639 `license-files` deklariert; `THIRD_PARTY_LICENSES.md` angelegt. |
+| LICENSE & Governance | DONE | MIT-Lizenz vorhanden; PEP 639 `license-files` deklariert; `THIRD_PARTY_LICENSES.md`, `CODE_OF_CONDUCT.md` und `CONTRIBUTING.md` gepflegt. |
 | Test Coverage | DONE | 100% Testabdeckung aller 5 Stufen der Quellenauflösung und Metadaten-Verträge. |
 | **Overall** | **READY** | Alle 10 Release-Gates erfüllt. |
 

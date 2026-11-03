@@ -35,6 +35,8 @@ Documentation = "https://github.com/ellmos-ai/source-resolver#readme"
 Issues = "https://github.com/ellmos-ai/source-resolver/issues"
 Changelog = "https://github.com/ellmos-ai/source-resolver/blob/master/CHANGELOG.md"
 Security = "https://github.com/ellmos-ai/source-resolver/blob/master/SECURITY.md"
+Contributing = "https://github.com/ellmos-ai/source-resolver/blob/master/CONTRIBUTING.md"
+"Code of Conduct" = "https://github.com/ellmos-ai/source-resolver/blob/master/CODE_OF_CONDUCT.md"
 
 [project.optional-dependencies]
 dev = [

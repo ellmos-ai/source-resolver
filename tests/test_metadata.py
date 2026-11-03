@@ -55,6 +55,8 @@ def test_pep621_pyproject_structure():
     assert "Issues" in urls
     assert "Changelog" in urls
     assert "Security" in urls
+    assert "Contributing" in urls
+    assert "Code of Conduct" in urls
 
     # Classifiers
     classifiers = project["classifiers"]
@@ -190,6 +192,11 @@ def test_bilingual_readme_contract():
     assert "README_de.md" in text_en, "README.md should link to German version"
     assert "README.md" in text_de, "README_de.md should link to English version"
 
+    assert "CONTRIBUTING.md" in text_en, "README.md must link to CONTRIBUTING.md"
+    assert "CODE_OF_CONDUCT.md" in text_en, "README.md must link to CODE_OF_CONDUCT.md"
+    assert "CONTRIBUTING.md" in text_de, "README_de.md must link to CONTRIBUTING.md"
+    assert "CODE_OF_CONDUCT.md" in text_de, "README_de.md must link to CODE_OF_CONDUCT.md"
+
 
 def test_todo_and_license_inventory_contract():
     """Verify TODO.md with STATUS table, THIRD_PARTY_LICENSES.md, and PEP 639 metadata."""
@@ -241,3 +248,40 @@ def test_contract_version_invariants():
     assert ResolutionStatus.ADAPTER_ERROR == "adapter_error"
     assert ResolutionStatus.MODULE_PRESENT_NOT_CALLABLE == "module_present_not_callable"
     assert ResolutionStatus.NO_FOREIGN_PROVIDERS == "no_foreign_providers"
+
+
+def test_community_governance_contract():
+    """Verify CODE_OF_CONDUCT.md and CONTRIBUTING.md presence and bilingual structure."""
+    coc_path = REPO_ROOT / "CODE_OF_CONDUCT.md"
+    assert coc_path.is_file(), "CODE_OF_CONDUCT.md must exist"
+    coc_text = coc_path.read_text(encoding="utf-8")
+    assert "## Deutsch" in coc_text
+    assert "## English" in coc_text
+    assert "Contributor Covenant v2.1" in coc_text
+    assert "security@ellmos.ai" in coc_text
+    assert "security@open-bricks.org" in coc_text
+
+    contrib_path = REPO_ROOT / "CONTRIBUTING.md"
+    assert contrib_path.is_file(), "CONTRIBUTING.md must exist"
+    contrib_text = contrib_path.read_text(encoding="utf-8")
+    assert "## Deutsch" in contrib_text
+    assert "## English" in contrib_text
+    assert "Local-First" in contrib_text
+    assert "Zero-Network-Egress" in contrib_text or "Zero Network Egress" in contrib_text
+    assert "ruff check" in contrib_text
+    assert "pytest" in contrib_text
+
+
+def test_issue_templates_contract():
+    """Verify GitHub Issue templates presence and format."""
+    bug_path = REPO_ROOT / ".github" / "ISSUE_TEMPLATE" / "bug_report.md"
+    assert bug_path.is_file(), ".github/ISSUE_TEMPLATE/bug_report.md must exist"
+    bug_text = bug_path.read_text(encoding="utf-8")
+    assert "name: Bug Report" in bug_text
+    assert "labels: bug" in bug_text
+
+    feat_path = REPO_ROOT / ".github" / "ISSUE_TEMPLATE" / "feature_request.md"
+    assert feat_path.is_file(), ".github/ISSUE_TEMPLATE/feature_request.md must exist"
+    feat_text = feat_path.read_text(encoding="utf-8")
+    assert "name: Feature Request" in feat_text
+    assert "labels: enhancement" in feat_text

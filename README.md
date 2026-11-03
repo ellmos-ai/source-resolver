@@ -15,9 +15,11 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Security SLA](https://img.shields.io/badge/Security%20SLA-48h%20%7C%205d-blue.svg)](SECURITY.md)
 [![Ecosystem: ellmos--ai](https://img.shields.io/badge/Ecosystem-ellmos--ai-purple.svg)](https://github.com/ellmos-ai)
-[![Tests: Pytest](https://img.shields.io/badge/Tests-Pytest%2050%2F50%20Passed-brightgreen.svg)](tests/)
+[![Tests: Pytest](https://img.shields.io/badge/Tests-Pytest%2052%2F52%20Passed-brightgreen.svg)](tests/)
 [![Architecture](https://img.shields.io/badge/Architecture-Sequence%20Diagram-blueviolet.svg)](ARCHITECTURE.md)
 [![Code Style: Ruff](https://img.shields.io/badge/Code%20Style-Ruff-black.svg)](https://github.com/astral-sh/ruff)
+[![Contributing](https://img.shields.io/badge/Contributing-Guide-blue.svg)](CONTRIBUTING.md)
+[![Code of Conduct](https://img.shields.io/badge/Code%20of%20Conduct-v2.1-green.svg)](CODE_OF_CONDUCT.md)
 [![LLM Context](https://img.shields.io/badge/LLM%20Context-llms.txt-orange.svg)](llms.txt)
 
 > [!NOTE]
@@ -197,7 +199,14 @@ rationale: [`proposals/PROPOSAL-NOTE.en.md`](proposals/PROPOSAL-NOTE.en.md)
 python -m pytest tests/ -ra -v
 ```
 
-50/50 green (as of 2026-09-22), including automated contract tests for PEP 621 metadata, CI matrix coverage, security policy SLAs, architecture contracts, and regression anchors for pointer-drift, user configuration precedence, and the BACH read-only tool registry seam.
+52/52 green (as of 2026-11-03), including automated contract tests for PEP 621 metadata, CI matrix coverage, security policy SLAs, architecture contracts, and regression anchors for pointer-drift, user configuration precedence, and the BACH read-only tool registry seam.
+
+## Community & Governance
+
+- **Contributing Guide**: Please review our [Contributing Guide](CONTRIBUTING.md) and [Pull Request Workflow](CONTRIBUTING.md#pull-request-workflow).
+- **Code of Conduct**: This project adheres to the [Contributor Covenant v2.1](CODE_OF_CONDUCT.md).
+- **Security Policy**: Detailed vulnerability reporting procedures and SLAs are available in [SECURITY.md](SECURITY.md).
+- **Issue Templates**: Use our templates for [Bug Reports](.github/ISSUE_TEMPLATE/bug_report.md) and [Feature Requests](.github/ISSUE_TEMPLATE/feature_request.md).
 
 ## Namensraum-Abgrenzung
 
