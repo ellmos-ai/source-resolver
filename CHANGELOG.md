@@ -1,5 +1,16 @@
 # Changelog
 
+## [Unreleased]
+
+### Pfad B: Visual CLI Preview & Discoverability Hardening (2026-11-04)
+
+- **Visual CLI Session Preview** (`assets/cli-session-preview.svg`): Hochauflösendes Dark-Mode Vektor-Asset (880x540) für Terminal-Sitzung, Befehlsdemonstration (`resolve`, `confirm`, `check-pointer`), Fehlerfall-Dialoge und 5-Stufen-Leiterübersicht erstellt und in `README.md` und `README_de.md` integriert.
+- **Discoverability & SEO-Keywords** (`pyproject.toml`): Metadaten-Schlagwörter um `zero-egress`, `local-first`, `agent-framework`, `pointer-check`, `staged-resolution` und `fail-closed` erweitert.
+- **Badges & Dokumentation**: Badges für Zero Network Egress, Local-First Architektur, CLI-Vorschau und Verifikationsstempel (Verified/Geprüft 2026-11-04) in englischer und deutscher README verankert; Test-Badge auf 54/54 Tests aktualisiert.
+- **Zero-Pollution & Git-Hygiene**: `MARKETING-LOG.txt` aus dem Git-Tracking des Ziel-Repositories entfernt (`git rm --cached`) und `.gitignore` um Schutzregeln für interne Marketing- und Prüf-Logs (`MARKETING-LOG.txt`, `CHECKS-LOG.txt`, `ANTIGRAVITY-LOG.txt`) gehärtet.
+- **LLM-Kontext** (`llms.txt`): Currency-Stempel auf 2026-11-04 aktualisiert, Testanzahl auf 54/54 synchronisiert und Referenz auf das visuelle CLI-Session-Asset verankert.
+- **Automatisierte Vertragstests** (`tests/test_metadata.py`): Zwei neue Vertragstests `test_visual_cli_preview_contract()` und `test_discoverability_and_seo_contract()` hinzugefügt (Gesamtsuite auf 54/54 Tests erweitert, 100% grün).
+
 ## [0.1.4] - 2026-09-16 (Care & Hygiene: 2026-11-03)
 
 ### Repository-Hygiene & Community Governance (2026-11-03)

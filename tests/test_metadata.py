@@ -285,3 +285,65 @@ def test_issue_templates_contract():
     feat_text = feat_path.read_text(encoding="utf-8")
     assert "name: Feature Request" in feat_text
     assert "labels: enhancement" in feat_text
+
+def test_visual_cli_preview_contract():
+    """Verify assets/cli-session-preview.svg existence, XML validity, and README linkages."""
+    import xml.etree.ElementTree as ET
+
+    svg_path = REPO_ROOT / "assets" / "cli-session-preview.svg"
+    assert svg_path.is_file(), "assets/cli-session-preview.svg must exist"
+
+    # XML well-formedness
+    tree = ET.parse(svg_path)
+    root = tree.getroot()
+    assert root.tag.endswith("svg"), "Root element must be <svg>"
+    assert root.attrib.get("viewBox") == "0 0 880 540", "SVG viewBox must be 0 0 880 540"
+
+    svg_text = svg_path.read_text(encoding="utf-8")
+    assert "source-resolver" in svg_text
+    assert "decisions.ledger" in svg_text
+    assert "policy.registry" in svg_text
+    assert "check-pointer" in svg_text
+    assert "confirm" in svg_text
+
+    # Both READMEs must reference the visual preview
+    readme_en = (REPO_ROOT / "README.md").read_text(encoding="utf-8")
+    readme_de = (REPO_ROOT / "README_de.md").read_text(encoding="utf-8")
+    assert "assets/cli-session-preview.svg" in readme_en, "README.md must embed cli-session-preview.svg"
+    assert "assets/cli-session-preview.svg" in readme_de, "README_de.md must embed cli-session-preview.svg"
+
+
+def test_discoverability_and_seo_contract():
+    """Verify expanded SEO keywords, .gitignore log protection, and llms.txt currency."""
+    pyproject_path = REPO_ROOT / "pyproject.toml"
+    with pyproject_path.open("rb") as f:
+        pyproject = tomllib.load(f)
+
+    keywords = pyproject["project"].get("keywords", [])
+    expected_keywords = [
+        "skills",
+        "source-resolution",
+        "policy",
+        "decisions",
+        "user-model",
+        "ellmos",
+        "zero-egress",
+        "local-first",
+        "agent-framework",
+        "pointer-check",
+        "staged-resolution",
+        "fail-closed",
+    ]
+    for kw in expected_keywords:
+        assert kw in keywords, f"Expected keyword '{kw}' missing from pyproject.toml"
+
+    gitignore_path = REPO_ROOT / ".gitignore"
+    gitignore_text = gitignore_path.read_text(encoding="utf-8")
+    assert "MARKETING-LOG.txt" in gitignore_text, ".gitignore must guard MARKETING-LOG.txt"
+    assert "CHECKS-LOG.txt" in gitignore_text, ".gitignore must guard CHECKS-LOG.txt"
+
+    llms_path = REPO_ROOT / "llms.txt"
+    assert llms_path.is_file(), "llms.txt must exist"
+    llms_text = llms_path.read_text(encoding="utf-8")
+    assert "Last-checked: 2026-11-04" in llms_text, "llms.txt must have 2026-11-04 check date"
+    assert "assets/cli-session-preview.svg" in llms_text, "llms.txt must reference cli-session-preview.svg"

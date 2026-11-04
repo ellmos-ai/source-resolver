@@ -68,4 +68,7 @@ data/
 .vscode/
 *.sublime-project
 *.sublime-workspace
-
+# Marketing, Audit & Automation Logs (Zero-Pollution / Host-Level Only)
+MARKETING-LOG.txt
+CHECKS-LOG.txt
+ANTIGRAVITY-LOG.txt
