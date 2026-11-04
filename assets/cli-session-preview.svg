@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 540" width="100%" height="100%">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e1e2e"/>
+      <stop offset="100%" stop-color="#2a2b3d"/>
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#11111b"/>
+      <stop offset="100%" stop-color="#181825"/>
+    </linearGradient>
+    <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#313244"/>
+      <stop offset="100%" stop-color="#45475a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Terminal Window Background with Drop Shadow -->
+  <rect x="20" y="20" width="840" height="500" rx="12" fill="url(#bgGrad)" stroke="#313244" stroke-width="1.5" filter="url(#shadow)"/>
+
+  <!-- Window Header Bar -->
+  <path d="M 20,32 A 12,12 0 0,1 32,20 L 848,20 A 12,12 0 0,1 860,32 L 860,58 L 20,58 Z" fill="url(#headerGrad)"/>
+  <line x1="20" y1="58" x2="860" y2="58" stroke="#313244" stroke-width="1"/>
+
+  <!-- Window Control Buttons -->
+  <circle cx="44" cy="39" r="6" fill="#f38ba8"/>
+  <circle cx="64" cy="39" r="6" fill="#f9e2af"/>
+  <circle cx="84" cy="39" r="6" fill="#a6e3a1"/>
+
+  <!-- Window Title -->
+  <text x="440" y="43" fill="#a6adc8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" text-anchor="middle">source-resolver — role-based resolution ladder (CLI &amp; Library v0.1.4)</text>
+
+  <!-- Monospace Styles -->
+  <style>
+    .code { font-family: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', Consolas, Monaco, monospace; font-size: 12px; }
+    .banner { fill: #89b4fa; font-weight: bold; }
+    .muted { fill: #6c7086; }
+    .prompt { fill: #a6e3a1; font-weight: bold; }
+    .cmd { fill: #cdd6f4; font-weight: 600; }
+    .key { fill: #89dceb; }
+    .str { fill: #a6e3a1; }
+    .num { fill: #fab387; }
+    .stage0 { fill: #f9e2af; font-weight: bold; }
+    .stage1 { fill: #89b4fa; font-weight: bold; }
+    .stage2 { fill: #94e2d5; font-weight: bold; }
+    .stage4 { fill: #f38ba8; font-weight: bold; }
+    .box-title { fill: #b4befe; font-weight: 600; font-size: 11px; }
+    .box-text { fill: #bac2de; font-size: 11px; }
+    .badge-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 10px; font-weight: 600; }
+  </style>
+
+  <!-- Terminal Session Content -->
+  <g class="code" transform="translate(45, 82)">
+    <!-- Subtitle Banner -->
+    <text y="0" class="banner">source-resolver [v0.1.4] &gt; 5-Stage Deterministic Source Resolution</text>
+    <text y="16" class="muted">Fail-closed resolution ladder for skill backbones • Zero network egress • Local-first</text>
+
+    <!-- Command 1: Resolve unknown role -> Dialogue fallback -->
+    <text y="42" class="prompt">$ <tspan class="cmd">source-resolver resolve decisions.ledger</tspan></text>
+    <text y="60" class="muted">{</text>
+    <text y="76" class="code">  <tspan class="key">"rolle"</tspan>: <tspan class="str">"decisions.ledger"</tspan>, <tspan class="key">"stufe"</tspan>: <tspan class="num">4</tspan>, <tspan class="key">"status"</tspan>: <tspan class="stage4">"not_found"</tspan>,</text>
+    <text y="92" class="code">  <tspan class="key">"dialog"</tspan>: {</text>
+    <text y="108" class="code">    <tspan class="key">"frage_1"</tspan>: <tspan class="str">"Welcher Ort/welche Datei ist massgeblich? (confirm() setzt Stufe 0)"</tspan>,</text>
+    <text y="124" class="code">    <tspan class="key">"frage_2_falls_unbekannt"</tspan>: <tspan class="str">"Sollen wir Zusatzmodul einrichten? [_DECISIONS-chain]"</tspan></text>
+    <text y="140" class="muted">  }</text>
+    <text y="156" class="muted">}</text>
+
+    <!-- Command 2: Resolve canonical role with adapter -->
+    <text y="184" class="prompt">$ <tspan class="cmd">source-resolver resolve policy.registry --scope dev-hygiene</tspan></text>
+    <text y="202" class="code"><tspan class="stage1">[Stufe 1: Eigenes Modul]</tspan> Delegated to adapter CLI: <tspan class="key">policy-registry</tspan></text>
+    <text y="218" class="code"><tspan class="str">&#x2714; Status: RESOLVED</tspan> &gt; target: <tspan class="str">~/.ellmos/governance/policies/dev-hygiene.json</tspan></text>
+
+    <!-- Command 3: Pointer check -->
+    <text y="246" class="prompt">$ <tspan class="cmd">source-resolver check-pointer &quot;&lt;HOME&gt;/.TOPICS/.../ticket-master&quot;</tspan></text>
+    <text y="264" class="code"><tspan class="str">&#x2714; Pointer target valid:</tspan> Path exists and is reachable. Fail-closed invariant satisfied.</text>
+
+    <!-- Command 4: Promote via Confirm -->
+    <text y="292" class="prompt">$ <tspan class="cmd">source-resolver confirm decisions.ledger '{&quot;pfad&quot;: &quot;~/DECISIONS.md&quot;}'</tspan></text>
+    <text y="310" class="code"><tspan class="stage0">[Stufe 0: Nutzer-Konfiguration]</tspan> Saved to <tspan class="str">~/.source-resolver/config.json</tspan> (User override active: wins always)</text>
+  </g>
+
+  <!-- Bottom Visual Cards: The 5-Stage Ladder at a Glance -->
+  <g transform="translate(45, 430)">
+    <!-- Stage 0 Card -->
+    <rect x="0" y="0" width="145" height="52" rx="6" fill="#1e1e2e" stroke="#f9e2af" stroke-width="1.2"/>
+    <text x="10" y="18" fill="#f9e2af" class="badge-text">STAGE 0 • OVERRIDE</text>
+    <text x="10" y="32" class="box-text">User configuration</text>
+    <text x="10" y="44" fill="#a6adc8" font-size="9.5">Always wins first</text>
+
+    <!-- Stage 1 Card -->
+    <rect x="155" y="0" width="145" height="52" rx="6" fill="#1e1e2e" stroke="#89b4fa" stroke-width="1.2"/>
+    <text x="165" y="18" fill="#89b4fa" class="badge-text">STAGE 1 • CANONICAL</text>
+    <text x="165" y="32" class="box-text">Own modules / adapters</text>
+    <text x="165" y="44" fill="#a6adc8" font-size="9.5">Auto-authoritative</text>
+
+    <!-- Stage 2 Card -->
+    <rect x="310" y="0" width="145" height="52" rx="6" fill="#1e1e2e" stroke="#94e2d5" stroke-width="1.2"/>
+    <text x="320" y="18" fill="#94e2d5" class="badge-text">STAGE 2 • DISCOVERY</text>
+    <text x="320" y="32" class="box-text">Filesystem scan roots</text>
+    <text x="320" y="44" fill="#a6adc8" font-size="9.5">Proposal only (confirm)</text>
+
+    <!-- Stage 3 Card -->
+    <rect x="465" y="0" width="145" height="52" rx="6" fill="#1e1e2e" stroke="#6c7086" stroke-width="1"/>
+    <text x="475" y="18" fill="#6c7086" class="badge-text">STAGE 3 • FOREIGN</text>
+    <text x="475" y="32" class="box-text">External providers</text>
+    <text x="475" y="44" fill="#6c7086" font-size="9.5">Configured providers</text>
+
+    <!-- Stage 4 Card -->
+    <rect x="620" y="0" width="160" height="52" rx="6" fill="#1e1e2e" stroke="#f38ba8" stroke-width="1.2"/>
+    <text x="630" y="18" fill="#f38ba8" class="badge-text">STAGE 4 • DIALOGUE</text>
+    <text x="630" y="32" class="box-text">Two-part fallback</text>
+    <text x="630" y="44" fill="#a6adc8" font-size="9.5">Canonical query / neubau</text>
+  </g>
+</svg>

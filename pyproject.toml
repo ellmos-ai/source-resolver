@@ -12,7 +12,20 @@ license = "MIT"
 license-files = ["LICENSE", "THIRD_PARTY_LICENSES.md"]
 dependencies = []
 authors = [{ name = "Lukas Geiger" }]
-keywords = ["skills", "source-resolution", "policy", "decisions", "user-model", "ellmos"]
+keywords = [
+    "skills",
+    "source-resolution",
+    "policy",
+    "decisions",
+    "user-model",
+    "ellmos",
+    "zero-egress",
+    "local-first",
+    "agent-framework",
+    "pointer-check",
+    "staged-resolution",
+    "fail-closed",
+]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
