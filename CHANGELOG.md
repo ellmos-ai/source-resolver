@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### CI: Vertragstest für den Stale-Workflow versionsneutral (2026-11-15)
+
+- **Vertragstests** (`tests/test_metadata.py`): `test_stale_workflow_contract` prüft `actions/stale` jetzt unabhängig von der Major-Version (`@v<Zahl>`) statt fest auf `@v9`. Damit bleiben Dependabot-Updates der Action (aktuell v9 → v11) in der CI grün.
+
 ### Pfad A: CI-Matrix-Härtung, Dependabot, PEP-621-Strenge & Doku-Parität (2026-11-15)
 
 - **Dependabot-Konfiguration** (`.github/dependabot.yml`): Wöchentliche automatisierte Abhängigkeits- und GitHub-Actions-Updates (`pip` und `github-actions`) mit begrenzten offenen PRs eingerichtet.
