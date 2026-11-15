@@ -345,5 +345,54 @@ def test_discoverability_and_seo_contract():
     llms_path = REPO_ROOT / "llms.txt"
     assert llms_path.is_file(), "llms.txt must exist"
     llms_text = llms_path.read_text(encoding="utf-8")
-    assert "Last-checked: 2026-11-04" in llms_text, "llms.txt must have 2026-11-04 check date"
+    assert "Last-checked: 2026-11-15" in llms_text, "llms.txt must have 2026-11-15 check date"
     assert "assets/cli-session-preview.svg" in llms_text, "llms.txt must reference cli-session-preview.svg"
+
+
+def test_dependabot_and_ci_hardening_contract():
+    """Verify Dependabot schedule and workflow timeouts / pip check hardening."""
+    dependabot_path = REPO_ROOT / ".github" / "dependabot.yml"
+    assert dependabot_path.is_file(), ".github/dependabot.yml must exist"
+    dependabot_text = dependabot_path.read_text(encoding="utf-8")
+    assert 'package-ecosystem: "pip"' in dependabot_text
+    assert 'package-ecosystem: "github-actions"' in dependabot_text
+    assert 'interval: "weekly"' in dependabot_text
+
+    ci_text = (REPO_ROOT / ".github" / "workflows" / "ci.yml").read_text(encoding="utf-8")
+    assert "timeout-minutes:" in ci_text, "CI jobs must declare timeout-minutes"
+    assert "pip check" in ci_text, "CI must run pip check after dependency installation"
+
+    stale_text = (REPO_ROOT / ".github" / "workflows" / "stale.yml").read_text(encoding="utf-8")
+    assert "timeout-minutes:" in stale_text, "Stale workflow must declare timeout-minutes"
+
+
+def test_pyproject_strict_lint_and_pytest_contract():
+    """Verify strict pytest/ruff settings and zero unintended version bumps."""
+    pyproject_path = REPO_ROOT / "pyproject.toml"
+    with pyproject_path.open("rb") as f:
+        pyproject = tomllib.load(f)
+
+    assert pyproject["project"]["version"] == "0.1.4"
+    pytest_opts = pyproject["tool"]["pytest"]["ini_options"]
+    assert pytest_opts.get("xfail_strict") is True
+
+    ruff_lint = pyproject["tool"]["ruff"].get("lint", {})
+    selected = ruff_lint.get("select", [])
+    for rule in ("E", "F", "W", "I"):
+        assert rule in selected, f"Ruff lint selection must include '{rule}'"
+
+    gitignore_text = (REPO_ROOT / ".gitignore").read_text(encoding="utf-8")
+    assert "*MARKETING-LOG.txt" in gitignore_text
+
+
+def test_readme_german_umlaut_and_english_parity_contract():
+    """Verify README.md is purely English and README_de.md uses real German umlauts."""
+    text_en = (REPO_ROOT / "README.md").read_text(encoding="utf-8")
+    text_de = (REPO_ROOT / "README_de.md").read_text(encoding="utf-8")
+
+    assert "## Namespace Distinction" in text_en
+    assert "## Namensraum-Abgrenzung" not in text_en
+    assert "## Namensraum-Abgrenzung" in text_de
+
+    for bad_ascii in ("Quellenaufloesung", "fuer ", "zurueck", "Kanaele", "Vorfaelle", "Praesenzcheck"):
+        assert bad_ascii not in text_de, f"README_de.md still contains ASCII umlaut substitute: {bad_ascii!r}"

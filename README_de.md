@@ -15,7 +15,7 @@
 [![Lizenz: MIT](https://img.shields.io/badge/Lizenz-MIT-green.svg)](LICENSE)
 [![Security SLA](https://img.shields.io/badge/Security%20SLA-48h%20%7C%205d-blue.svg)](SECURITY.md)
 [![Ecosystem: ellmos--ai](https://img.shields.io/badge/Ecosystem-ellmos--ai-purple.svg)](https://github.com/ellmos-ai)
-[![Tests: Pytest](https://img.shields.io/badge/Tests-Pytest%2054%2F54%20Bestanden-brightgreen.svg)](tests/)
+[![Tests: Pytest](https://img.shields.io/badge/Tests-Pytest%2057%2F57%20Bestanden-brightgreen.svg)](tests/)
 [![Architektur](https://img.shields.io/badge/Architektur-Sequenzdiagramm-blueviolet.svg)](ARCHITECTURE.md)
 [![Code-Stil: Ruff](https://img.shields.io/badge/Code--Stil-Ruff-black.svg)](https://github.com/astral-sh/ruff)
 [![Mitwirken](https://img.shields.io/badge/Mitwirken-Leitfaden-blue.svg)](CONTRIBUTING.md)
@@ -24,48 +24,48 @@
 [![Zero Network Egress](https://img.shields.io/badge/Netzwerk-Zero%20Egress-brightgreen.svg)](SECURITY.md)
 [![Architektur: Local-First](https://img.shields.io/badge/Architektur-Local--First-blue.svg)](ARCHITECTURE.md)
 [![CLI Vorschau](https://img.shields.io/badge/CLI-Visuelle%20Vorschau-blueviolet.svg)](assets/cli-session-preview.svg)
-[![Geprüft](https://img.shields.io/badge/Gepr%C3%BCft-2026--11--04-brightgreen.svg)](tests/)
+[![Geprüft](https://img.shields.io/badge/Gepr%C3%BCft-2026--11--15-brightgreen.svg)](tests/)
 
 > [!NOTE]
 > **LLM/KI-Kontext-Index:** Eine maschinenlesbare Spezifikation für KI-Agenten befindet sich in [`llms.txt`](llms.txt).
 
-> Rollenbasierte Quellenaufloesung fuer Skills: statt jede Informationsquelle (Policy,
+> Rollenbasierte Quellenauflösung für Skills: statt jede Informationsquelle (Policy,
 > Entscheidung, Nutzermodell, ...) hart zu verdrahten, ruft ein Skill eine Rolle auf --
-> `source_resolver.resolve("decisions.ledger")` -- und bekommt zurueck, WO das fuer
+> `source_resolver.resolve("decisions.ledger")` -- und bekommt zurück, WO das für
 > diesen Nutzer, auf diesem System, gerade herkommt.
 
-**Nicht zu verwechseln mit** `.MODULES/.CONNECTORS/connectors` (Messaging-Kanaele wie
-Telegram/Discord). source-resolver verbindet Skills mit Informationsquellen, nicht mit
-Kommunikationskanaelen -- getrennter Name, getrennter Zweck.
+**Nicht zu verwechseln mit** `.MODULES/.CONNECTORS/connectors` (Messaging-Kanäle wie
+Telegram/Discord). `source-resolver` verbindet Skills mit Informationsquellen, nicht mit
+Kommunikationskanälen -- getrennter Name, getrennter Zweck.
 
 ## Warum
 
-Am 15.08.2026 traten am selben Tag drei Vorfaelle derselben Fehlerklasse auf: ein
+Am 15.08.2026 traten am selben Tag drei Vorfälle derselben Fehlerklasse auf: ein
 Werkzeug legte still einen falschen Ordner an, ein Skript schrieb still "0 Skills"
 statt zu scheitern, und ein Pointer-Skill zeigte seit drei Wochen unbemerkt ins Leere.
-Gemeinsamer Nenner: ein stiller Fehlschlag, der wie ein gueltiger Zustand aussieht.
+Gemeinsamer Nenner: ein stiller Fehlschlag, der wie ein gültiger Zustand aussieht.
 
 Skills, die ihre Quellen hart verdrahten, haben genau dieses Risiko eingebaut -- zieht
-ein Modul um oder aendert sich sein Pfad, merkt das niemand, bis ein Agent ins Leere
-laeuft. source-resolver macht die Aufloesung explizit, gestuft und pruefbar.
+ein Modul um oder ändert sich sein Pfad, merkt das niemand, bis ein Agent ins Leere
+läuft. `source-resolver` macht die Auflösung explizit, gestuft und prüfbar.
 
 ## Die Stufenleiter
 
 | Stufe | Name | Bedeutung |
 |---|---|---|
 | 0 | Nutzer-Konfiguration | `~/.source-resolver/config.json`, `aktiv: true`. Gewinnt IMMER -- auch gegen ein vorhandenes, funktionierendes eigenes Modul. |
-| 1 | Eigenes Modul | Unsere kanonischen Module (siehe `KNOWN_MODULE_PROVIDERS` in `ladder.py`). Bei Fund automatisch massgeblich, keine Rueckfrage noetig. Fuer Rollen mit registriertem Adapter (aktuell: `policy.registry`) delegiert diese Stufe vollstaendig an das fremde Modul. |
-| 2 | Discovery-Vorschlag | Dateisystem-Suche in explizit uebergebenen Wurzeln. Ergebnis ist ein **Vorschlag** -- wird NIE automatisch uebernommen, sondern muss per `confirm()` bestaetigt werden, bevor er Stufe 0 wird. |
+| 1 | Eigenes Modul | Unsere kanonischen Module (siehe `KNOWN_MODULE_PROVIDERS` in `ladder.py`). Bei Fund automatisch maßgeblich, keine Rückfrage nötig. Für Rollen mit registriertem Adapter (aktuell: `policy.registry`) delegiert diese Stufe vollständig an das fremde Modul. |
+| 2 | Discovery-Vorschlag | Dateisystem-Suche in explizit übergebenen Wurzeln. Ergebnis ist ein **Vorschlag** -- wird NIE automatisch übernommen, sondern muss per `confirm()` bestätigt werden, bevor er Stufe 0 wird. |
 | 3 | Fremdanbieter | Registrierte externe Provider. Aktuell **keine** -- siehe "Was hier bewusst fehlt". |
-| 4 | Nichts gefunden | Kein Report, sondern ein zweiteiliger Dialog: (a) "wo ist das fuer dich kanonisch?", (b) falls unbekannt: "sollen wir dir ein eigenes Zusatzmodul dafuer einrichten?". |
+| 4 | Nichts gefunden | Kein Report, sondern ein zweiteiliger Dialog: (a) "wo ist das für dich kanonisch?", (b) falls unbekannt: "sollen wir dir ein eigenes Zusatzmodul dafür einrichten?". |
 
 **Kernregel (aus dem Auftrag):** *Was sich beim Kopieren unbemerkt auseinanderentwickeln
 kann, wird nicht kopiert, sondern aufgerufen.* Deshalb ist die Stufenleiter EINE
-Komponente, die Skills aufrufen -- nicht ein Muster, das jeder Skill fuer sich kopiert.
+Komponente, die Skills aufrufen -- nicht ein Muster, das jeder Skill für sich kopiert.
 
 Jeder nicht-eindeutige Stufe-1-Befund (Modul vorhanden, aber CLI nicht installiert;
 Modul-Ordner da, Zieldatei fehlt/Pointer-Drift; Aufrufer-Fehler wie fehlender `scope`)
-wird als **eigenes, spezifisches Ergebnis** zurueckgegeben -- nicht still im generischen
+wird als **eigenes, spezifisches Ergebnis** zurückgegeben -- nicht still im generischen
 "nichts gefunden"-Dialog versteckt.
 
 ### Sequenzdiagramm des Auflösungsablaufs
@@ -146,9 +146,9 @@ source-resolver list-roles
 source-resolver check-pointer "<HOME>/OneDrive/.TOPICS/.AI/.MODULES/.CONTROL/ticket-master"
 ```
 
-`check-pointer` ist der wiederverwendbare Existenz-Check fuer `type: pointer`-Skills
+`check-pointer` ist der wiederverwendbare Existenz-Check für `type: pointer`-Skills
 (siehe `pointer_check.py`) -- direkter Bezug zu T-20260815-603417673 (drei Wochen toter
-Pointer in `ticket-master/SKILL.md`). Diese Funktion ist eigenstaendig aufrufbar, z.B.
+Pointer in `ticket-master/SKILL.md`). Diese Funktion ist eigenständig aufrufbar, z. B.
 von `catalog.py` oder `skill_tester.py`, falls das Nachziehen dort in einem eigenen
 Ticket erfolgt -- **das ist hier bewusst NICHT verdrahtet**, nur bereitgestellt.
 
@@ -156,23 +156,23 @@ Ticket erfolgt -- **das ist hier bewusst NICHT verdrahtet**, nur bereitgestellt.
 
 | Rolle | Quelle | Weg |
 |---|---|---|
-| `policy.registry` | Modul `policy-registry` | Adapter -> `policy-registry resolve --scope ...` (CLI), faellt auf `module_present_not_callable` zurueck, wenn nicht installiert |
+| `policy.registry` | Modul `policy-registry` | Adapter -> `policy-registry resolve --scope ...` (CLI), fällt auf `module_present_not_callable` zurück, wenn nicht installiert |
 | `decisions.ledger` | `_control-center/_DECISIONS/TO-DECIDE-USER.txt` | Datei-Check |
-| `user.model` | `_control-center/_TOM-lm/avatar/START.md` | Datei-Check. **Einwilligung ist NICHT Teil dieser Aufloesung** -- die Consent-Regel von tom-lm/decision-avatar ("blosse Erreichbarkeit ist keine Einwilligung") bleibt Sache des aufrufenden Skills. |
-| `memory.organic` | Gardener | CLI-Praesenzcheck (`shutil.which("gardener")`) statt Pfad-Check -- Gardener ist pip/editable-installiert, kein fester Modulordner unter `<HOME>`. |
-| `memory.curated` | USMC | CLI-Praesenzcheck (`shutil.which("usmc")`) statt Pfad-Check, gleiche Begruendung. |
+| `user.model` | `_control-center/_TOM-lm/avatar/START.md` | Datei-Check. **Einwilligung ist NICHT Teil dieser Auflösung** -- die Consent-Regel von tom-lm/decision-avatar ("bloße Erreichbarkeit ist keine Einwilligung") bleibt Sache des aufrufenden Skills. |
+| `memory.organic` | Gardener | CLI-Präsenzcheck (`shutil.which("gardener")`) statt Pfad-Check -- Gardener ist pip/editable-installiert, kein fester Modulordner unter `<HOME>`. |
+| `memory.curated` | USMC | CLI-Präsenzcheck (`shutil.which("usmc")`) statt Pfad-Check, gleiche Begründung. |
 | `resources.inventory` | `.SYNC/_inventory/inventory.db` | Datei-Check (`module_path`+`target`, wie `decisions.ledger`). Kanonisches Ressourcen-/Hardware-/Software-Inventar (SQLite, 9 Tabellen); Hoheit liegt beim ControlRoom-Programm -- ellmos-controlcenter-mcps `controlcenter_list_resources` ist Lese-Spiegel, keine zweite Kanonik. |
 | `resources.bach.tool_registry` | BACH `tool_registry` | Read-only-Adapter über `bach_api.tool_registry`; liefert aktive BACH-Werkzeuge als strukturierte Quelle und öffnet `bach.db` nicht direkt durch den Resolver. |
 
 ## Zweite Achse (Ressourcen/Fähigkeiten) – erste Rolle angebunden
 
 Der dritte Nachtrag zum Ticket erweitert den Auftrag: dieselbe Frage stellt sich nicht
-nur fuer Wissen (Policy, Entscheidung, Nutzermodell), sondern auch fuer Ressourcen
+nur für Wissen (Policy, Entscheidung, Nutzermodell), sondern auch für Ressourcen
 ("welches Videoschnitt-Programm habe ich, welche DB, welcher MCP-Server?"). Die
-Stufenleiter ist dafuer **bereits generisch genug** -- `resolve(rolle, ...)` kennt keine
-Unterscheidung zwischen "Wissens-Rolle" und "Faehigkeits-Rolle", eine Rolle ist nur ein
+Stufenleiter ist dafür **bereits generisch genug** -- `resolve(rolle, ...)` kennt keine
+Unterscheidung zwischen "Wissens-Rolle" und "Fähigkeits-Rolle", eine Rolle ist nur ein
 gepunkteter String. Was fehlt, ist NICHT ein zweiter Mechanismus, sondern die
-**Population**: `KNOWN_MODULE_PROVIDERS`-Einträge für Ressourcen-Rollen (z.B.
+**Population**: `KNOWN_MODULE_PROVIDERS`-Einträge für Ressourcen-Rollen (z. B.
 `resources.bach.tool_registry`, weitere `capability.*`-Rollen folgen) und die Anbindung an die bereits kanonische Datenkaskade
 (`.AI/CLAUDE.md`, "Software als Speicherpunkt und GUI") für den Fall "nichts gefunden ->
 Skill legt sich selbst Speicher an". Die BACH-Rolle ist als optionaler, fail-closed
@@ -189,20 +189,20 @@ ist nicht Teil dieser Rolle.
   `ladder.py`), die Liste ist leer. Ein halb funktionierender Fremdanbieter erzeugt
   Vertrauen, das er nicht verdient hat -- ein ehrliches "keine Fremdanbieter
   konfiguriert" ist im Sinn von Stufe 4 richtiger als ein Beispiel-Stub.
-- **`skill_export`** (Modul->Skill-Haelfte der Asymmetrie) -- Papierstand, zurueckgestellt
-  per Entscheid D-20260731-005. Diese Repo baut nur die Skill->Quelle-Haelfte.
+- **`skill_export`** (Modul->Skill-Hälfte der Asymmetrie) -- Papierstand, zurückgestellt
+  per Entscheid D-20260731-005. Dieses Repo baut nur die Skill->Quelle-Hälfte.
 - **Retrofit von `tom-lm`/`decide`/`load-project` auf diese Bibliothek** -- nur
   `work-autonomous` wurde als Referenzbeispiel umgestellt (siehe dortiges Changelog).
-- **MCP-Adapter** -- Surface-Liste im Manifest traegt aktuell nur `library`+`cli`.
+- **MCP-Adapter** -- Surface-Liste im Manifest trägt aktuell nur `library`+`cli`.
 
-## Vorschlag fuer `.MODULES/composition.rules.json`
+## Vorschlag für `.MODULES/composition.rules.json`
 
 Die drei im Auftrag genannten Rollen (`policy.registry`, `decisions.ledger`,
-`user.model` -- letztere umbenannt von `user_model` fuer Konsistenz mit der
-existierenden gepunkteten Vokabel, z.B. `memory.curated`) werden **nur vorgeschlagen**,
+`user.model` -- letztere umbenannt von `user_model` für Konsistenz mit der
+existierenden gepunkteten Vokabel, z. B. `memory.curated`) werden **nur vorgeschlagen**,
 nicht eingetragen -- das ist ein Eingriff in den Baukasten und liegt beim Nutzer. Datei:
 [`proposals/composition.rules.proposal.json`](proposals/composition.rules.proposal.json),
-Begruendung: [`proposals/PROPOSAL-NOTE.md`](proposals/PROPOSAL-NOTE.md).
+Begründung: [`proposals/PROPOSAL-NOTE.md`](proposals/PROPOSAL-NOTE.md).
 
 ## Community & Governance
 
@@ -217,4 +217,8 @@ Begruendung: [`proposals/PROPOSAL-NOTE.md`](proposals/PROPOSAL-NOTE.md).
 python -m pytest tests/ -ra -v
 ```
 
-54/54 grün (Stand 2026-11-04), inkl. automatisierter Vertragstests für PEP 621 Metadaten, CI-Matrix-Härtung, Security-Policy-SLAs, Architektur-Vertrag sowie Regressionsanker für Pointer-Drift, Stufe-0-Nutzervorrang und die read-only BACH-Werkzeugregister-Schnittstelle.
+57/57 grün (Stand 2026-11-15), inkl. automatisierter Vertragstests für PEP 621 Metadaten, CI-Matrix-Härtung, Dependabot-Konfiguration, Security-Policy-SLAs, Architektur-Vertrag sowie Regressionsanker für Pointer-Drift, Stufe-0-Nutzervorrang und die read-only BACH-Werkzeugregister-Schnittstelle.
+
+## Namensraum-Abgrenzung
+
+NICHT zu verwechseln mit `.MODULES/.CONNECTORS/connectors` -- jenes Modul verbindet Messaging-Kanäle (Telegram/Discord/Signal/WhatsApp/Home Assistant/Webhooks). `source-resolver` verbindet Skills mit INFORMATIONSQUELLEN (Policies/Entscheidungen/Nutzermodell/...). Getrennter Name, getrennter Zweck -- siehe `SYSTEM-MANIFEST` §4 (keine parallelen Standards).
