@@ -20,7 +20,10 @@ ENV/
 .pytest_cache/
 .ruff_cache/
 .mypy_cache/
+.tox/
+.nox/
 .coverage
+.coverage.*
 coverage.xml
 htmlcov/
 .cache/
@@ -70,5 +73,6 @@ data/
 *.sublime-workspace
 # Marketing, Audit & Automation Logs (Zero-Pollution / Host-Level Only)
 MARKETING-LOG.txt
+*MARKETING-LOG.txt
 CHECKS-LOG.txt
 ANTIGRAVITY-LOG.txt

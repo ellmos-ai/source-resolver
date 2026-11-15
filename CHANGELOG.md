@@ -2,6 +2,15 @@
 
 ## [Unreleased]
 
+### Pfad A: CI-Matrix-Härtung, Dependabot, PEP-621-Strenge & Doku-Parität (2026-11-15)
+
+- **Dependabot-Konfiguration** (`.github/dependabot.yml`): Wöchentliche automatisierte Abhängigkeits- und GitHub-Actions-Updates (`pip` und `github-actions`) mit begrenzten offenen PRs eingerichtet.
+- **CI- & Workflow-Härtung** (`.github/workflows/ci.yml`, `.github/workflows/stale.yml`): `timeout-minutes`-Schutzlimits ergänzt und `python -m pip check` nach der Paketinstallation in der CI-Pipeline verankert.
+- **PEP-621- & Werkzeug-Härtung** (`pyproject.toml`): `xfail_strict = true` in `[tool.pytest.ini_options]` sowie `[tool.ruff.lint]` (`select = ["E", "F", "W", "I"]`) ohne Versionsänderung aktiviert (`0.1.4` beibehalten).
+- **.gitignore-Härtung**: Schutzmuster um `*MARKETING-LOG.txt`, `.coverage.*`, `.tox/` und `.nox/` erweitert.
+- **Bilinguale README-Parität & Umlaut-Hygiene** (`README.md`, `README_de.md`, `llms.txt`): Verbliebene deutsche Sektion `## Namensraum-Abgrenzung` in `README.md` ins Englische übertragen (`## Namespace Distinction`), fehlende deutsche Sektion in `README_de.md` ergänzt, ASCII-Umlaut-Ersatzschreibungen in `README_de.md` auf echte deutsche Umlaute/ß bereinigt sowie Test- und Verifikationsstempel (57/57, 2026-11-15) synchronisiert.
+- **Vertragstests** (`tests/test_metadata.py`): Drei neue Vertragstests (`test_dependabot_and_ci_hardening_contract`, `test_pyproject_strict_lint_and_pytest_contract`, `test_readme_german_umlaut_and_english_parity_contract`) ergänzt (Gesamtsuite auf 57/57 Tests erweitert).
+
 ### Pfad B: Visual CLI Preview & Discoverability Hardening (2026-11-04)
 
 - **Visual CLI Session Preview** (`assets/cli-session-preview.svg`): Hochauflösendes Dark-Mode Vektor-Asset (880x540) für Terminal-Sitzung, Befehlsdemonstration (`resolve`, `confirm`, `check-pointer`), Fehlerfall-Dialoge und 5-Stufen-Leiterübersicht erstellt und in `README.md` und `README_de.md` integriert.
