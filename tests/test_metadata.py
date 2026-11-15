@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 import source_resolver
@@ -146,7 +147,8 @@ def test_stale_workflow_contract():
     assert stale_path.is_file(), ".github/workflows/stale.yml must exist"
     content = stale_path.read_text(encoding="utf-8")
 
-    assert "actions/stale@v9" in content
+    # Any major version: Dependabot bumps the pin, the contract is the action itself.
+    assert re.search(r"uses:\s*actions/stale@v\d+", content)
     assert "issues: write" in content
     assert "pull-requests: write" in content
     assert "days-before-stale:" in content
