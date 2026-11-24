@@ -39,8 +39,8 @@
 
 If you identify a potential security issue or vulnerability in `source-resolver`, please report it privately:
 
-1. **GitHub Security Advisory (Preferred):** Open a private security advisory at [ellmos-ai/source-resolver Security Advisories](https://github.com/ellmos-ai/source-resolver/security/advisories).
-2. **Email Contacts:** Send detailed technical findings to `security@open-bricks.org` and `security@ellmos.ai` (CC: `lukas@open-bricks.org`, `support@lukasgeiger.com`).
+1. **Email Contacts (Primary / Preferred):** Send detailed technical findings to `security@open-bricks.org` and `security@ellmos.ai` (CC: `lukas@open-bricks.org`, `support@lukasgeiger.com`, or contact `@lukisch` directly).
+2. **GitHub Private Vulnerability Reporting:** Currently disabled on this repository; please use the private email channels above instead of opening public issues.
 
 **Service Level Agreement (SLA):**
 - **Acknowledgment:** Within 48 hours.
@@ -80,8 +80,8 @@ Please do not disclose security issues through public GitHub issues or public pu
 
 Sollten Sie eine Sicherheitslücke oder Unregelmäßigkeit in `source-resolver` feststellen, melden Sie diese bitte vertraulich:
 
-1. **GitHub Security Advisory (Bevorzugt):** Erstellen Sie ein vertrauliches Security Advisory unter [ellmos-ai/source-resolver Security Advisories](https://github.com/ellmos-ai/source-resolver/security/advisories).
-2. **E-Mail-Kontakt:** Senden Sie den Befund an `security@open-bricks.org` und `security@ellmos.ai` (CC: `lukas@open-bricks.org`, `support@lukasgeiger.com`).
+1. **E-Mail-Kontakt (Primär / Bevorzugt):** Senden Sie den Befund an `security@open-bricks.org` und `security@ellmos.ai` (CC: `lukas@open-bricks.org`, `support@lukasgeiger.com`, oder direkt an `@lukisch`).
+2. **GitHub Private Vulnerability Reporting:** Für dieses Repository derzeit deaktiviert; nutzen Sie daher bitte ausschließlich die genannten vertraulichen E-Mail-Kontakte.
 
 **Service Level Agreement (SLA):**
 - **Erstreaktion / Empfangsbestätigung:** Innerhalb von 48 Stunden.

@@ -30,8 +30,8 @@ Inakzeptables Verhalten umfasst:
 
 Wenn Sie problematisches Verhalten beobachten, melden Sie es bitte vertraulich
 an die Projektverantwortlichen über:
-- E-Mail: `security@ellmos.ai` oder `security@open-bricks.org` (CC: `lukas@open-bricks.org`)
-- GitHub Security Advisories: [ellmos-ai/source-resolver/security/advisories](https://github.com/ellmos-ai/source-resolver/security/advisories)
+- E-Mail (Primär): `security@ellmos.ai` oder `security@open-bricks.org` (CC: `lukas@open-bricks.org`, `@lukisch`)
+- Sicherheitsrichtlinie: [SECURITY.md](SECURITY.md) (GitHub Private Vulnerability Reporting ist auf diesem Repository derzeit deaktiviert)
 
 Sensible Meldungen sollen nicht in öffentlichen Issues gepostet werden. Alle
 Beschwerden werden geprüft und angemessen bearbeitet.
@@ -66,8 +66,8 @@ Unacceptable behavior includes:
 ### Reporting and Enforcement
 
 If you observe abusive or unacceptable behavior, please report it confidentially to:
-- Email: `security@ellmos.ai` or `security@open-bricks.org` (CC: `lukas@open-bricks.org`)
-- GitHub Security Advisories: [ellmos-ai/source-resolver/security/advisories](https://github.com/ellmos-ai/source-resolver/security/advisories)
+- Email (Primary): `security@ellmos.ai` or `security@open-bricks.org` (CC: `lukas@open-bricks.org`, `@lukisch`)
+- Security Policy: [SECURITY.md](SECURITY.md) (GitHub Private Vulnerability Reporting is currently disabled on this repository)
 
 Sensitive reports must not be posted in public issues. All complaints will be
 reviewed and handled appropriately and confidentially.

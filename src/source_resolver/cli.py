@@ -47,9 +47,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "resolve":
         roots = [Path(p) for p in args.discovery_root]
         home = Path(args.home) if args.home else None
-        result = resolve(
-            args.rolle, scope=args.scope, query=args.query, discovery_roots=roots, store=store, home=home
-        )
+        result = resolve(args.rolle, scope=args.scope, query=args.query, discovery_roots=roots, store=store, home=home)
         _print(result.to_dict())
         return 0 if result.status == "resolved" else 2
 

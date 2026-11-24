@@ -2,8 +2,8 @@
 
 > Role-based source resolution for skills: instead of hard-wiring every information source, a skill calls a role and gets back where that comes from, right now, for this user and this system.
 
-Last-checked: 2026-11-15
-Test-suite: 57/57 passed (pytest, Python 3.10-3.13)
+Last-checked: 2026-11-24
+Test-suite: 61/61 passed (pytest, Python 3.10-3.13)
 Version: 0.1.4
 
 ## Summary
@@ -25,12 +25,12 @@ Version: 0.1.4
 
 ## Primary Documentation & References
 
-- [README.md](file:///README.md): Full ladder description, usage examples, visual preview, CLI reference.
-- [README_de.md](file:///README_de.md): German translation.
-- [ARCHITECTURE.md](file:///ARCHITECTURE.md): System architecture, 5-stage resolution flowchart, and sequence diagram.
-- [assets/cli-session-preview.svg](file:///assets/cli-session-preview.svg): Visual terminal session preview and stage architecture card deck.
-- [SECURITY.md](file:///SECURITY.md): Vulnerability reporting policy, 48h acknowledgment and 5 business days triage SLA.
-- [CHANGELOG.md](file:///CHANGELOG.md): Version history.
-- [pyproject.toml](file:///pyproject.toml): Package metadata, entry point (`source-resolver` CLI), dependencies.
-- [ellmos-module.v2.json](file:///ellmos-module.v2.json): Module manifest for the ellmos catalog/bundle system.
-- [proposals/](file:///proposals/): Proposed `composition.rules.json` roles, not yet adopted.
+- [README.md](README.md): Full ladder description, usage examples, visual preview, CLI reference.
+- [README_de.md](README_de.md): German translation.
+- [ARCHITECTURE.md](ARCHITECTURE.md): System architecture, 5-stage resolution flowchart, and sequence diagram.
+- [assets/cli-session-preview.svg](assets/cli-session-preview.svg): Visual terminal session preview and stage architecture card deck.
+- [SECURITY.md](SECURITY.md): Vulnerability reporting policy, 48h acknowledgment and 5 business days triage SLA.
+- [CHANGELOG.md](CHANGELOG.md): Version history.
+- [pyproject.toml](pyproject.toml): Package metadata, entry point (`source-resolver` CLI), dependencies.
+- [ellmos-module.v2.json](ellmos-module.v2.json): Module manifest for the ellmos catalog/bundle system.
+- [proposals/PROPOSAL-NOTE.en.md](proposals/PROPOSAL-NOTE.en.md): Proposed `composition.rules.json` roles, not yet adopted.

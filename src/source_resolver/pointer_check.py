@@ -49,6 +49,4 @@ def check_pointer(raw_module_path: str, *, home: Path | None = None) -> PointerC
     path = Path(resolved)
     exists = path.exists()
     reason = "gefunden" if exists else "Pfad existiert nicht (nach Platzhalter-Aufloesung geprueft)"
-    return PointerCheckResult(
-        raw_path=raw_module_path, resolved_path=resolved, exists=exists, reason=reason
-    )
+    return PointerCheckResult(raw_path=raw_module_path, resolved_path=resolved, exists=exists, reason=reason)

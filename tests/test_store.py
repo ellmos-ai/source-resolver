@@ -31,8 +31,13 @@ def test_set_and_get_roundtrip(tmp_path):
 def test_deactivate_keeps_entry_visible_but_inactive(tmp_path):
     store = make_store(tmp_path)
     entry = RoleEntry(
-        rolle="user.model", aktiv=True, quelle={}, stufe=0,
-        bestaetigt_am=now_iso(), bestaetigt_von="user", herkunft="manuell",
+        rolle="user.model",
+        aktiv=True,
+        quelle={},
+        stufe=0,
+        bestaetigt_am=now_iso(),
+        bestaetigt_von="user",
+        herkunft="manuell",
     )
     store.set(entry)
     assert store.deactivate("user.model") is True
@@ -49,10 +54,17 @@ def test_deactivate_unknown_role_returns_false(tmp_path):
 def test_list_roles_returns_all_entries(tmp_path):
     store = make_store(tmp_path)
     for rolle in ("policy.registry", "decisions.ledger"):
-        store.set(RoleEntry(
-            rolle=rolle, aktiv=True, quelle={}, stufe=0,
-            bestaetigt_am=now_iso(), bestaetigt_von="user", herkunft="manuell",
-        ))
+        store.set(
+            RoleEntry(
+                rolle=rolle,
+                aktiv=True,
+                quelle={},
+                stufe=0,
+                bestaetigt_am=now_iso(),
+                bestaetigt_von="user",
+                herkunft="manuell",
+            )
+        )
     roles = store.list_roles()
     assert set(roles.keys()) == {"policy.registry", "decisions.ledger"}
 

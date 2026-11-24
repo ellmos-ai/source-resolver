@@ -79,11 +79,17 @@ def test_stufe0_user_override_wins_over_present_module(tmp_path):
     funktionierendes eigenes Modul."""
     home = make_fake_home(tmp_path)
     store = UserSourceStore(tmp_path / "store.json")
-    store.set(RoleEntry(
-        rolle="decisions.ledger", aktiv=True,
-        quelle={"pfad": "/mein/eigener/ort/DECISIONS.md"},
-        stufe=0, bestaetigt_am=now_iso(), bestaetigt_von="user", herkunft="manuell",
-    ))
+    store.set(
+        RoleEntry(
+            rolle="decisions.ledger",
+            aktiv=True,
+            quelle={"pfad": "/mein/eigener/ort/DECISIONS.md"},
+            stufe=0,
+            bestaetigt_am=now_iso(),
+            bestaetigt_von="user",
+            herkunft="manuell",
+        )
+    )
     result = resolve("decisions.ledger", store=store, home=home)
     assert result.stufe == Stufe.NUTZER_KONFIGURATION
     assert result.quelle["pfad"] == "/mein/eigener/ort/DECISIONS.md"
@@ -188,13 +194,18 @@ def test_adapter_role_resolved_short_circuits_ladder(tmp_path, monkeypatch):
 
     def _run(cmd, capture_output, text, timeout):
         class Proc:
-            stdout = json.dumps({
-                "status": "resolved",
-                "selected": {"id": "P-001"},
-                "candidates": [], "reason": None, "fallback": None,
-            })
+            stdout = json.dumps(
+                {
+                    "status": "resolved",
+                    "selected": {"id": "P-001"},
+                    "candidates": [],
+                    "reason": None,
+                    "fallback": None,
+                }
+            )
             stderr = ""
             returncode = 0
+
         return Proc()
 
     monkeypatch.setattr(pr_adapter.subprocess, "run", _run)
@@ -211,11 +222,17 @@ def test_stufe0_user_override_wins_even_for_adapter_role(tmp_path, monkeypatch):
     """Amendment 1 wortwoertlich: der Nutzer ueberschreibt auch ein Modul mit Adapter."""
     monkeypatch.setattr(pr_adapter.shutil, "which", lambda name: "/usr/bin/policy-registry")
     store = UserSourceStore(tmp_path / "store.json")
-    store.set(RoleEntry(
-        rolle="policy.registry", aktiv=True,
-        quelle={"pfad": "/mein/eigenes/policy-set.json"},
-        stufe=0, bestaetigt_am=now_iso(), bestaetigt_von="user", herkunft="manuell",
-    ))
+    store.set(
+        RoleEntry(
+            rolle="policy.registry",
+            aktiv=True,
+            quelle={"pfad": "/mein/eigenes/policy-set.json"},
+            stufe=0,
+            bestaetigt_am=now_iso(),
+            bestaetigt_von="user",
+            herkunft="manuell",
+        )
+    )
     home = tmp_path / "home"
     home.mkdir()
     result = resolve("policy.registry", store=store, home=home, scope="dev-hygiene")

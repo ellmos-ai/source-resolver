@@ -19,11 +19,13 @@ def _fake_run(stdout_payload, returncode):
     def _run(cmd, capture_output, text, timeout):
         class Proc:
             pass
+
         p = Proc()
         p.stdout = json.dumps(stdout_payload)
         p.stderr = ""
         p.returncode = returncode
         return p
+
     return _run
 
 
@@ -66,6 +68,7 @@ def test_resolve_handles_invalid_json_as_adapter_error(monkeypatch):
             stdout = "not json"
             stderr = ""
             returncode = 1
+
         return Proc()
 
     monkeypatch.setattr(pr_adapter.subprocess, "run", _run)

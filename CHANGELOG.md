@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+### Pfad A: Privacy-Gate-Bereinigung, Packaging- & CI-Matrix-Härtung, PVR-Korrektur & Vertragstests (2026-11-24)
+
+- **Privacy-Gate-Konformität** (`CHANGELOG.md`, `llms.txt`, `tests/test_pointer_check.py`, `tests/test_metadata.py`): Hostspezifische Gerätenamen und konkrete Benutzerpfade durch generische Platzhalter (`*-<HOST>.*`, `C:\Users\<username>\...`) ersetzt sowie lokale File-URI-Verweise in `llms.txt` auf relative Repository-Pfade umgestellt (`repo_privacy_gate` exit 0).
+- **Pytest-CWD-Isolation & `.gitignore`-Härtung** (`pyproject.toml`, `.gitignore`): `--strict-markers` und `norecursedirs` (inkl. `.pytest_temp`, `.pytest_tmp`) ohne relatives `--basetemp` (gemäß CWD-Isolationsvorgabe) ergänzt; `.gitignore` um `.pytest_temp/`, `.pytest_tmp/` und Pre-Push-Data-Gate-Muster gehärtet.
+- **Packaging & CI-Matrix-Härtung** (`MANIFEST.in`, `.github/workflows/ci.yml`, `.github/workflows/stale.yml`): `MANIFEST.in` angelegt, CI um `ruff format --check .`, `pip install --no-deps --no-build-isolation --dry-run .`, `python -m build --sdist --wheel` und `git diff --check` erweitert sowie `concurrency` in `stale.yml` ergänzt; Python-Quell- und Testdateien mit `ruff format` vereinheitlicht.
+- **PVR-aware Sicherheitsmeldungen & Doku-Parität** (`SECURITY.md`, `CODE_OF_CONDUCT.md`, `README.md`, `README_de.md`, `ARCHITECTURE.md`, `llms.txt`, `TODO.md`): Bei deaktiviertem GitHub Private Vulnerability Reporting die vertraulichen E-Mail-Kontakte als primären Meldeweg ausgewiesen, Adapter-Tabelle auf beide registrierten Adapter (`policy.registry`, `resources.bach.tool_registry`) aktualisiert, ungenutzten Import in `README_de.md` entfernt und Verifikationsstempel (61/61 Tests, Stand 2026-11-24) bei strikt eingefrorener Version `0.1.4` synchronisiert.
+- **Vertragstests** (`tests/test_metadata.py`): Vier neue Vertragstests für Pytest-`basetemp`-Isolation/`norecursedirs`, `MANIFEST.in`/CI-Packaging, PVR-Meldungswege/Adapter-Doku-Parität sowie Changelog-Aktualität/Versions-Freeze ergänzt (Gesamtsuite auf 61/61 Tests erweitert).
+
 ### CI: Vertragstest für den Stale-Workflow versionsneutral (2026-11-15)
 
 - **Vertragstests** (`tests/test_metadata.py`): `test_stale_workflow_contract` prüft `actions/stale` jetzt unabhängig von der Major-Version (`@v<Zahl>`) statt fest auf `@v9`. Damit bleiben Dependabot-Updates der Action (aktuell v9 → v11) in der CI grün.
@@ -69,7 +77,7 @@ Pfad-A-Hygiene, CI-Matrix-Härtung, PEP 621 Metadaten und Vertragstest-Erweiteru
 - **CI-Matrix-Härtung** (`.github/workflows/ci.yml`): Neue automatisierte Matrix über `ubuntu-latest`, `windows-latest` und `macos-latest` für Python 3.10, 3.11, 3.12 und 3.13 mit `concurrency: cancel-in-progress: true`, `permissions: contents: read`, Ruff-Linter, Bytecode-Kompilierung (`compileall`) und Pytest.
 - **Stale Issues & PRs Workflow** (`.github/workflows/stale.yml`): Triage-Automatisierung mit `actions/stale@v9` nach 30 Tagen Inaktivität und 7 Tagen Schließfrist.
 - **PEP 621 Standardisierung** (`pyproject.toml`): Spezifikation von `[project.urls]` (Homepage, Repository, Documentation, Issues, Changelog, Security), standardisierte OS- und Python-3.10-3.13-Classifiers, optionale `dev` und `test` Dependencies sowie pytest `addopts = "-ra -v"` und Ruff-Konfiguration.
-- **.gitignore-Härtung**: Multi-Host Synchronisationskonflikte (`*-conflict-*`, `*-ASUS-GEI.*`, `*-WORKSTATION-LG.*`, `Thumbs.db`, `desktop.ini`), Multi-Agent Locks (`LOCK`, `LOCK.*`, `*.lock`, `LOCK*.txt`) und Build-/Test-Artefakte abgesichert.
+- **.gitignore-Härtung**: Multi-Host Synchronisationskonflikte (`*-conflict-*`, `*-<HOST>.*`, `Thumbs.db`, `desktop.ini`), Multi-Agent Locks (`LOCK`, `LOCK.*`, `*.lock`, `LOCK*.txt`) und Build-/Test-Artefakte abgesichert.
 - **Sicherheitsrichtlinie & SLAs** (`SECURITY.md`): Bilinguale Sicherheitsrichtlinie nach P-006 mit 48-Stunden-Empfangsbestätigung und 5-Werktage-Triage-SLA, Zero-Network-Egress und Stufe-0-Nutzervorrang-Garantien.
 - **CLI & Modul-Ausführung**: `src/source_resolver/__main__.py` für standardisierte `python -m source_resolver`-Aufrufe ergänzt.
 - **Automatisierte Vertragstests** (`tests/test_metadata.py`): 8 neue Vertragstests für Versions-Parität, PEP 621 Struktur, Gitignore-Muster, CI/Stale-Workflows, Security-SLAs und öffentliche Kontrakt-Invarianten (Gesamtsuite auf 44/44 Tests erweitert, 100% grün).
