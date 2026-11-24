@@ -15,7 +15,7 @@
 [![Lizenz: MIT](https://img.shields.io/badge/Lizenz-MIT-green.svg)](LICENSE)
 [![Security SLA](https://img.shields.io/badge/Security%20SLA-48h%20%7C%205d-blue.svg)](SECURITY.md)
 [![Ecosystem: ellmos--ai](https://img.shields.io/badge/Ecosystem-ellmos--ai-purple.svg)](https://github.com/ellmos-ai)
-[![Tests: Pytest](https://img.shields.io/badge/Tests-Pytest%2057%2F57%20Bestanden-brightgreen.svg)](tests/)
+[![Tests: Pytest](https://img.shields.io/badge/Tests-Pytest%2061%2F61%20Bestanden-brightgreen.svg)](tests/)
 [![Architektur](https://img.shields.io/badge/Architektur-Sequenzdiagramm-blueviolet.svg)](ARCHITECTURE.md)
 [![Code-Stil: Ruff](https://img.shields.io/badge/Code--Stil-Ruff-black.svg)](https://github.com/astral-sh/ruff)
 [![Mitwirken](https://img.shields.io/badge/Mitwirken-Leitfaden-blue.svg)](CONTRIBUTING.md)
@@ -24,7 +24,7 @@
 [![Zero Network Egress](https://img.shields.io/badge/Netzwerk-Zero%20Egress-brightgreen.svg)](SECURITY.md)
 [![Architektur: Local-First](https://img.shields.io/badge/Architektur-Local--First-blue.svg)](ARCHITECTURE.md)
 [![CLI Vorschau](https://img.shields.io/badge/CLI-Visuelle%20Vorschau-blueviolet.svg)](assets/cli-session-preview.svg)
-[![Geprüft](https://img.shields.io/badge/Gepr%C3%BCft-2026--11--15-brightgreen.svg)](tests/)
+[![Geprüft](https://img.shields.io/badge/Gepr%C3%BCft-2026--11--24-brightgreen.svg)](tests/)
 
 > [!NOTE]
 > **LLM/KI-Kontext-Index:** Eine maschinenlesbare Spezifikation für KI-Agenten befindet sich in [`llms.txt`](llms.txt).
@@ -54,7 +54,7 @@ läuft. `source-resolver` macht die Auflösung explizit, gestuft und prüfbar.
 | Stufe | Name | Bedeutung |
 |---|---|---|
 | 0 | Nutzer-Konfiguration | `~/.source-resolver/config.json`, `aktiv: true`. Gewinnt IMMER -- auch gegen ein vorhandenes, funktionierendes eigenes Modul. |
-| 1 | Eigenes Modul | Unsere kanonischen Module (siehe `KNOWN_MODULE_PROVIDERS` in `ladder.py`). Bei Fund automatisch maßgeblich, keine Rückfrage nötig. Für Rollen mit registriertem Adapter (aktuell: `policy.registry`) delegiert diese Stufe vollständig an das fremde Modul. |
+| 1 | Eigenes Modul | Unsere kanonischen Module (siehe `KNOWN_MODULE_PROVIDERS` in `ladder.py`). Bei Fund automatisch maßgeblich, keine Rückfrage nötig. Für Rollen mit registriertem Adapter (aktuell: `policy.registry`, `resources.bach.tool_registry`) delegiert diese Stufe vollständig an den jeweiligen Adapter. |
 | 2 | Discovery-Vorschlag | Dateisystem-Suche in explizit übergebenen Wurzeln. Ergebnis ist ein **Vorschlag** -- wird NIE automatisch übernommen, sondern muss per `confirm()` bestätigt werden, bevor er Stufe 0 wird. |
 | 3 | Fremdanbieter | Registrierte externe Provider. Aktuell **keine** -- siehe "Was hier bewusst fehlt". |
 | 4 | Nichts gefunden | Kein Report, sondern ein zweiteiliger Dialog: (a) "wo ist das für dich kanonisch?", (b) falls unbekannt: "sollen wir dir ein eigenes Zusatzmodul dafür einrichten?". |
@@ -122,7 +122,6 @@ sequenceDiagram
 </p>
 
 ```python
-from pathlib import Path
 from source_resolver import resolve, confirm
 
 result = resolve("decisions.ledger")
@@ -217,7 +216,7 @@ Begründung: [`proposals/PROPOSAL-NOTE.md`](proposals/PROPOSAL-NOTE.md).
 python -m pytest tests/ -ra -v
 ```
 
-57/57 grün (Stand 2026-11-15), inkl. automatisierter Vertragstests für PEP 621 Metadaten, CI-Matrix-Härtung, Dependabot-Konfiguration, Security-Policy-SLAs, Architektur-Vertrag sowie Regressionsanker für Pointer-Drift, Stufe-0-Nutzervorrang und die read-only BACH-Werkzeugregister-Schnittstelle.
+61/61 grün (Stand 2026-11-24), inkl. automatisierter Vertragstests für PEP 621 Metadaten, CI-Matrix- und Paketierungs-Härtung, Pytest-CWD-Isolation, Dependabot-Konfiguration, PVR-bereinigte Security-Policy-SLAs, Architektur-Vertrag sowie Regressionsanker für Pointer-Drift, Stufe-0-Nutzervorrang und die read-only BACH-Werkzeugregister-Schnittstelle.
 
 ## Namensraum-Abgrenzung
 

@@ -94,10 +94,12 @@ def test_gitignore_hygiene_patterns():
     assert gitignore_path.is_file(), ".gitignore must exist"
     content = gitignore_path.read_text(encoding="utf-8")
 
-    # Multi-host sync conflicts
+    # Multi-host sync conflicts (checked without literal device names in source)
     assert "*-conflict-*" in content
-    assert "*-ASUS-GEI.*" in content
-    assert "*-WORKSTATION-LG.*" in content
+    assert "*.sync-conflict-*" in content
+    assert re.search(r"^\*-[A-Z0-9_-]+\.\*$", content, re.MULTILINE), (
+        ".gitignore must guard host-suffixed sync conflict patterns"
+    )
     assert "Thumbs.db" in content
     assert "desktop.ini" in content
 
@@ -188,8 +190,8 @@ def test_bilingual_readme_contract():
     text_en = readme_en.read_text(encoding="utf-8")
     text_de = readme_de.read_text(encoding="utf-8")
 
-    assert ("assets/banner.gif" in text_en or "assets/banner.png" in text_en), "README.md must link to banner asset"
-    assert ("assets/banner.gif" in text_de or "assets/banner.png" in text_de), "README_de.md must link to banner asset"
+    assert "assets/banner.gif" in text_en or "assets/banner.png" in text_en, "README.md must link to banner asset"
+    assert "assets/banner.gif" in text_de or "assets/banner.png" in text_de, "README_de.md must link to banner asset"
 
     assert "README_de.md" in text_en, "README.md should link to German version"
     assert "README.md" in text_de, "README_de.md should link to English version"
@@ -213,7 +215,6 @@ def test_todo_and_license_inventory_contract():
     tpl_text = tpl_path.read_text(encoding="utf-8")
     assert "Runtime Dependencies" in tpl_text
     assert "Zero-Copyleft" in tpl_text
-
 
 
 def test_architecture_contract():
@@ -288,6 +289,7 @@ def test_issue_templates_contract():
     assert "name: Feature Request" in feat_text
     assert "labels: enhancement" in feat_text
 
+
 def test_visual_cli_preview_contract():
     """Verify assets/cli-session-preview.svg existence, XML validity, and README linkages."""
     import xml.etree.ElementTree as ET
@@ -347,8 +349,9 @@ def test_discoverability_and_seo_contract():
     llms_path = REPO_ROOT / "llms.txt"
     assert llms_path.is_file(), "llms.txt must exist"
     llms_text = llms_path.read_text(encoding="utf-8")
-    assert "Last-checked: 2026-11-15" in llms_text, "llms.txt must have 2026-11-15 check date"
+    assert "Last-checked: 2026-11-24" in llms_text, "llms.txt must have 2026-11-24 check date"
     assert "assets/cli-session-preview.svg" in llms_text, "llms.txt must reference cli-session-preview.svg"
+    assert "file:///" not in llms_text, "llms.txt must use relative repo links instead of file:/// URIs"
 
 
 def test_dependabot_and_ci_hardening_contract():
@@ -398,3 +401,81 @@ def test_readme_german_umlaut_and_english_parity_contract():
 
     for bad_ascii in ("Quellenaufloesung", "fuer ", "zurueck", "Kanaele", "Vorfaelle", "Praesenzcheck"):
         assert bad_ascii not in text_de, f"README_de.md still contains ASCII umlaut substitute: {bad_ascii!r}"
+
+
+def test_pytest_basetemp_isolation_and_norecursedirs_contract():
+    """Verify no relative --basetemp in addopts and strict pytest/gitignore isolation."""
+    pyproject_path = REPO_ROOT / "pyproject.toml"
+    with pyproject_path.open("rb") as f:
+        pyproject = tomllib.load(f)
+
+    pytest_opts = pyproject["tool"]["pytest"]["ini_options"]
+    addopts = pytest_opts.get("addopts", "")
+    assert "--basetemp" not in addopts, "pyproject.toml addopts must not set relative --basetemp"
+    assert "--strict-markers" in addopts
+    assert pytest_opts.get("xfail_strict") is True
+
+    norecursedirs = pytest_opts.get("norecursedirs", [])
+    for entry in (".pytest_temp", ".pytest_tmp", ".ruff_cache", "build", "dist"):
+        assert entry in norecursedirs, f"norecursedirs must exclude {entry}"
+
+    gitignore_text = (REPO_ROOT / ".gitignore").read_text(encoding="utf-8")
+    for pattern in (".pytest_temp/", ".pytest_tmp/", "*.bachdb*", "*export*.csv", "*dump*", "BEFUNDE.md"):
+        assert pattern in gitignore_text, f".gitignore must guard {pattern}"
+
+
+def test_manifest_and_ci_packaging_contract():
+    """Verify MANIFEST.in packaging rules and CI packaging/format/concurrency checks."""
+    manifest_path = REPO_ROOT / "MANIFEST.in"
+    assert manifest_path.is_file(), "MANIFEST.in must exist"
+    manifest_text = manifest_path.read_text(encoding="utf-8")
+    for expected in (
+        "include LICENSE",
+        "include THIRD_PARTY_LICENSES.md",
+        "include llms.txt",
+        "recursive-include schemas *.json",
+        "recursive-include tests *.py",
+        "prune .pytest_temp",
+    ):
+        assert expected in manifest_text, f"MANIFEST.in missing expected rule: {expected}"
+
+    ci_text = (REPO_ROOT / ".github" / "workflows" / "ci.yml").read_text(encoding="utf-8")
+    assert "ruff format --check ." in ci_text
+    assert "pip install --no-deps --no-build-isolation --dry-run ." in ci_text
+    assert "python -m build --sdist --wheel" in ci_text
+    assert "git diff --check" in ci_text
+
+    stale_text = (REPO_ROOT / ".github" / "workflows" / "stale.yml").read_text(encoding="utf-8")
+    assert "concurrency:" in stale_text
+    assert "cancel-in-progress: true" in stale_text
+
+
+def test_pvr_disabled_reporting_and_adapter_doc_parity_contract():
+    """Verify PVR-aware reporting channels and README parity with registered adapters."""
+    from source_resolver.adapters import ADAPTERS
+
+    security_text = (REPO_ROOT / "SECURITY.md").read_text(encoding="utf-8")
+    coc_text = (REPO_ROOT / "CODE_OF_CONDUCT.md").read_text(encoding="utf-8")
+    assert "/security/advisories/new" not in security_text
+    assert "/security/advisories" not in coc_text
+    assert "disabled" in security_text.lower() and "deaktiviert" in security_text.lower()
+
+    readme_en = (REPO_ROOT / "README.md").read_text(encoding="utf-8")
+    readme_de = (REPO_ROOT / "README_de.md").read_text(encoding="utf-8")
+    for adapter_name in ADAPTERS:
+        assert adapter_name in readme_en, f"README.md must document adapter {adapter_name}"
+        assert adapter_name in readme_de, f"README_de.md must document adapter {adapter_name}"
+
+    assert "from pathlib import Path" not in readme_de
+    arch_text = (REPO_ROOT / "ARCHITECTURE.md").read_text(encoding="utf-8")
+    assert "2026-11-24" in arch_text
+
+
+def test_changelog_unreleased_and_version_freeze_contract():
+    """Verify CHANGELOG.md records the Path A hygiene update under [Unreleased] with frozen version."""
+    changelog_text = (REPO_ROOT / "CHANGELOG.md").read_text(encoding="utf-8")
+    assert "## [Unreleased]" in changelog_text
+    unreleased_section = changelog_text.split("## [Unreleased]", 1)[1].split("\n## [", 1)[0]
+    assert "2026-11-24" in unreleased_section
+    assert "Pfad A" in unreleased_section
+    assert source_resolver.__version__ == "0.1.4"

@@ -15,7 +15,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Security SLA](https://img.shields.io/badge/Security%20SLA-48h%20%7C%205d-blue.svg)](SECURITY.md)
 [![Ecosystem: ellmos--ai](https://img.shields.io/badge/Ecosystem-ellmos--ai-purple.svg)](https://github.com/ellmos-ai)
-[![Tests: Pytest](https://img.shields.io/badge/Tests-Pytest%2057%2F57%20Passed-brightgreen.svg)](tests/)
+[![Tests: Pytest](https://img.shields.io/badge/Tests-Pytest%2061%2F61%20Passed-brightgreen.svg)](tests/)
 [![Architecture](https://img.shields.io/badge/Architecture-Sequence%20Diagram-blueviolet.svg)](ARCHITECTURE.md)
 [![Code Style: Ruff](https://img.shields.io/badge/Code%20Style-Ruff-black.svg)](https://github.com/astral-sh/ruff)
 [![Contributing](https://img.shields.io/badge/Contributing-Guide-blue.svg)](CONTRIBUTING.md)
@@ -24,7 +24,7 @@
 [![Zero Network Egress](https://img.shields.io/badge/Network-Zero%20Egress-brightgreen.svg)](SECURITY.md)
 [![Architecture: Local-First](https://img.shields.io/badge/Architecture-Local--First-blue.svg)](ARCHITECTURE.md)
 [![CLI Preview](https://img.shields.io/badge/CLI-Visual%20Preview-blueviolet.svg)](assets/cli-session-preview.svg)
-[![Verified](https://img.shields.io/badge/Verified-2026--11--15-brightgreen.svg)](tests/)
+[![Verified](https://img.shields.io/badge/Verified-2026--11--24-brightgreen.svg)](tests/)
 
 > [!NOTE]
 > **AI & LLM Integration Notice**: This repository includes an [`llms.txt`](llms.txt) index file tailored for automated context ingestion, agentic system prompts, and LLM code understanding.
@@ -54,7 +54,7 @@ source-resolver makes resolution explicit, staged, and checkable.
 | Stage | Name | Meaning |
 |---|---|---|
 | 0 | User configuration | `~/.source-resolver/config.json`, `aktiv: true`. ALWAYS wins -- even against a present, working canonical module. |
-| 1 | Own module | Our canonical modules (see `KNOWN_MODULE_PROVIDERS` in `ladder.py`). Once found, authoritative automatically, no confirmation needed. For roles with a registered adapter (currently: `policy.registry`), this stage delegates fully to the foreign module. |
+| 1 | Own module | Our canonical modules (see `KNOWN_MODULE_PROVIDERS` in `ladder.py`). Once found, authoritative automatically, no confirmation needed. For roles with a registered adapter (currently: `policy.registry`, `resources.bach.tool_registry`), this stage delegates fully to the adapter. |
 | 2 | Discovery proposal | Filesystem search across explicitly supplied roots. Result is a **proposal** -- never adopted automatically; must be confirmed via `confirm()` before it becomes Stage 0. |
 | 3 | Foreign provider | Registered external providers. Currently **none** -- see "What's deliberately missing". |
 | 4 | Not found | Not a report but a two-part dialogue: (a) "where is that canonical for you?", (b) if unknown: "should we set up our own supplementary module for this?" |
@@ -209,7 +209,7 @@ rationale: [`proposals/PROPOSAL-NOTE.en.md`](proposals/PROPOSAL-NOTE.en.md)
 python -m pytest tests/ -ra -v
 ```
 
-57/57 green (as of 2026-11-15), including automated contract tests for PEP 621 metadata, CI matrix hardening, Dependabot configuration, security policy SLAs, architecture contracts, and regression anchors for pointer-drift, user configuration precedence, and the BACH read-only tool registry seam.
+61/61 green (as of 2026-11-24), including automated contract tests for PEP 621 metadata, CI matrix and packaging hardening, pytest `basetemp`/CWD isolation, Dependabot configuration, PVR-aware security policy SLAs, architecture contracts, and regression anchors for pointer-drift, user configuration precedence, and the BACH read-only tool registry seam.
 
 ## Community & Governance
 

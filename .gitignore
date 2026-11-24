@@ -18,6 +18,8 @@ ENV/
 
 # Testing & Linters
 .pytest_cache/
+.pytest_temp/
+.pytest_tmp/
 .ruff_cache/
 .mypy_cache/
 .tox/
@@ -64,6 +66,11 @@ desktop.ini
 *.db
 *.sqlite
 *.sqlite3
+*.bachdb*
+*export*.csv
+*dump*
+inbox_config*
+TO-DECIDE-USER*
 data/
 
 # IDE & Editor Configurations
@@ -71,8 +78,15 @@ data/
 .vscode/
 *.sublime-project
 *.sublime-workspace
-# Marketing, Audit & Automation Logs (Zero-Pollution / Host-Level Only)
+
+# Marketing, Audit, Internal Agent State & Automation Logs (Zero-Pollution / Host-Level Only)
 MARKETING-LOG.txt
 *MARKETING-LOG.txt
 CHECKS-LOG.txt
 ANTIGRAVITY-LOG.txt
+BEFUNDE.md
+STORE_READINESS.md
+STORE_CONTRACT.md
+*_DAILY_CARE.md
+TASKPLAN_STATUS_*.md
+tmpclaude-*

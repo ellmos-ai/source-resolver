@@ -88,9 +88,7 @@ def _bridge_environment(root: Path | None) -> dict[str, str]:
     if root is not None:
         root_text = str(root)
         current = environment.get("PYTHONPATH")
-        environment["PYTHONPATH"] = os.pathsep.join(
-            value for value in (root_text, current) if value
-        )
+        environment["PYTHONPATH"] = os.pathsep.join(value for value in (root_text, current) if value)
     return environment
 
 

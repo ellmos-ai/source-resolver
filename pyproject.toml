@@ -70,9 +70,20 @@ source-resolver = "source_resolver.cli:main"
 where = ["src"]
 
 [tool.pytest.ini_options]
-addopts = "-ra -v"
+addopts = "-ra -v --strict-markers"
 pythonpath = ["src"]
 testpaths = ["tests"]
+norecursedirs = [
+    ".git",
+    ".venv",
+    "venv",
+    "build",
+    "dist",
+    ".pytest_temp",
+    ".pytest_tmp",
+    ".ruff_cache",
+    ".mypy_cache",
+]
 xfail_strict = true
 
 [tool.ruff]

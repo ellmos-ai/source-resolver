@@ -1,6 +1,6 @@
 # Architecture & Design — source-resolver
 
-Stand: 2026-09-19 | Version: 0.1.4 | Package: `ellmos-ai/source-resolver`
+Stand: 2026-11-24 | Version: 0.1.4 | Package: `ellmos-ai/source-resolver`
 
 This document outlines the architectural structure, component responsibilities, data contracts, and the 5-stage resolution ladder of `source-resolver`.
 

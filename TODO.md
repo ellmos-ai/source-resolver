@@ -1,7 +1,7 @@
 # TODO.md — Active work & Release Status: source-resolver
 
 **Version:** 0.1.4
-**Updated:** 2026-11-03
+**Updated:** 2026-11-24
 **Auditor:** Gemini (Antigravity)
 **Reason:** Pfad A Technische Hygiene, Community Governance, Issue Templates und Vertragstests
 **Target Repo:** `ellmos-ai/source-resolver`

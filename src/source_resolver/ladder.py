@@ -209,10 +209,7 @@ def _try_known_module(rolle: str, home: Path) -> ResolutionResult | None:
                     "hinweis": candidate.get("hinweis", ""),
                 },
                 herkunft="eigenes-modul",
-                nachricht=(
-                    f"Rolle '{rolle}' aufgeloest ueber CLI-Praesenz von '{cli_name}' "
-                    f"({resolved_cli})."
-                ),
+                nachricht=(f"Rolle '{rolle}' aufgeloest ueber CLI-Praesenz von '{cli_name}' ({resolved_cli})."),
             )
         module_path = _resolve_home_path(candidate["module_path"], home)
         if not module_path.exists():
@@ -413,9 +410,11 @@ def resolve(
         ),
         "frage_2_falls_unbekannt": (
             "Falls du das nicht benennen kannst: sollen wir dir dafuer ein eigenes "
-            "Zusatzmodul einrichten? " + (
-                f"Kandidat(en) dafuer: {', '.join(known_ids)}." if known_ids else
-                "Fuer diese Rolle existiert noch kein passendes Modul -- das waere ein Neubau."
+            "Zusatzmodul einrichten? "
+            + (
+                f"Kandidat(en) dafuer: {', '.join(known_ids)}."
+                if known_ids
+                else "Fuer diese Rolle existiert noch kein passendes Modul -- das waere ein Neubau."
             )
         ),
     }
