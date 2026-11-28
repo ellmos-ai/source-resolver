@@ -126,7 +126,7 @@ from source_resolver import resolve, confirm
 
 result = resolve("decisions.ledger")
 if result.status == "resolved":
-    print(result.quelle)          # {"id": "_DECISIONS-chain", "module_path": "...", ...}
+    print(result.quelle)  # {"id": "_DECISIONS-chain", "module_path": "...", ...}
 elif result.status == "proposed":
     # Stufe 2: Nutzer fragen, dann:
     confirm("decisions.ledger", result.kandidaten[0], stufe_herkunft=2)
